@@ -21,7 +21,6 @@ inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
 " Sets color scheme
-" let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
