@@ -1,5 +1,6 @@
-# CURRENT THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+ 
+# Theme
 ZSH_THEME="agnoster"
 
 # So the user@hostname doesn't show
@@ -8,7 +9,7 @@ DEFAULT_USER='hidoya'
 # For storing dotfiles in git
 alias config='/usr/bin/git --git-dir=/home/hidoya/.cfg/ --work-tree=/home/hidoya'
 
-#####################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 
 # If you come from bash you might have to change your $PATH.

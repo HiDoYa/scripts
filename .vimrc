@@ -1,8 +1,5 @@
-" An example for a vimrc file.
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" HiDoYa's stuff
 map <F8> :w <CR> :!g++ -std=c++11 % -o %< && ./%< <CR>
 
 " This puts all backup and undo files in a separate folder
@@ -18,6 +15,8 @@ colorscheme ron
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+
+" Example
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
