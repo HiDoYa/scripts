@@ -3,6 +3,44 @@
 " Make sure compatible mode is off (compatibility with vi)
 :set nocompatible
 
+"""" VUNDLE (PLUGIN MANAGER)
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Status/tabline
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+filetype plugin indent on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"""" AIRLINE
+set laststatus=2
+set ttimeoutlen=50
+" Theme
+let g:airline_theme='solarized'
+
 """" BACKUP AND UNDO
 " Makes undo file
 set undofile
@@ -41,9 +79,6 @@ set lazyredraw
 set showmatch
 " Use auto indent
 set autoindent
-" Turn on filetype detection, filetype-specific scripts, and
-" filetype-specific indent scripts
-filetype plugin indent on
 
 """" SEARCHING
 " Search as characters are entered
@@ -86,9 +121,9 @@ set foldmethod=indent
 nnoremap Q <nop>
 " Use F8 to compile and run C++ code
 map <F8> :w <CR> :!g++ -std=c++11 % -o %< && ./%< <CR>
-
-"""" PLUGINS AND PACKAGES
-
+" Remap C-n for Nerd Tree
+map <C-n> :NERDTreeToggle<CR>
+" TODO C-S-V (pasting) do set paste and set nopaste afterwards
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
 " Example
 
@@ -124,8 +159,3 @@ if has('langmap') && exists('+langnoremap')
   " compatible).
   set langnoremap
 endif
-
-
-" The matchit plugin makes the % command work better, but it is not backwards
-" compatible.
-packadd matchit
