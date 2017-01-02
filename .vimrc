@@ -2,7 +2,7 @@
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" HiDoYa's own stuff
+" HiDoYa's stuff
 map <F8> :w <CR> :!g++ -std=c++11 % -o %< && ./%< <CR>
 
 " This puts all backup and undo files in a separate folder
@@ -13,6 +13,8 @@ set undodir=~/.vimbackup
 " Sets color scheme
 colorscheme ron
 
+" Shows line numbers
+:set number
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
