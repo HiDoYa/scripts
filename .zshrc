@@ -1,15 +1,21 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-  export ZSH=/home/hidoya/.oh-my-zsh
-
 # CURRENT THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
 
 # So the user@hostname doesn't show
 DEFAULT_USER='hidoya'
+
+# For storing dotfiles in git
+alias config='/usr/bin/git --git-dir=/home/hidoya/.cfg/ --work-tree=/home/hidoya'
+
+#####################################################################
+
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH=/home/hidoya/.oh-my-zsh
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

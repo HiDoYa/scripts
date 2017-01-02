@@ -115,4 +115,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# For storing dotfiles
 alias config='/usr/bin/git --git-dir=/home/hidoya/.cfg/ --work-tree=/home/hidoya'
