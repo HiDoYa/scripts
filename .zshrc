@@ -1,5 +1,16 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
  
+# Startup message
+screenfetch
+echo "    _____                            "
+echo "   /     \\                           "
+echo "   vvvvvvv  /|__/|                   "
+echo "      I   /O,O   |                   "
+echo "      I /_____   |      /|/|         "
+echo "     J|/^ ^ ^ \\  |    /00  |    _//| "
+echo "      |^ ^ ^ ^ |W|   |/^^\\ |   /oo | "
+echo "       \\m___m__|_|    \\m_m_|   \\mm_| "
+
 # Theme
 ZSH_THEME="agnoster"
 
