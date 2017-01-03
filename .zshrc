@@ -30,15 +30,17 @@ export VISUAL=/usr/bin/vim
 # Path to oh-my-zsh installation
 export ZSH=/home/hidoya/.oh-my-zsh
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Allows hyphen-insensitive completion. (- and _ is interchangeable)
 HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to enable command auto-correction.
+# Enables command auto-correction.
 ENABLE_CORRECTION="true"
 
+# Shows dots while waiting for completion
+COMPLETION_WAITING_DOTS="true"
+
 # Plugins
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# ~/.oh-my-zsh/plugins
 plugins=(git web-search)
 source $ZSH/oh-my-zsh.sh
 
