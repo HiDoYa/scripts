@@ -3,7 +3,9 @@
 " Make sure compatible mode is off (compatibility with vi)
 :set nocompatible
 
+""""""""""""""""""""""""""
 """" VUNDLE (PLUGIN MANAGER)
+""""""""""""""""""""""""""
 filetype off
 
 " set the runtime path to include Vundle and initialize
@@ -35,13 +37,17 @@ filetype plugin indent on
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+""""""""""""""""""""""""""
 """" AIRLINE
+""""""""""""""""""""""""""
 set laststatus=2
 set ttimeoutlen=50
 " Theme
 let g:airline_theme='solarized'
 
+""""""""""""""""""""""""""
 """" BACKUP AND UNDO
+""""""""""""""""""""""""""
 " Makes undo file
 set undofile
 " Keeps 50 lines of command line history
@@ -62,7 +68,9 @@ inoremap <C-W> <C-G>u<C-W>
 set background=dark
 colorscheme solarized
 
+""""""""""""""""""""""""""
 """" UI CONFIG
+""""""""""""""""""""""""""
 " Shows cursor position
 set ruler
 " Shows line numbers
@@ -79,8 +87,16 @@ set lazyredraw
 set showmatch
 " Use auto indent
 set autoindent
+" Show title
+set title
+" Shows status line
+set laststatus=2
 
+
+
+""""""""""""""""""""""""""
 """" SEARCHING
+""""""""""""""""""""""""""
 " Search as characters are entered
 set incsearch
 " Highlight matches
@@ -91,7 +107,9 @@ nnoremap <leader><space> :nohlsearch<CR>
 " default colors
 syntax enable
 
+""""""""""""""""""""""""""
 """" MOVEMENT
+""""""""""""""""""""""""""
 " Remap line motion commands for real vs display lines
 nnoremap k gk
 nnoremap gk k 
@@ -102,11 +120,15 @@ if has('mouse')
   set mouse=a
 endif
 
+""""""""""""""""""""""""""
 """" TEXT MANIP
+""""""""""""""""""""""""""
 " Allows for backspace of everything in insert mode
 set backspace=indent,eol,start
 
+""""""""""""""""""""""""""
 """" FOLDING
+""""""""""""""""""""""""""
 " Enable folding
 set foldenable
 " Sets the fold levels when first opening a buffer
@@ -116,14 +138,17 @@ set foldnestmax=10
 " Folds based on indent level
 set foldmethod=indent
 
+""""""""""""""""""""""""""
 """" MISC
+""""""""""""""""""""""""""
+
 " To not accidentally enter Ex mode
 nnoremap Q <nop>
 " Use F8 to compile and run C++ code
 map <F8> :w <CR> :!g++ -std=c++11 % -o %< && ./%< <CR>
 " Remap C-n for Nerd Tree
 map <C-n> :NERDTreeToggle<CR>
-" TODO C-S-V (pasting) do set paste and set nopaste afterwards
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
 " Example
 
