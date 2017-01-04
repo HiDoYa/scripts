@@ -25,7 +25,7 @@ alias config='/usr/bin/git --git-dir=/home/hidoya/.cfg/ --work-tree=/home/hidoya
 # For starting apache2
 alias apacheStart="sudo /usr/local/apache2/bin/apachectl start"
 alias apacheStop="sudo /usr/local/apache2/bin/apachectl stop"
-alias apacheLoc="/usr/local/apache2/"
+alias apacheLoc="cd /usr/local/apache2/"
 
 # Use vim as default editor
 export EDITOR=/usr/bin/vim
