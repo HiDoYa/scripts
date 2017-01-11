@@ -27,6 +27,11 @@ alias apacheStart="sudo /usr/local/apache2/bin/apachectl start"
 alias apacheStop="sudo /usr/local/apache2/bin/apachectl stop"
 alias apacheLoc="cd /usr/local/apache2/"
 
+# For linuxbrew
+export PATH="/home/hidoya/.linuxbrew/bin:$PATH"
+export MANPATH="/home/hidoya/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/home/hidoya/.linuxbrew/share/info:$INFOPATH"
+
 # Use vim as default editor
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
