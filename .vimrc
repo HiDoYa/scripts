@@ -111,10 +111,10 @@ syntax enable
 """" MOVEMENT
 """"""""""""""""""""""""""
 " Remap line motion commands for real vs display lines
-nnoremap k gk
-nnoremap gk k 
-nnoremap j gj
-nnoremap gj j
+" nnoremap k gk
+" nnoremap gk k
+" nnoremap j gj
+" nnoremap gj j
 " Allow mouse use
 if has('mouse')
   set mouse=a
