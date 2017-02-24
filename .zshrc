@@ -1,5 +1,4 @@
 # Startup message
-screenfetch
 echo "    _____                            "
 echo "   /     \\                           "
 echo "   vvvvvvv  /|__/|                   "
