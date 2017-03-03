@@ -115,10 +115,11 @@ syntax enable
 " nnoremap gk k
 " nnoremap j gj
 " nnoremap gj j
-" Allow mouse use
-if has('mouse')
-  set mouse=a
-endif
+"
+"""""" Allow mouse use
+" if has('mouse')
+"   set mouse=a
+" endif
 
 """"""""""""""""""""""""""
 """" TEXT MANIP
