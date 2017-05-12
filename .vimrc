@@ -87,6 +87,11 @@ set lazyredraw
 set showmatch
 " Use auto indent
 set autoindent
+" Tabs aren't spaces
+set noexpandtab
+"  1 tab == 8 spaces
+set tabstop=8
+set shiftwidth=8
 " Show title
 set title
 " Shows status line
