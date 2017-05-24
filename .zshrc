@@ -19,6 +19,7 @@ DEFAULT_USER='hidoya'
 alias ll="ls -al"
 alias la="ls -a"
 alias mkdir="mkdir -p"
+alias goto-z="cd /media/hidoya/Zet/Users/Hiroya"
 function quickgit()
 {
 	git add --all
