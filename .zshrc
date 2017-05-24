@@ -19,13 +19,14 @@ DEFAULT_USER='hidoya'
 alias ll="ls -al"
 alias la="ls -a"
 alias mkdir="mkdir -p"
-alias goto-z="cd /media/hidoya/Zet/Users/Hiroya"
 function quickgit()
 {
 	git add --all
 	git commit -m $1
 	git push
 }
+# Goes to my "zet" drive using $
+zet="/media/hidoya/Zet/Users/Hiroya"
 # For storing dotfiles in git
 alias config='/usr/bin/git --git-dir=/home/hidoya/.cfg/ --work-tree=/home/hidoya'
 # For starting apache2
