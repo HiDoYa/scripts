@@ -24,6 +24,9 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 
+" Rust Config
+Plugin 'rust-lang/rust.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
@@ -112,13 +115,13 @@ syntax enable
 """"""""""""""""""""""""""
 " Remap line motion commands for real vs display lines
 " nnoremap k gk
-" nnoremap gk k
+" nnoremap gk k 
 " nnoremap j gj
 " nnoremap gj j
 " Allow mouse use
-if has('mouse')
-  set mouse=a
-endif
+" if has('mouse')
+"   set mouse=a
+" endif
 
 """"""""""""""""""""""""""
 """" TEXT MANIP
@@ -137,6 +140,9 @@ set foldlevelstart=10
 set foldnestmax=10
 " Folds based on indent level
 set foldmethod=indent
+
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 """"""""""""""""""""""""""
 """" MISC
