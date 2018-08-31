@@ -25,6 +25,8 @@ function quickgit()
 	git commit -m $1
 	git push
 }
+# Goes to my "zet" drive using $
+zet="/media/hidoya/Zet/Users/Hiroya"
 # For storing dotfiles in git
 alias config='/usr/bin/git --git-dir=/home/hidoya/.cfg/ --work-tree=/home/hidoya'
 # For starting apache2
