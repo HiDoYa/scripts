@@ -17,15 +17,16 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Status/tabline
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'prettier/prettier'
 
 " Rust Config
 Plugin 'rust-lang/rust.vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -68,7 +69,8 @@ inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
 " Sets color scheme
-set background=dark
+" set background=dark " for dark mode (and change color scheme in profiles)
+set background=light " for light mode  (and change color scheme in profiles)
 colorscheme solarized
 
 """"""""""""""""""""""""""
@@ -90,11 +92,6 @@ set lazyredraw
 set showmatch
 " Use auto indent
 set autoindent
-" Tabs aren't spaces
-set noexpandtab
-"  1 tab == 8 spaces
-set tabstop=8
-set shiftwidth=8
 " Show title
 set title
 " Shows status line
@@ -123,12 +120,23 @@ syntax enable
 " nnoremap gk k 
 " nnoremap j gj
 " nnoremap gj j
-
-
 " Allow mouse use
 " if has('mouse')
 "   set mouse=a
 " endif
+
+""""""""""""""""""""""""""
+"""" NERDTREE DEFAULTS
+""""""""""""""""""""""""""
+" Automatically starts nerd tree and moves focus back to file
+au VimEnter *  NERDTree
+au VimEnter *  wincmd w
+
+" Show hidden files
+let NERDTreeShowHidden = 1
+
+" Automatically exits nerd tree upon file close
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """"""""""""""""""""""""""
 """" TEXT MANIP
@@ -157,8 +165,8 @@ autocmd BufWinEnter *.* silent loadview
 
 " To not accidentally enter Ex mode
 nnoremap Q <nop>
-" Use F8 to compile and run C++ code
-map <F8> :w <CR> :!g++ -std=c++11 % -o %< && ./%< <CR>
+" Use F8 to compile code
+map <F8> :w <CR> :make<CR>
 " Remap C-n for Nerd Tree
 map <C-n> :NERDTreeToggle<CR>
 
