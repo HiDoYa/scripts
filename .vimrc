@@ -19,10 +19,15 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'prettier/prettier'
+" Plugin 'prettier/vim-prettier'
+" Plugin 'airblade/vim-gitgutter'
+" Plugin 'valloric/youcompleteme'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
+" Plugin 'shougo/deoplete.nvim'
+" Plugin 'honza/vim-snippets'
 
 " Rust Config
 Plugin 'rust-lang/rust.vim'
@@ -50,6 +55,21 @@ set ttimeoutlen=50
 let g:airline_theme='solarized'
 
 """"""""""""""""""""""""""
+"""" Prettier
+""""""""""""""""""""""""""
+" let g:prettier#config#parser = 'babylon'
+" let g:prettier#config#config_precedence = 'file-override'
+
+""""""""""""""""""""""""""
+"""" YouCompleteMe
+""""""""""""""""""""""""""
+" set signcolumn=no
+
+""""""""""""""""""""""""""
+"""" Git features
+""""""""""""""""""""""""""
+" au VimEnter *  GitGutterBufferEnable
+""""""""""""""""""""""""""
 """" BACKUP AND UNDO
 """"""""""""""""""""""""""
 " Makes undo file
@@ -69,8 +89,8 @@ inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
 " Sets color scheme
-" set background=dark " for dark mode (and change color scheme in profiles)
-set background=light " for light mode  (and change color scheme in profiles)
+set background=dark " for dark mode (and change color scheme in profiles)
+" set background=light " for light mode  (and change color scheme in profiles)
 colorscheme solarized
 
 """"""""""""""""""""""""""
@@ -97,7 +117,20 @@ set title
 " Shows status line
 set laststatus=2
 
+""""""""""""""""""""""""""
+"""" SEARCHING
+""""""""""""""""""""""""""
+function! SetTab(size)
+	execute "set tabstop=". a:size
+	execute "set shiftwidth=". a:size
+	set expandtab
+:endfunction
 
+function! ResetTab()
+	set tabstop=8
+	set shiftwidth=8
+	set noexpandtab
+:endfunction
 
 """"""""""""""""""""""""""
 """" SEARCHING
@@ -137,6 +170,9 @@ let NERDTreeShowHidden = 1
 
 " Automatically exits nerd tree upon file close
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Automatically opens nerdtree on new tab
+autocmd BufWinEnter * NERDTreeMirror
 
 """"""""""""""""""""""""""
 """" TEXT MANIP
