@@ -183,17 +183,17 @@ set backspace=indent,eol,start
 """"""""""""""""""""""""""
 """" FOLDING
 """"""""""""""""""""""""""
-" Enable folding
-set foldenable
-" Sets the fold levels when first opening a buffer
-set foldlevelstart=10
-" To make sure there aren't too many folds (guard against too many folds)
-set foldnestmax=10
-" Folds based on indent level
-set foldmethod=indent
-
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+" " Enable folding
+" set foldenable
+" " Sets the fold levels when first opening a buffer
+" set foldlevelstart=10
+" " To make sure there aren't too many folds (guard against too many folds)
+" set foldnestmax=10
+" " Folds based on indent level
+" set foldmethod=indent
+" 
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
 
 """"""""""""""""""""""""""
 """" MISC
