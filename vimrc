@@ -63,7 +63,7 @@ let g:airline_theme='solarized'
 """"""""""""""""""""""""""
 """" YouCompleteMe
 """"""""""""""""""""""""""
-" set signcolumn=no
+set signcolumn=no
 
 """"""""""""""""""""""""""
 """" Git features
