@@ -1,0 +1,9 @@
+[user]
+	name = HiDoYa
+	email = hiroyagojo@gmail.com
+
+[core]
+	excludesfile = /Users/hiroyagojo/.gitignore
+
+[color]
+	ui = true
