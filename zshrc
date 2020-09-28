@@ -22,7 +22,6 @@ alias ll="ls -al"
 alias la="ls -a"
 alias mkdir="mkdir -p"
 alias up="cd .."
-alias csif="ssh higojo@pc11.cs.ucdavis.edu"
 function quickgit()
 {
 	git add --all
