@@ -22,6 +22,21 @@ alias ll="ls -al"
 alias la="ls -a"
 alias mkdir="mkdir -p"
 alias up="cd .."
+function extc()
+{
+	recursive=false
+	while getopts "r" flag; do
+		case "${flag}" in
+			r) recursive=true
+		esac
+	done
+
+	if ${recursive}; then
+		ls -pR | grep -v / | grep -v -e '^$' | awk -F . '{print $NF}' | sort | uniq -c | sort
+	else
+		ls -p | grep -v / | grep -v -e '^$' | awk -F . '{print $NF}' | sort | uniq -c | sort
+	fi
+}
 function quickgit()
 {
 	git add --all
