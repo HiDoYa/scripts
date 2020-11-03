@@ -52,7 +52,7 @@ filetype plugin indent on
 set laststatus=2
 set ttimeoutlen=50
 " Theme
-let g:airline_theme='solarized'
+let g:airline_theme='simple'
 
 """"""""""""""""""""""""""
 """" Prettier
@@ -91,7 +91,7 @@ inoremap <C-W> <C-G>u<C-W>
 " Sets color scheme
 set background=dark " for dark mode (and change color scheme in profiles)
 " set background=light " for light mode  (and change color scheme in profiles)
-colorscheme solarized
+" colorscheme solarized
 
 """"""""""""""""""""""""""
 """" UI CONFIG
