@@ -17,7 +17,6 @@ ZSH_THEME="agnoster"
 DEFAULT_USER='hiroyagojo'
 
 ## ALIASES
-# Basic
 alias ll="ls -al"
 alias la="ls -a"
 alias mkdir="mkdir -p"
@@ -61,7 +60,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Plugins
 # ~/.oh-my-zsh/plugins
-plugins=(git web-search)
+plugins=(git web-search zsh-autosuggestions kubectl gcloud lol colored-man-pages git-auto-fetch docker aws battery)
 source $ZSH/oh-my-zsh.sh
 
 # Path
@@ -69,6 +68,13 @@ export PATH=$PATH:/usr/local/bin
 
 # Vim mode editing in zsh
 bindkey -v
+
+# Add kubernetes cluster prompt
+# source /usr/local/Cellar/kube-ps1/0.7.0/share/kube-ps1.sh
+# RPROMPT='$(kube_ps1)'$RPROMPT
+
+# Add battery prompt
+RPROMPT=$(battery_pct_prompt)$RPROMPT
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hiroyagojo/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hiroyagojo/google-cloud-sdk/path.zsh.inc'; fi
