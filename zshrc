@@ -46,9 +46,6 @@ function quickgit()
 # Use vim as default editor
 export VISUAL=/usr/bin/vim
 
-# Path to oh-my-zsh installation
-export ZSH=/Users/hiroyagojo/.oh-my-zsh
-
 # Allows hyphen-insensitive completion. (- and _ is interchangeable)
 HYPHEN_INSENSITIVE="true"
 
@@ -59,7 +56,7 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins
-# ~/.oh-my-zsh/plugins
+export ZSH=/Users/hiroyagojo/.oh-my-zsh
 plugins=(git web-search zsh-autosuggestions kubectl gcloud lol colored-man-pages git-auto-fetch docker aws battery)
 source $ZSH/oh-my-zsh.sh
 
