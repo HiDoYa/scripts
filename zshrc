@@ -1,5 +1,3 @@
-ZSH_DISABLE_COMPFIX=true
-
 # Startup message
 echo "    _____                            "
 echo "   /     \\                           "
@@ -10,13 +8,14 @@ echo "     J|/^ ^ ^ \\  |    /00  |    _//| "
 echo "      |^ ^ ^ ^ |W|   |/^^\\ |   /oo | "
 echo "       \\m___m__|_|    \\m_m_|   \\mm_| "
 
-# Theme
+ZSH_DISABLE_COMPFIX=true
 ZSH_THEME="agnoster"
 
 # So the user@hostname doesn't show
 DEFAULT_USER='hiroyagojo'
 
 ## ALIASES
+alias joinpdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py"
 alias ll="ls -al"
 alias la="ls -a"
 alias mkdir="mkdir -p"
@@ -67,14 +66,14 @@ export PATH=$PATH:/usr/local/bin
 bindkey -v
 
 # Add kubernetes cluster prompt
-# source /usr/local/Cellar/kube-ps1/0.7.0/share/kube-ps1.sh
-# RPROMPT='$(kube_ps1)'$RPROMPT
-
-# Add battery prompt
-RPROMPT=$(battery_pct_prompt)$RPROMPT
+source /usr/local/Cellar/kube-ps1/0.7.0/share/kube-ps1.sh
+RPROMPT='$(kube_ps1)'$RPROMPT
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hiroyagojo/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hiroyagojo/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/hiroyagojo/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hiroyagojo/google-cloud-sdk/completion.zsh.inc'; fi
+
+export CLOUDSDK_PYTHON="/usr/bin/python3"
+

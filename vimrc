@@ -11,8 +11,6 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -31,7 +29,6 @@ Plugin 'godlygeek/tabular'
 
 " Rust Config
 Plugin 'rust-lang/rust.vim'
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -83,6 +80,7 @@ set writebackup
 set backupdir=~/.vimbackup
 set directory=~/.vimbackup
 set undodir=~/.vimbackup
+
 " <C-G>u starts a new change to allow recovering text that is deleted with C-U
 " and C-w.
 inoremap <C-U> <C-G>u<C-U>
@@ -146,19 +144,6 @@ nnoremap <leader><space> :nohlsearch<CR>
 syntax enable
 
 """"""""""""""""""""""""""
-"""" MOVEMENT
-""""""""""""""""""""""""""
-" Remap line motion commands for real vs display lines
-" nnoremap k gk
-" nnoremap gk k 
-" nnoremap j gj
-" nnoremap gj j
-" Allow mouse use
-" if has('mouse')
-"   set mouse=a
-" endif
-
-""""""""""""""""""""""""""
 """" NERDTREE DEFAULTS
 """"""""""""""""""""""""""
 " Automatically starts nerd tree and moves focus back to file
@@ -198,7 +183,6 @@ set backspace=indent,eol,start
 """"""""""""""""""""""""""
 """" MISC
 """"""""""""""""""""""""""
-
 " To not accidentally enter Ex mode
 nnoremap Q <nop>
 " Use F8 to compile code
@@ -241,3 +225,4 @@ if has('langmap') && exists('+langnoremap')
   " compatible).
   set langnoremap
 endif
+
