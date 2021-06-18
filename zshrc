@@ -54,13 +54,17 @@ ENABLE_CORRECTION="true"
 # Shows dots while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
+# Vi mode plugin options
+VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+VI_MODE_SET_CURSOR=true
+
 # Plugins
 export ZSH=/Users/hiroyagojo/.oh-my-zsh
-plugins=(git web-search zsh-autosuggestions kubectl gcloud lol colored-man-pages git-auto-fetch docker aws battery)
+plugins=(git web-search zsh-autosuggestions kubectl gcloud lol colored-man-pages docker aws battery vi-mode)
 source $ZSH/oh-my-zsh.sh
 
-# Path
-export PATH=$PATH:/usr/local/bin
+# PATHS
+PATH=/usr/local/bin:$PATH
 
 # Vim mode editing in zsh
 bindkey -v
@@ -76,4 +80,7 @@ if [ -f '/Users/hiroyagojo/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hiro
 if [ -f '/Users/hiroyagojo/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hiroyagojo/google-cloud-sdk/completion.zsh.inc'; fi
 
 export CLOUDSDK_PYTHON="/usr/bin/python3"
+
+# Visual studio code
+export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
