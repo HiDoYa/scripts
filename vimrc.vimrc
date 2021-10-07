@@ -1,6 +1,6 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Make sure compatible mode is off (compatibility with vi)
+""""""""""""""""""""""""""
+" Compatible mode with vi is off
+""""""""""""""""""""""""""
 :set nocompatible
 
 """"""""""""""""""""""""""
@@ -33,7 +33,7 @@ Plugin 'rust-lang/rust.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
-"
+
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -48,7 +48,7 @@ filetype plugin indent on
 """"""""""""""""""""""""""
 set laststatus=2
 set ttimeoutlen=50
-" Theme
+
 let g:airline_theme='simple'
 
 """"""""""""""""""""""""""
@@ -66,6 +66,7 @@ set signcolumn=no
 """" Git features
 """"""""""""""""""""""""""
 " au VimEnter *  GitGutterBufferEnable
+
 """"""""""""""""""""""""""
 """" BACKUP AND UNDO
 """"""""""""""""""""""""""
@@ -147,17 +148,17 @@ syntax enable
 """" NERDTREE DEFAULTS
 """"""""""""""""""""""""""
 " Automatically starts nerd tree and moves focus back to file
-au VimEnter *  NERDTree
-au VimEnter *  wincmd w
+" au VimEnter *  NERDTree
+" au VimEnter *  wincmd w
 
 " Show hidden files
 let NERDTreeShowHidden = 1
 
 " Automatically exits nerd tree upon file close
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Automatically opens nerdtree on new tab
-autocmd BufWinEnter * NERDTreeMirror
+" autocmd BufWinEnter * NERDTreeMirror
 
 """"""""""""""""""""""""""
 """" TEXT MANIP
@@ -190,8 +191,11 @@ map <F8> :w <CR> :make<CR>
 " Remap C-n for Nerd Tree
 map <C-n> :NERDTreeToggle<CR>
 
+set backspace=indent,eol,start
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
 " Example
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx

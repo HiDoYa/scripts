@@ -2,12 +2,7 @@
 
 Repository for saving dotfiles for git, tmux, vim, zsh.
 
-## Installing
-To use the repo's dotfiles, run
+Note that many of the files here are not checked into Git since they are private. When migrating to a new system, be sure to copy the entire old directory.
 
-` ./dotfiles.sh install `
-
-## Save
-To save your current system's dotfiles into the repo
-
-` ./dotfiles.sh  save `
+## Usage
+Run ./install.sh to configure the zshrc, vimrc, and gitconfig
