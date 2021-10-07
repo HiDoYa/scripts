@@ -143,3 +143,7 @@ alias rezsh='source ~/.zshrc'
 
 # Display all commands
 alias cmds='dir=~/PersonalCode/dotfiles; ~/PersonalCode/scripts/cmds.rb $dir/zpersonal.zshrc $dir/zsecret.zshrc $dir/zwork.zshrc'
+
+# Install vim vundle plugins
+alias vimplugin='vim +PluginInstall +qall'
+

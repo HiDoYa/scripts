@@ -12,68 +12,55 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle, required
+" Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
+" Status line
 Plugin 'bling/vim-airline'
+" Status line theme
 Plugin 'vim-airline/vim-airline-themes'
+" Git wrapper
 Plugin 'tpope/vim-fugitive'
+" Filesystem explorer
 Plugin 'scrooloose/nerdtree'
-" Plugin 'prettier/vim-prettier'
-" Plugin 'airblade/vim-gitgutter'
-" Plugin 'valloric/youcompleteme'
+" Prettier/linter
+Plugin 'prettier/vim-prettier'
+" Git diff visualizer
+Plugin 'airblade/vim-gitgutter'
+" Comment functions
 Plugin 'scrooloose/nerdcommenter'
+" Aligning text
 Plugin 'godlygeek/tabular'
-" Plugin 'shougo/deoplete.nvim'
-" Plugin 'honza/vim-snippets'
+" Autocomplete
+Plugin 'shougo/deoplete.nvim'
 
-" Rust Config
-Plugin 'rust-lang/rust.vim'
-
-" All of your Plugins must be added before the following line
+" Finish vundle plugin loading
 call vundle#end()
 filetype plugin indent on
 
-" Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+
+""""""""""""""""""""""""""
+"""" THEME
+""""""""""""""""""""""""""
+" Sets color scheme
+colorscheme slate
 
 """"""""""""""""""""""""""
 """" AIRLINE
 """"""""""""""""""""""""""
-set laststatus=2
-set ttimeoutlen=50
-
+" Sets status bar theme
 let g:airline_theme='simple'
-
-""""""""""""""""""""""""""
-"""" Prettier
-""""""""""""""""""""""""""
-" let g:prettier#config#parser = 'babylon'
-" let g:prettier#config#config_precedence = 'file-override'
-
-""""""""""""""""""""""""""
-"""" YouCompleteMe
-""""""""""""""""""""""""""
-set signcolumn=no
-
-""""""""""""""""""""""""""
-"""" Git features
-""""""""""""""""""""""""""
-" au VimEnter *  GitGutterBufferEnable
 
 """"""""""""""""""""""""""
 """" BACKUP AND UNDO
 """"""""""""""""""""""""""
+" Keeps 50 lines of command line history
+set history=50
 " Makes undo file
 set undofile
-" Keeps 50 lines of command line history
-set history=75
 " Makes backup file
 set backup
 set writebackup
@@ -81,16 +68,6 @@ set writebackup
 set backupdir=~/.vimbackup
 set directory=~/.vimbackup
 set undodir=~/.vimbackup
-
-" <C-G>u starts a new change to allow recovering text that is deleted with C-U
-" and C-w.
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-W> <C-G>u<C-W>
-
-" Sets color scheme
-set background=dark " for dark mode (and change color scheme in profiles)
-" set background=light " for light mode  (and change color scheme in profiles)
-" colorscheme solarized
 
 """"""""""""""""""""""""""
 """" UI CONFIG
@@ -117,7 +94,7 @@ set title
 set laststatus=2
 
 """"""""""""""""""""""""""
-"""" SEARCHING
+"""" CUSTOM TAB SIZE
 """"""""""""""""""""""""""
 function! SetTab(size)
 	execute "set tabstop=". a:size
@@ -145,62 +122,43 @@ nnoremap <leader><space> :nohlsearch<CR>
 syntax enable
 
 """"""""""""""""""""""""""
-"""" NERDTREE DEFAULTS
+"""" NERDTREE
 """"""""""""""""""""""""""
-" Automatically starts nerd tree and moves focus back to file
-" au VimEnter *  NERDTree
-" au VimEnter *  wincmd w
-
 " Show hidden files
 let NERDTreeShowHidden = 1
 
 " Automatically exits nerd tree upon file close
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Automatically opens nerdtree on new tab
-" autocmd BufWinEnter * NERDTreeMirror
-
-""""""""""""""""""""""""""
-"""" TEXT MANIP
-""""""""""""""""""""""""""
-" Allows for backspace of everything in insert mode
-set backspace=indent,eol,start
+autocmd BufWinEnter * NERDTreeMirror
 
 """"""""""""""""""""""""""
 """" FOLDING
 """"""""""""""""""""""""""
-" " Enable folding
-" set foldenable
-" " Sets the fold levels when first opening a buffer
-" set foldlevelstart=10
-" " To make sure there aren't too many folds (guard against too many folds)
-" set foldnestmax=10
-" " Folds based on indent level
-" set foldmethod=indent
-" 
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview
+" Enable folding
+set foldenable
+" Sets the fold levels when first opening a buffer
+set foldlevelstart=10
+" To make sure there aren't too many folds (guard against too many folds)
+set foldnestmax=10
+" Folds based on indent level
+set foldmethod=indent
+" Folds persist over sessions
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 """"""""""""""""""""""""""
 """" MISC
 """"""""""""""""""""""""""
 " To not accidentally enter Ex mode
 nnoremap Q <nop>
-" Use F8 to compile code
-map <F8> :w <CR> :make<CR>
 " Remap C-n for Nerd Tree
 map <C-n> :NERDTreeToggle<CR>
-
+" Timeout for key codes
+set ttimeoutlen=50
+" Allow backspace to remove indentations, newlines, etc.
 set backspace=indent,eol,start
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
-" Example
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
-
-" Put these in an autocmd group, so that we can delete them easily.
-augroup vimrcEx
-au!
-
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
 
@@ -212,9 +170,6 @@ autocmd BufReadPost *
 \   exe "normal! g`\"" |
 \ endif
 
-augroup END
-
-
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -223,10 +178,11 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-if has('langmap') && exists('+langnoremap')
-  " Prevent that the langmap option applies to characters that result from a
-  " mapping.  If unset (default), this may break plugins (but it's backward
-  " compatible).
-  set langnoremap
-endif
-
+""""""""""""""""""""""""""
+"""" GIT GUTTER
+""""""""""""""""""""""""""
+" Git signs update time
+set updatetime=100
+" Keep default highlighting for 'sign' (+/-) column
+" Note: this must be at bottom, else it fails
+highlight clear SignColumn
