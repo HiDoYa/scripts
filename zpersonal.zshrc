@@ -37,17 +37,13 @@ VI_MODE_SET_CURSOR=true
 # PATHS
 export GOPATH=$HOME/go
 export PATH=$PATH:~/.dotnet/tools:$GOPATH/bin
-# Is this necessary?
-# export PATH=$PATH:~/Library/Python/3.9/bin
 
 # Vim mode editing in zsh
 bindkey -v
 
-# oh-my-zsh Theme
+# oh-my-zsh
 ZSH_THEME="aussiegeek"
 ZSH_DISABLE_COMPFIX=true
-
-# oh-my-zsh
 ZSH="/Users/hiroya.gojo/.oh-my-zsh"
 plugins=(zsh-autosuggestions vi-mode colored-man-pages)
 # plugins=(git web-search zsh-autosuggestions kubectl gcloud lol colored-man-pages docker aws battery vi-mode)
@@ -106,6 +102,7 @@ alias delmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs 
 function finsync
 {
 	finpath=~/Documents/personal/finance-project
+	# And, no the spreadsheet-id is not a secret/key. Nice try
 	dotnet $finpath/bin/FinancePipeline.dll \
 		hiroyagojo@gmail.com $MINT_PASS \
 		--google-cred-path "$finpath/finance-pipeline-325808-36b341a22811.json" \
@@ -141,9 +138,14 @@ function brewing()
 # Reload zshrc file
 alias rezsh='source ~/.zshrc'
 
+export PERSONAL_DIR=$HOME/PersonalCode
+
 # Display all commands
-alias cmds='dir=~/PersonalCode/dotfiles; ~/PersonalCode/scripts/cmds.rb $dir/zpersonal.zshrc $dir/zsecret.zshrc $dir/zwork.zshrc'
+alias cmds='dot_dir=$PERSONAL_DIR/dotfiles; $PERSONAL_DIR/scripts/cmds.rb $dot_dir/zwork.zshrc $dot_dir/zpersonal.zshrc $dot_dir/zsecret.zshrc'
 
 # Install vim vundle plugins
 alias vimplugin='vim +PluginInstall +qall'
+
+# Edit zshrc files
+alias zshedit='code $PERSONAL_DIR/dotfiles -g $PERSONAL_DIR/dotfiles/zpersonal.zshrc'
 
