@@ -245,3 +245,9 @@ function linuxst()
 	vagrant status
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
+
+# Open linux mount path in vscode
+function linuxcode()
+{
+	code --remote ssh-remote+linux-dev /home/vagrant/mount
+}
