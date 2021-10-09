@@ -149,3 +149,99 @@ alias vimplugin='vim +PluginInstall +qall'
 # Edit zshrc files
 alias zshedit='code $PERSONAL_DIR/dotfiles -g $PERSONAL_DIR/dotfiles/zpersonal.zshrc'
 
+# Hidden function (for internal use only)
+insidedir() { [[ $(pwd) == $1 ]] }
+
+# Initialize and start linux dev. Takes mount path argument
+function linuxup()
+{
+	ABS_PATH=$HOME/Downloads
+	if [[ $1 ]] ABS_PATH=$(realpath $1)
+	MOUNT_PATH=$ABS_PATH
+
+	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
+	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+
+	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+
+	STATUS=$(vagrant status linux-dev --machine-readable | awk -F ',' '{ if ($3 == "state") {print $4} }')
+
+	# Mount changed
+	if [[ $ABS_PATH != $(cat mounted.txt) ]] then
+		echo $ABS_PATH > mounted.txt
+		if [[ $STATUS == "running" ]] then
+			vagrant reload
+		else
+			vagrant up
+		fi
+	else
+		# Mount did not change
+		# Just ensure it is running
+		vagrant up
+	fi
+
+	vagrant ssh-config > ssh.config
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
+}
+
+# Show current status of linux dev
+function linuxls()
+{
+	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
+	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+
+	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	vagrant status linux-dev 
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
+}
+
+# SSH into linux dev
+function linuxssh()
+{
+	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
+	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+
+	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	vagrant ssh linux-dev 
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
+}
+
+# Clean up and destroy linux dev
+function linuxdown()
+{
+	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
+	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+
+	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	MOUNT_PATH=$(cat mounted.txt) vagrant destroy -f linux-dev
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
+}
+
+# Note requires vagrant-scp plugin (vagrant plugin install vagrant-scp)
+# Copy file onto linux dev. Takes copy file argument
+function linuxcp()
+{
+	if [[ ! $1 ]] then
+		echo "You must specify a directory/file"
+		exit
+	fi
+
+	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
+	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+
+	ABS_PATH=$(realpath $1)
+	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	vagrant scp linux-dev:.
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
+}
+
+# Get status of linux dev
+function linuxst()
+{
+	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
+	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+
+	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	vagrant status
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
+}
