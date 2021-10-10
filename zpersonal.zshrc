@@ -157,23 +157,20 @@ function linuxup()
 {
 	ABS_PATH=$HOME/Downloads
 	if [[ $1 ]] ABS_PATH=$(realpath $1)
-	MOUNT_PATH=$ABS_PATH
+	export MOUNT_PATH=$ABS_PATH
 
 	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
 	IS_INSIDE=$(insidedir $VAGRANT_PATH)
 
 	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
 
-	STATUS=$(vagrant status linux-dev --machine-readable | awk -F ',' '{ if ($3 == "state") {print $4} }')
+	# Is this necessary?
+	# STATUS=$(vagrant status linux-dev --machine-readable | awk -F ',' '{ if ($3 == "state") {print $4} }')
 
 	# Mount changed
 	if [[ $ABS_PATH != $(cat mounted.txt) ]] then
 		echo $ABS_PATH > mounted.txt
-		if [[ $STATUS == "running" ]] then
-			vagrant reload
-		else
-			vagrant up
-		fi
+		vagrant reload
 	else
 		# Mount did not change
 		# Just ensure it is running
