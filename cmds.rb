@@ -21,7 +21,7 @@ for line in lines
     command = $1
 
     /#\s*(.*)/ =~ prevline
-    comment =  $1
+    comment = $1
   end
 
   if line.start_with? "function"
@@ -29,10 +29,10 @@ for line in lines
     command = $1
 
     /#\s*(.*)/ =~ prevline
-    comment =  $1
+    comment = $1
   end
 
-  if command.length > 0
+  if (command.length > 0) && !(comment.start_with? "HIDE")
     puts "%-25s %s" % [command.green, comment]
   end
 
