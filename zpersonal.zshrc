@@ -49,13 +49,12 @@ plugins=(zsh-autosuggestions vi-mode colored-man-pages)
 # plugins=(git web-search zsh-autosuggestions kubectl gcloud lol colored-man-pages docker aws battery vi-mode)
 source $ZSH/oh-my-zsh.sh
 
-# Shorter git
+# Hidden functions (doesn't need to be explicit)
+# HIDE: Shorter git
 alias g="git"
-
-# Shorter kubectl
+# HIDE: Shorter kubectl
 alias k="kubectl"
-
-# Smarter mkdir
+# HIDE: Smarter mkdir
 alias mkdir="mkdir -p"
 
 # Create new commit and push with message
@@ -133,6 +132,7 @@ function brewing()
 	brew update
 	brew upgrade
 	brew cleanup
+	brew leaves > ~/PersonalCode/scripts/cattle/brew.txt
 }
 
 # Reload zshrc file
@@ -149,8 +149,8 @@ alias vimplugin='vim +PluginInstall +qall'
 # Edit zshrc files
 alias zshedit='code $PERSONAL_DIR/dotfiles -g $PERSONAL_DIR/dotfiles/zpersonal.zshrc'
 
-# Hidden function (for internal use only)
-insidedir() { [[ $(pwd) == $1 ]] }
+# HIDE: Function to check if inside a directory
+function insidedir() { [[ $(pwd) == $1 ]] }
 
 # Initialize and start linux dev. Takes mount path argument
 function linuxup()
@@ -247,4 +247,16 @@ function linuxst()
 function linuxcode()
 {
 	code --remote ssh-remote+linux-dev /home/vagrant/mount
+}
+
+# Open python playground
+function pyplay()
+{
+	PORTS=$(jupyter notebook list --jsonlist | jq '.[].port')
+	if [[ $PORTS != *"8889"* ]]; then
+		nohup jupyter notebook --notebook-dir=$HOME/PersonalCode/scripts/notebook --port 8889 --no-browser >/dev/null 2>&1 &
+		sleep 1
+	fi
+
+	open -a "Google Chrome" http://localhost:8889/notebooks/play.ipynb
 }
