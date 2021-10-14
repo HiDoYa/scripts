@@ -68,17 +68,26 @@ function quickgit()
 # Create new commit with current branch name and push. Optional message append
 function newcommit()
 {
+	message=""
+	while getopts "fm:" flag; do
+		case "${flag}" in
+			f) gitflags=-f ;;
+			m) message=${OPTARG} ;;
+		esac
+	done
+
 	git add --all
 
-	if [[ $1 ]]; then
-		git commit -m $(git branch --show-current)-$1 > /dev/null
+	if [[ $message != "" ]]; then
+		git commit -m $(git branch --show-current)-$message > /dev/null
 	else
 		git commit -m $(git branch --show-current) > /dev/null
 	fi
 
-	git push > /dev/null || git push --set-upstream origin $(git branch --show-current) > /dev/null
+	git push ${gitflags} > /dev/null || git push ${gitflags} --set-upstream origin $(git branch --show-current) > /dev/null
 
-	mr_id=$(lab mr list $(git branch --show-current) | sed 's/!//g' | awk '{print $1}') && lab mr show $mr_id | tail -n 1
+	# Not necessary
+	# mr_id=$(lab mr list $(git branch --show-current) | sed 's/!//g' | awk '{print $1}') && lab mr show $mr_id | tail -n 1
 }
 
 # Create new branch. Usage: newbranch branch-name base-branch=master
