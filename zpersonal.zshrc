@@ -101,13 +101,15 @@ alias delmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs 
 function finsync
 {
 	finpath=~/Documents/personal/finance-project
+	spreadsheet="1pNs9XrzAQsuizWVbvq4D5yDQ4nESZpw--V7kI6tT91E"
 	# And, no the spreadsheet-id is not a secret/key. Nice try
 	dotnet $finpath/bin/FinancePipeline.dll \
 		hiroyagojo@gmail.com $MINT_PASS \
 		--google-cred-path "$finpath/finance-pipeline-325808-36b341a22811.json" \
 		--filter-path "$finpath/filter.csv" \
-		--spreadsheet-id "1pNs9XrzAQsuizWVbvq4D5yDQ4nESZpw--V7kI6tT91E" \
+		--spreadsheet-id $spreadsheet \
 		--category-path "$finpath/category-file.json"
+	open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${spreadsheet}
 }
 
 # Display all extensions in folder (use -r for recursive, -a for hidden, -d for custom directory)
@@ -247,6 +249,16 @@ function linuxst()
 function linuxcode()
 {
 	code --remote ssh-remote+linux-dev /home/vagrant/mount
+}
+
+# Quick start linux up
+function linuxqup()
+{
+	if [[ $1 ]]; then
+		linuxup $1 && linuxcode
+	else
+		echo "Specfiy directory"
+	fi
 }
 
 # Open python playground
