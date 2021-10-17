@@ -100,7 +100,6 @@ function newbranch()
 	fi
 
 	git pull
-	delmerged
 	git checkout -b $1
 }
 
