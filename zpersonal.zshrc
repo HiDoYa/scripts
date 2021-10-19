@@ -114,7 +114,7 @@ function finsync
 	# And, no the spreadsheet-id is not a secret/key. Nice try
 	dotnet $finpath/bin/FinancePipeline.dll \
 		hiroyagojo@gmail.com $MINT_PASS \
-		--google-cred-path "$finpath/finance-pipeline-325808-36b341a22811.json" \
+		--google-cred-path "~/Documents/credentials/finance-pipeline/finance-pipeline-325808-36b341a22811.json" \
 		--filter-path "$finpath/filter.csv" \
 		--spreadsheet-id $spreadsheet \
 		--category-path "$finpath/category-file.json"
@@ -275,7 +275,7 @@ function pyplay()
 {
 	PORTS=$(jupyter notebook list --jsonlist | jq '.[].port')
 	if [[ $PORTS != *"8889"* ]]; then
-		nohup jupyter notebook --notebook-dir=$HOME/PersonalCode/scripts/notebook --port 8889 --no-browser >/dev/null 2>&1 &
+		nohup jupyter notebook --notebook-dir=$PERSONAL_DIR/scripts/notebook --port 8889 --no-browser >/dev/null 2>&1 &
 		sleep 1
 	fi
 
