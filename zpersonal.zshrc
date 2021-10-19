@@ -140,10 +140,15 @@ function extc()
 # Performs brew maintenance
 function brewing()
 {
+	IS_INSIDE=$(insidedir ~/PersonalCode/scripts)
+
+	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
 	brew update
 	brew upgrade
 	brew cleanup
 	brew leaves > ~/PersonalCode/scripts/cattle/brew.txt
+	git add cattle/brew.txt && git commit -m "Add brew packages" && git push
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
 # Reload zshrc file
@@ -280,4 +285,38 @@ function pyplay()
 	fi
 
 	open -a "Google Chrome" http://localhost:8889/notebooks/play.ipynb
+}
+
+# Backup secrets to google drive
+function sbackup()
+{
+	filename=/tmp/$(date +%s).tar
+	rclone=/usr/local/bin/rclone
+
+	# Create zip
+	tar cfvz ${filename} \
+		$HOME/PersonalCode/dotfiles/*.zshrc \
+		$HOME/Documents/credentials \
+		$HOME/.kube/homeconfig \
+		$HOME/.config/rclone \
+		$HOME/.ssh \
+		$HOME/.aws
+
+	# Move into drive
+	$rclone copy $filename Drive:/Backup
+	rm $filename
+
+	# Remove old backups
+	existing_files=$($rclone ls Drive:Backup | awk '{print $2}')
+	for f in $existing_files; do
+		past_date=$(echo $f | sed 's/\.tar//g')
+		current_date=$(date +%s)
+
+		diff=$(expr $current_date - $past_date)
+		diff_in_days=$(expr $diff / 60 / 60 / 24)
+
+		if [[ $diff_in_days > 21 ]]; then
+			$rclone delete Drive:Backup/$f
+		fi
+	done
 }
