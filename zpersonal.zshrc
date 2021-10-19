@@ -140,13 +140,15 @@ function extc()
 # Performs brew maintenance
 function brewing()
 {
-	IS_INSIDE=$(insidedir ~/PersonalCode/scripts)
+	SCRIPTS_PATH=~/PersonalCode/scripts
 
-	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
 	brew update
 	brew upgrade
 	brew cleanup
-	brew leaves > ~/PersonalCode/scripts/cattle/brew.txt
+	brew leaves > $SCRIPTS_PATH/cattle/brew.txt
+
+	IS_INSIDE=$(insidedir $SCRIPTS_PATH)
+	if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_PATH > /dev/null
 	git add cattle/brew.txt && git commit -m "Add brew packages" && git push
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
