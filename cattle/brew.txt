@@ -8,6 +8,7 @@ coreutils
 dotnet
 fdupes
 ffmpeg
+gh
 gitlab-runner
 gnupg
 go
