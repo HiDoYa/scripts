@@ -114,7 +114,7 @@ function finsync
 	# And, no the spreadsheet-id is not a secret/key. Nice try
 	dotnet $finpath/bin/FinancePipeline.dll \
 		hiroyagojo@gmail.com $MINT_PASS \
-		--google-cred-path "~/Documents/credentials/finance-pipeline/finance-pipeline-325808-36b341a22811.json" \
+		--google-cred-path "/Users/hiroya.gojo/Documents/credentials/finance-pipeline/finance-pipeline-325808-36b341a22811.json" \
 		--filter-path "$finpath/filter.csv" \
 		--spreadsheet-id $spreadsheet \
 		--category-path "$finpath/category-file.json"
