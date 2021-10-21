@@ -147,9 +147,14 @@ function brewing()
 	brew cleanup
 	brew leaves > $SCRIPTS_PATH/cattle/brew.txt
 
+	npm update -g
+	ls $(npm root -g) > $SCRIPTS_PATH/cattle/npm.txt
+
 	IS_INSIDE=$(insidedir $SCRIPTS_PATH)
 	if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_PATH > /dev/null
-	git add cattle/brew.txt && git commit -m "Add brew packages" && git push
+	git add cattle/brew.txt cattle/npm.txt && \
+		git commit -m "Add brew packages" && \
+		git push
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
