@@ -57,6 +57,12 @@ alias k="kubectl"
 # HIDE: Smarter mkdir
 alias mkdir="mkdir -p"
 
+# DIRECTORIES
+export PERSONAL_DIR=$HOME/PersonalCode
+export CREDS_DIR=$HOME/Documents/credentials
+export SCRIPTS_DIR=$PERSONAL_DIR/scripts
+export LINUX_DIR=$SCRIPTS_DIR/ubuntu-sandbox
+
 # Create new commit and push with message
 function quickgit()
 {
@@ -68,26 +74,24 @@ function quickgit()
 # Create new commit with current branch name and push. Optional message append
 function newcommit()
 {
-	message=""
+	MESSAGE=""
 	while getopts "fm:" flag; do
 		case "${flag}" in
-			f) gitflags=-f ;;
-			m) message=${OPTARG} ;;
+			f) GITFLAGS=-f ;;
+			m) MESSAGE=${OPTARG} ;;
 		esac
 	done
 
 	git add --all
 
-	if [[ $message != "" ]]; then
-		git commit -m $(git branch --show-current)-$message > /dev/null
+	if [[ $MESSAGE != "" ]]; then
+		git commit -m $(git branch --show-current)-$MESSAGE > /dev/null
 	else
 		git commit -m $(git branch --show-current) > /dev/null
 	fi
 
-	git push ${gitflags} > /dev/null || git push ${gitflags} --set-upstream origin $(git branch --show-current) > /dev/null
-
-	# Not necessary
-	# mr_id=$(lab mr list $(git branch --show-current) | sed 's/!//g' | awk '{print $1}') && lab mr show $mr_id | tail -n 1
+	git push ${GITFLAGS} > /dev/null || \
+		git push ${GITFLAGS} --set-upstream origin $(git branch --show-current) > /dev/null
 }
 
 # Create new branch. Usage: newbranch branch-name base-branch=master
@@ -107,51 +111,49 @@ function newbranch()
 alias delmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
 
 # Sync mint with google sheets
-function finsync
+function finsync()
 {
-	finpath=~/Documents/personal/finance-project
-	spreadsheet="1pNs9XrzAQsuizWVbvq4D5yDQ4nESZpw--V7kI6tT91E"
+	FINPATH=~/Documents/personal/finance-project
+	SPREADSHEET="1pNs9XrzAQsuizWVbvq4D5yDQ4nESZpw--V7kI6tT91E"
 	# And, no the spreadsheet-id is not a secret/key. Nice try
-	dotnet $finpath/bin/FinancePipeline.dll \
+	dotnet $FINPATH/bin/FinancePipeline.dll \
 		hiroyagojo@gmail.com $MINT_PASS \
-		--google-cred-path "/Users/hiroya.gojo/Documents/credentials/finance-pipeline/finance-pipeline-325808-36b341a22811.json" \
-		--filter-path "$finpath/filter.csv" \
-		--spreadsheet-id $spreadsheet \
-		--category-path "$finpath/category-file.json"
-	open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${spreadsheet}
+		--google-cred-path "/Users/hiroya.gojo/Douments/credentials/finance-pipeline/finance-pipeline-325808-36b341a22811.json" \
+		--filter-path "$FINPATH/filter.csv" \
+		--spreadsheet-id $SPREADSHEET \
+		--category-path "$FINPATH/category-file.json"
+	open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${SPREADSHEET}
 }
 
 # Display all extensions in folder (use -r for recursive, -a for hidden, -d for custom directory)
 function extc()
 {
-	lsflags=''
-	dirpath=$(pwd)
+	LS_FLAGS=''
+	DIR_PATH=$(pwd)
 	while getopts "ard:" flag; do
 		case "${flag}" in
-			r) lsflags=${lsflags}R ;;
-			a) lsflags=${lsflags}a ;;
+			r) LS_FLAGS=${LS_FLAGS}R ;;
+			a) LS_FLAGS=${LS_FLAGS}a ;;
 			d) dirpath=${OPTARG} ;;
 		esac
 	done
 
-	ls -p${lsflags} $dirpath | grep -v / | grep -v -e '^$' | perl -ne 'print lc' | awk -F . '{print $NF}' | sort | uniq -c | sort
+	ls -p${LS_FLAGS} $DIR_PATH | grep -v / | grep -v -e '^$' | perl -ne 'print lc' | awk -F . '{print $NF}' | sort | uniq -c | sort
 }
 
 # Performs brew maintenance
 function brewing()
 {
-	SCRIPTS_PATH=~/PersonalCode/scripts
-
 	brew update
 	brew upgrade
 	brew cleanup
-	brew leaves > $SCRIPTS_PATH/cattle/brew.txt
+	brew leaves > $SCRIPTS_DIR/cattle/brew.txt
 
 	npm update -g
-	ls $(npm root -g) > $SCRIPTS_PATH/cattle/npm.txt
+	ls $(npm root -g) > $SCRIPTS_DIR/cattle/npm.txt
 
-	IS_INSIDE=$(insidedir $SCRIPTS_PATH)
-	if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_PATH > /dev/null
+	IS_INSIDE=$(insidedir $SCRIPTS_DIR)
+	if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_DIR > /dev/null
 	git add cattle/brew.txt cattle/npm.txt && \
 		git commit -m "Add brew packages" && \
 		git push
@@ -161,10 +163,8 @@ function brewing()
 # Reload zshrc file
 alias rezsh='source ~/.zshrc'
 
-export PERSONAL_DIR=$HOME/PersonalCode
-
 # Display all commands
-alias cmds='dot_dir=$PERSONAL_DIR/dotfiles; $PERSONAL_DIR/scripts/cmds.rb $dot_dir/zwork.zshrc $dot_dir/zpersonal.zshrc $dot_dir/zsecret.zshrc'
+alias cmds='DOTFILE_DIR=$PERSONAL_DIR/dotfiles; $SCRIPTS_DIR/cmds.rb $DOTFILE_DIR/zwork.zshrc $DOTFILE_DIR/zpersonal.zshrc $DOTFILE_DIR/zsecret.zshrc'
 
 # Install vim vundle plugins
 alias vimplugin='vim +PluginInstall +qall'
@@ -182,13 +182,10 @@ function linuxup()
 	if [[ $1 ]] ABS_PATH=$(realpath $1)
 	export MOUNT_PATH=$ABS_PATH
 
-	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
+	VAGRANT_PATH=$SCRIPTS_DIR/ubuntu-sandbox
 	IS_INSIDE=$(insidedir $VAGRANT_PATH)
 
 	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
-
-	# Is this necessary?
-	# STATUS=$(vagrant status linux-dev --machine-readable | awk -F ',' '{ if ($3 == "state") {print $4} }')
 
 	# Mount changed
 	if [[ $ABS_PATH != $(cat mounted.txt) ]] then
@@ -207,10 +204,9 @@ function linuxup()
 # Show current status of linux dev
 function linuxls()
 {
-	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
-	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+	IS_INSIDE=$(insidedir $LINUX_DIR)
 
-	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
 	vagrant status linux-dev 
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
@@ -218,10 +214,9 @@ function linuxls()
 # SSH into linux dev
 function linuxssh()
 {
-	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
-	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+	IS_INSIDE=$(insidedir $LINUX_DIR)
 
-	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
 	vagrant ssh linux-dev 
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
@@ -229,10 +224,9 @@ function linuxssh()
 # Clean up and destroy linux dev
 function linuxdown()
 {
-	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
-	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+	IS_INSIDE=$(insidedir $LINUX_DIR)
 
-	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
 	MOUNT_PATH=$(cat mounted.txt) vagrant destroy -f linux-dev
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
@@ -246,11 +240,10 @@ function linuxcp()
 		exit
 	fi
 
-	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
-	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+	IS_INSIDE=$(insidedir $LINUX_DIR)
 
 	ABS_PATH=$(realpath $1)
-	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
 	vagrant scp linux-dev:.
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
@@ -258,10 +251,9 @@ function linuxcp()
 # Get status of linux dev
 function linuxst()
 {
-	VAGRANT_PATH=$PERSONAL_DIR/scripts/ubuntu-sandbox
-	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+	IS_INSIDE=$(insidedir $LINUX_DIR)
 
-	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
 	vagrant status
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
@@ -287,7 +279,7 @@ function pyplay()
 {
 	PORTS=$(jupyter notebook list --jsonlist | jq '.[].port')
 	if [[ $PORTS != *"8889"* ]]; then
-		nohup jupyter notebook --notebook-dir=$PERSONAL_DIR/scripts/notebook --port 8889 --no-browser >/dev/null 2>&1 &
+		nohup jupyter notebook --notebook-dir=$SCRIPTS_DIR/notebook --port 8889 --no-browser >/dev/null 2>&1 &
 		sleep 1
 	fi
 
@@ -297,11 +289,10 @@ function pyplay()
 # Backup secrets to google drive
 function sbackup()
 {
-	filename=/tmp/$(date +%s).tar
-	rclone=/usr/local/bin/rclone
+	FILENAME=/tmp/$(date +%s).tar
 
 	# Create zip
-	tar cfvz ${filename} \
+	tar cfvz ${FILENAME} \
 		$HOME/PersonalCode/dotfiles/*.zshrc \
 		$HOME/Documents/credentials \
 		$HOME/.kube/homeconfig \
@@ -310,20 +301,20 @@ function sbackup()
 		$HOME/.aws
 
 	# Move into drive
-	$rclone copy $filename Drive:/Backup
-	rm $filename
+	rclone copy $FILENAME Drive:/Backup
+	rm $FILENAME
 
 	# Remove old backups
-	existing_files=$($rclone ls Drive:Backup | awk '{print $2}')
-	for f in $existing_files; do
-		past_date=$(echo $f | sed 's/\.tar//g')
-		current_date=$(date +%s)
+	EXISTING_FILES=$(rclone ls Drive:Backup | awk '{print $2}')
+	for f in $EXISTING_FILES; do
+		PAST_DATE=$(echo $f | sed 's/\.tar//g')
+		CURRENT_DATE=$(date +%s)
 
-		diff=$(expr $current_date - $past_date)
-		diff_in_days=$(expr $diff / 60 / 60 / 24)
+		DIFF=$(expr $CURRENT_DATE - $PAST_DATE)
+		DIFF_IN_DAYS=$(expr $DIFF / 60 / 60 / 24)
 
-		if [[ $diff_in_days > 21 ]]; then
-			$rclone delete Drive:Backup/$f
+		if [[ $DIFF_IN_DAYS > 21 ]]; then
+			rclone delete Drive:Backup/$f
 		fi
 	done
 }
