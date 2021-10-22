@@ -29,6 +29,7 @@ nuget
 pandoc
 parallel
 postgresql
+pulumi
 qrencode
 rclone
 saml2aws
