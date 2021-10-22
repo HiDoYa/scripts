@@ -318,3 +318,14 @@ function sbackup()
 		fi
 	done
 }
+
+# Convert HEIC formatted photos to jpeg in a folder
+function heic2jpg()
+{
+	WORK_DIR=$(pwd)
+	if [[ $1 ]]; then
+		WORK_DIR=$1
+	fi
+
+	for i in $WORK_DIR/*.HEIC; do sips -s format jpeg "$i" --out "$i.jpg"; done
+}
