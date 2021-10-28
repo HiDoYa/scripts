@@ -152,10 +152,13 @@ function brewing()
 	npm update -g
 	ls $(npm root -g) > $SCRIPTS_DIR/cattle/npm.txt
 
+	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
+	pip3 freeze > $SCRIPTS_DIR/cattle/pip.txt
+
 	IS_INSIDE=$(insidedir $SCRIPTS_DIR)
 	if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_DIR > /dev/null
-	git add cattle/brew.txt cattle/npm.txt && \
-		git commit -m "Add brew packages" && \
+	git add cattle/brew.txt cattle/npm.txt cattle/pip.txt && \
+		git commit -m "Add packages" && \
 		git push
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
