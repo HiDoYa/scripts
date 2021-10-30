@@ -144,17 +144,27 @@ function extc()
 # Performs brew maintenance
 function brewing()
 {
+	# Mac Apps
+	sudo softwareupdate -i -a
+
+	# Ruby
+	sudo gem update
+
+	# Brew
 	brew update
 	brew upgrade
 	brew cleanup
 	brew leaves > $SCRIPTS_DIR/cattle/brew.txt
 
+	# Node js
 	npm update -g
 	ls $(npm root -g) > $SCRIPTS_DIR/cattle/npm.txt
 
+	# Python
 	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
 	pip3 freeze > $SCRIPTS_DIR/cattle/pip.txt
 
+	# Save to cattle
 	IS_INSIDE=$(insidedir $SCRIPTS_DIR)
 	if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_DIR > /dev/null
 	git add cattle/brew.txt cattle/npm.txt cattle/pip.txt && \
