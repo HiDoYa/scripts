@@ -145,7 +145,7 @@ function extc()
 function brewing()
 {
 	# Mac Apps
-	sudo softwareupdate -i -a
+	# sudo softwareupdate -i -a
 
 	# Ruby
 	sudo gem update
