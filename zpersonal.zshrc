@@ -114,13 +114,15 @@ alias delmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs 
 function finsync()
 {
 	FINPATH=~/Documents/personal/finance-project
+	CREDPATH=~/Documents/credentials/finance-pipeline
 	SPREADSHEET="1pNs9XrzAQsuizWVbvq4D5yDQ4nESZpw--V7kI6tT91E"
 	# And, no the spreadsheet-id is not a secret/key. Nice try
 	dotnet $FINPATH/bin/FinancePipeline.dll \
 		hiroyagojo@gmail.com $MINT_PASS \
-		--google-cred-path "/Users/hiroya.gojo/Douments/credentials/finance-pipeline/finance-pipeline-325808-36b341a22811.json" \
+		--google-cred-path "$CREDPATH/finance-pipeline-325808-36b341a22811.json" \
 		--filter-path "$FINPATH/filter.csv" \
 		--spreadsheet-id $SPREADSHEET \
+		--driver-path "$FINPATH" \
 		--category-path "$FINPATH/category-file.json"
 	open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${SPREADSHEET}
 }
