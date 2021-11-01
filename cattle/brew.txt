@@ -27,6 +27,7 @@ mysql
 netcat
 nmap
 nuget
+nvm
 pandoc
 parallel
 postgresql
@@ -37,6 +38,7 @@ saml2aws
 telnet
 terraform
 tmux
+trash
 tree
 vault
 wget

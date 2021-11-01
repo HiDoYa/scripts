@@ -16,8 +16,8 @@ backcall==0.2.0
 bcrypt==3.2.0
 binaryornot==0.4.4
 bleach==4.1.0
-boto3==1.19.7
-botocore==1.22.7
+boto3==1.19.8
+botocore==1.22.8
 bracex==2.2
 Cerberus==1.3.4
 certifi==2021.10.8
@@ -43,7 +43,7 @@ gitlab==1.0.2
 GitPython==3.1.24
 h11==0.12.0
 idna==3.3
-ipykernel==6.4.2
+ipykernel==6.5.0
 ipython==7.29.0
 ipython-genutils==0.2.0
 jedi==0.18.0
