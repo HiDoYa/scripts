@@ -24,6 +24,7 @@ lab
 libvirt
 minikube
 mysql
+ncdu
 netcat
 nmap
 nuget
