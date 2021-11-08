@@ -307,7 +307,7 @@ function sbackup()
 	FILENAME=/tmp/$(date +%s).tar
 
 	# Create zip
-	tar cfvz ${FILENAME} \
+	sudo tar cfvz ${FILENAME} \
 		$HOME/PersonalCode/dotfiles/*.zshrc \
 		$HOME/Documents/credentials \
 		$HOME/.kube/homeconfig \
@@ -316,12 +316,12 @@ function sbackup()
 		$HOME/.aws
 
 	# Move into drive
-	rclone copy $FILENAME Drive:/Backup
-	rm $FILENAME
+	sudo rclone copy $FILENAME Drive:/Backup
+	sudo rm $FILENAME
 
 	# Remove old backups
 	EXISTING_FILES=$(rclone ls Drive:Backup | awk '{print $2}')
-	for f in $EXISTING_FILES; do
+	echo $EXISTING_FILES | while read -r f; do
 		PAST_DATE=$(echo $f | sed 's/\.tar//g')
 		CURRENT_DATE=$(date +%s)
 
