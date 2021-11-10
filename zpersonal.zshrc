@@ -344,3 +344,16 @@ function heic2jpg()
 
 	for i in $WORK_DIR/*.HEIC; do sips -s format jpeg "$i" --out "$i.jpg"; done
 }
+
+# Unzip all .zip files in a directory in a flat structure
+function unzipall()
+{
+	WORK_DIR=$(pwd)
+	if [[ $1 ]]; then
+		WORK_DIR=$1
+	fi
+
+	for i in *.zip; do
+		unzip -j $i
+	done
+}
