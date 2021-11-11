@@ -150,7 +150,7 @@ function brewing()
 	# sudo softwareupdate -i -a
 
 	# Ruby
-	sudo gem update
+	gem update
 
 	# Brew
 	brew update
