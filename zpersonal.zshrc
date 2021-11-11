@@ -179,7 +179,7 @@ function brewing()
 alias rezsh='source ~/.zshrc'
 
 # Display all commands
-alias cmds='DOTFILE_DIR=$PERSONAL_DIR/dotfiles; $SCRIPTS_DIR/cmds.rb $DOTFILE_DIR/zwork.zshrc $DOTFILE_DIR/zpersonal.zshrc $DOTFILE_DIR/zsecret.zshrc'
+alias cmds='DOTFILE_DIR=$PERSONAL_DIR/dotfiles; $SCRIPTS_DIR/cmds-list/cmds.rb $DOTFILE_DIR/zwork.zshrc $DOTFILE_DIR/zpersonal.zshrc $DOTFILE_DIR/zsecret.zshrc'
 
 # Install vim vundle plugins
 alias vimplugin='vim +PluginInstall +qall'
