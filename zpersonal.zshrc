@@ -316,11 +316,11 @@ function sbackup()
 		$HOME/.aws
 
 	# Move into drive
-	sudo rclone copy $FILENAME Drive:/Backup
+	sudo rclone copy $FILENAME MainDrive:/Backup
 	sudo rm $FILENAME
 
 	# Remove old backups
-	EXISTING_FILES=$(rclone ls Drive:Backup | awk '{print $2}')
+	EXISTING_FILES=$(rclone ls MainDrive:Backup | awk '{print $2}')
 	echo $EXISTING_FILES | while read -r f; do
 		PAST_DATE=$(echo $f | sed 's/\.tar//g')
 		CURRENT_DATE=$(date +%s)
@@ -329,7 +329,7 @@ function sbackup()
 		DIFF_IN_DAYS=$(expr $DIFF / 60 / 60 / 24)
 
 		if [[ $DIFF_IN_DAYS > 21 ]]; then
-			rclone delete Drive:Backup/$f
+			rclone delete MainDrive:Backup/$f
 		fi
 	done
 }
