@@ -9,6 +9,9 @@ I first got a list of all my songs by running '''ls -alR''' on my local music li
 
 Then, I ran the following parse.sh script to separate out the title and authors of the songs and sort them according to the occurence under playlist buckets.
 
+## Cmd List
+Script to list all bash/zsh functions and aliases in a smart way.
+
 ## Cattle
 Files for keeping track of software packages for easy installation.
 
