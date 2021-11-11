@@ -25,6 +25,9 @@ vid\_c.sh compresses all video files (-i for input, -o for output).
 ## Notebook
 Filespace for Jupyter notebook workspace.
 
+## Smart Mv
+Move many files to a destination, but if the same filename already exists, create a new filename so that it isn't overwritten.
+
 ## Ubuntu-Sandbox
 Files related to running Ubuntu workspace with Vagrant.
 
