@@ -29,6 +29,7 @@ netcat
 nmap
 nuget
 nvm
+openssl@3
 pandoc
 parallel
 postgresql
