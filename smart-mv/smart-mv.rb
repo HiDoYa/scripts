@@ -1,3 +1,5 @@
+#!/usr/local/opt/ruby/bin/ruby
+#
 require 'fileutils'
 
 def parse_args
@@ -27,7 +29,7 @@ def parse_args
     return copy, prefix, src_files, dst_loc
 end
 
-def get_new_fname (base_fname)
+def get_new_fname (base_fname, prefix, count)
     split_file = base_fname.split(".")
     split_file.insert(-2, "#{prefix}-#{count}")
     split_file.join(".")
@@ -48,10 +50,9 @@ for file in src_files
 
         if File.exist? full_fname
             # Get new file name
-            dst_fname = get_new_fname(base_fname)
+            dst_fname = get_new_fname(base_fname, prefix, count)
             count += 1
         else
-            # Move file
             if copy
                 FileUtils.cp(src_fname, full_fname)
                 puts "Copying file to #{full_fname}"
