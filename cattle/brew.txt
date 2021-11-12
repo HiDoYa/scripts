@@ -36,6 +36,7 @@ postgresql
 pulumi
 qrencode
 rclone
+ruby
 saml2aws
 telnet
 terraform
