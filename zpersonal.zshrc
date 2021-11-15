@@ -37,6 +37,7 @@ VI_MODE_SET_CURSOR=true
 # PATHS
 export GOPATH=$HOME/go
 export PATH=$PATH:~/.dotnet/tools:$GOPATH/bin
+export PATH=/usr/local/opt/ruby/bin:$PATH
 
 # Vim mode editing in zsh
 bindkey -v
@@ -179,7 +180,7 @@ function brewing()
 alias rezsh='source ~/.zshrc'
 
 # Display all commands
-alias cmds='DOTFILE_DIR=$PERSONAL_DIR/dotfiles; $SCRIPTS_DIR/cmds-list/cmds.rb $DOTFILE_DIR/zwork.zshrc $DOTFILE_DIR/zpersonal.zshrc $DOTFILE_DIR/zsecret.zshrc'
+alias cmds='DOTFILE_DIR=$PERSONAL_DIR/dotfiles; $SCRIPTS_DIR/cmds/cmds.rb $DOTFILE_DIR/zwork.zshrc $DOTFILE_DIR/zpersonal.zshrc $DOTFILE_DIR/zsecret.zshrc'
 
 # Install vim vundle plugins
 alias vimplugin='vim +PluginInstall +qall'
