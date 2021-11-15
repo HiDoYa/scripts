@@ -318,6 +318,7 @@ function sbackup()
 
 	# Move into drive
 	sudo rclone copy $FILENAME MainDrive:/Backup
+	echo "Finished backing up $FILENAME"
 	sudo rm $FILENAME
 
 	# Remove old backups
@@ -330,6 +331,7 @@ function sbackup()
 		DIFF_IN_DAYS=$(expr $DIFF / 60 / 60 / 24)
 
 		if [[ $DIFF_IN_DAYS > 21 ]]; then
+			echo "Deleting file $f"
 			rclone delete MainDrive:Backup/$f
 		fi
 	done
@@ -343,7 +345,9 @@ function heic2jpg()
 		WORK_DIR=$1
 	fi
 
-	for i in $WORK_DIR/*.HEIC; do sips -s format jpeg "$i" --out "$i.jpg"; done
+	for i in $WORK_DIR/*.HEIC; do
+		sips -s format jpeg "$i" --out "$i.jpg"
+	done
 }
 
 # Unzip all .zip files in a directory in a flat structure
