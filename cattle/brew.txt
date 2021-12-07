@@ -19,6 +19,7 @@ helm
 htop
 hugo
 imagemagick
+iperf
 jq
 lab
 libvirt
