@@ -38,6 +38,7 @@ pulumi
 qrencode
 ruby
 saml2aws
+tcptraceroute
 telnet
 terraform
 tmux
