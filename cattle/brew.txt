@@ -28,6 +28,7 @@ mysql
 ncdu
 netcat
 nmap
+node
 nuget
 nvm
 openssl@3
