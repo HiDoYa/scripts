@@ -19,8 +19,8 @@ backcall==0.2.0
 bcrypt==3.2.0
 binaryornot==0.4.4
 bleach==4.1.0
-boto3==1.20.23
-botocore==1.23.23
+boto3==1.20.24
+botocore==1.23.24
 bracex==2.2.1
 Cerberus==1.3.4
 certifi==2021.10.8
@@ -34,10 +34,13 @@ commonmark==0.9.1
 ConfigArgParse==1.5.3
 cookiecutter==1.7.3
 crayons==0.4.0
-cryptography==36.0.0
+cryptography==36.0.1
 debugpy==1.5.1
 decorator==5.1.0
 defusedxml==0.7.1
+docker==5.0.3
+docker-py==1.10.6
+docker-pycreds==0.4.0
 docutils==0.18.1
 enrich==1.2.6
 entrypoints==0.3
@@ -85,7 +88,7 @@ notebook==6.4.6
 numpy==1.21.4
 oathtool==2.3.1
 oauthlib==3.1.1
-openai==0.11.3
+openai==0.11.4
 opencv-python==4.5.4.60
 openpyxl==3.0.9
 outcome==1.1.0
@@ -171,6 +174,7 @@ watchdog==2.1.6
 wcmatch==8.3
 wcwidth==0.2.5
 webencodings==0.5.1
+websocket-client==1.2.3
 wsproto==1.0.0
 xmltodict==0.12.0
 yamllint==1.26.3
