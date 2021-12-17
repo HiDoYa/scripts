@@ -54,7 +54,7 @@ GitPython==3.1.24
 h11==0.12.0
 idna==3.3
 imagesize==1.3.0
-importlib-metadata==4.8.2
+importlib-metadata==4.9.0
 importlib-resources==5.4.0
 iniconfig==1.1.1
 ipykernel==6.6.0
@@ -64,7 +64,7 @@ jedi==0.18.1
 Jinja2==3.0.3
 jinja2-time==0.2.0
 jmespath==0.10.0
-jsonschema==4.3.0
+jsonschema==4.3.1
 jupyter-client==7.1.0
 jupyter-core==4.9.1
 jupyterlab-pygments==0.1.2
@@ -78,6 +78,7 @@ mistune==2.0.0
 mkdocs==1.2.3
 mock==4.0.3
 molecule==3.5.2
+mysql-connector-python==8.0.27
 nbclient==0.5.9
 nbconvert==6.3.0
 nbformat==5.1.3
@@ -109,6 +110,7 @@ poyo==0.5.0
 prometheus-client==0.12.0
 prompt-toolkit==3.0.24
 protobuf==3.19.1
+psycopg2==2.9.2
 ptyprocess==0.7.0
 py==1.11.0
 pycodestyle==2.8.0
