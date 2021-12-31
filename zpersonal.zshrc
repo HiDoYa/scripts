@@ -114,7 +114,7 @@ alias delmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs 
 # Sync mint with google sheets
 function finsync()
 {
-	FINPATH=~/Documents/personal/finance-project
+	FINPATH=~/Documents/finance-project
 	CREDPATH=~/Documents/credentials/finance-pipeline
 	SPREADSHEET="1pNs9XrzAQsuizWVbvq4D5yDQ4nESZpw--V7kI6tT91E"
 	# And, no the spreadsheet-id is not a secret/key. Nice try
