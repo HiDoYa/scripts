@@ -1,5 +1,0 @@
-create-react-app
-less
-newman
-nodemon
-npm
