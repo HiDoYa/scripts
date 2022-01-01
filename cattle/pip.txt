@@ -69,7 +69,7 @@ jedi==0.18.1
 Jinja2==3.0.3
 jinja2-time==0.2.0
 jmespath==0.10.0
-jsonschema==4.3.2
+jsonschema==4.3.3
 jupyter-client==7.1.0
 jupyter-core==4.9.1
 jupyter-telemetry==0.1.0
