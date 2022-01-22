@@ -37,6 +37,7 @@ parallel
 postgresql
 pulumi
 qrencode
+rbenv-chefdk
 ruby
 saml2aws
 tcptraceroute
