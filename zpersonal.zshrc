@@ -58,6 +58,9 @@ alias k="kubectl"
 # HIDE: Smarter mkdir
 alias mkdir="mkdir -p"
 
+# Obsidian dir
+export OBSIDIAN_PATH=/Users/hiroya.gojo/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
+
 # DIRECTORIES
 export PERSONAL_DIR=$HOME/PersonalCode
 export CREDS_DIR=$HOME/Documents/credentials
