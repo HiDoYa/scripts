@@ -6,6 +6,7 @@ automake
 awscli
 azure-cli
 coreutils
+curl
 dotnet
 fdupes
 ffmpeg
@@ -27,6 +28,7 @@ minikube
 mysql
 ncdu
 netcat
+nghttp2
 nmap
 node
 nuget
