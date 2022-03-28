@@ -72,7 +72,7 @@ importlib-metadata==4.11.3
 importlib-resources==5.6.0
 iniconfig==1.1.1
 ipykernel==6.9.2
-ipython==8.1.1
+ipython==8.2.0
 ipython-genutils==0.2.0
 jedi==0.18.1
 Jinja2==3.1.1
@@ -85,7 +85,7 @@ jupyter-telemetry==0.1.0
 jupyterhub==2.2.2
 jupyterlab-pygments==0.1.2
 keyring==23.5.0
-kiwisolver==1.4.0
+kiwisolver==1.4.1
 lxml==4.8.0
 Mako==1.2.0
 Markdown==3.3.6
@@ -155,7 +155,7 @@ PySocks==1.7.1
 pytest==7.1.1
 python-box==6.0.1
 python-dateutil==2.8.2
-python-gitlab==3.2.0
+python-gitlab==3.3.0
 python-json-logger==2.0.2
 python-slugify==6.1.1
 pytz==2022.1
