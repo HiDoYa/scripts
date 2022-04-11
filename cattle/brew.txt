@@ -25,6 +25,7 @@ jq
 lab
 libvirt
 minikube
+mono-libgdiplus
 mysql
 ncdu
 netcat
@@ -33,6 +34,7 @@ nmap
 node
 nuget
 nvm
+oauth2l
 openssl@3
 pandoc
 parallel
