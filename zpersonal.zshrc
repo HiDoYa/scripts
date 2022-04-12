@@ -128,6 +128,7 @@ function finsync()
 		--spreadsheet-id $SPREADSHEET \
 		--driver-path "$FINPATH" \
 		--category-path "$FINPATH/category-file.json"
+		--mfa-secret $MFA_SECRET
 	open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${SPREADSHEET}
 }
 
