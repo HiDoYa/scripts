@@ -114,6 +114,20 @@ function newbranch()
 # Delete merged branches
 alias delmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
 
+# Install new finsync
+function installfinsync()
+{
+	FINPATH=~/Documents/finance-project
+	IS_INSIDE=$(insidedir $PERSONAL_DIR/finance)
+
+	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
+	dotnet build
+	rm -rf $FINPATH/bin
+	cp FinancePipeline/bin/Debug/net5.0 $FINPATH/bin
+	cp graph-script/graph.py $FINPATH/graph.py
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
+}
+
 # Sync mint with google sheets
 function finsync()
 {
@@ -128,7 +142,9 @@ function finsync()
 		--spreadsheet-id $SPREADSHEET \
 		--driver-path "$FINPATH" \
 		--category-path "$FINPATH/category-file.json" \
-		--mfa-secret $MFA_SECRET
+		--mfa-secret $MFA_SECRET \
+		--transactions-path "$FINPATH/transactions.csv"
+	python3 graph.py transactions.py
 	open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${SPREADSHEET}
 }
 
@@ -350,6 +366,10 @@ function heic2jpg()
 	fi
 
 	for i in $WORK_DIR/*.HEIC; do
+		sips -s format jpeg "$i" --out "$i.jpg"
+	done
+
+	for i in $WORK_DIR/*.heic; do
 		sips -s format jpeg "$i" --out "$i.jpg"
 	done
 }
