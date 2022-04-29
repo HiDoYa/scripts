@@ -118,13 +118,14 @@ alias delmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs 
 function installfinsync()
 {
 	FINPATH=~/Documents/finance-project
-	IS_INSIDE=$(insidedir $PERSONAL_DIR/finance)
+	FINSRCPATH=~/PersonalCode/finance
+	IS_INSIDE=$(insidedir $FINSRCPATH)
 
-	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
+	if [[ ! $IS_INSIDE ]] pushd $FINSRCPATH > /dev/null
 	dotnet build
 	rm -rf $FINPATH/bin
-	cp FinancePipeline/bin/Debug/net5.0 $FINPATH/bin
-	cp graph-script/graph.py $FINPATH/graph.py
+	cp -r $FINSRCPATH/FinancePipeline/bin/Debug/net5.0 $FINPATH/bin
+	cp $FINSRCPATH/graph-script/graph.py $FINPATH/graph.py
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
@@ -134,6 +135,10 @@ function finsync()
 	FINPATH=~/Documents/finance-project
 	CREDPATH=~/Documents/credentials/finance-pipeline
 	SPREADSHEET="1pNs9XrzAQsuizWVbvq4D5yDQ4nESZpw--V7kI6tT91E"
+
+	IS_INSIDE=$(insidedir $FINPATH)
+	if [[ ! $IS_INSIDE ]] pushd $FINPATH > /dev/null
+
 	# And, no the spreadsheet-id is not a secret/key. Nice try
 	dotnet $FINPATH/bin/FinancePipeline.dll \
 		hiroyagojo@gmail.com $MINT_PASS \
@@ -144,8 +149,10 @@ function finsync()
 		--category-path "$FINPATH/category-file.json" \
 		--mfa-secret $MFA_SECRET \
 		--transactions-path "$FINPATH/transactions.csv"
-	python3 graph.py transactions.py
+	python3 $FINPATH/graph.py $FINPATH/transactions.csv
 	open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${SPREADSHEET}
+
+	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
 # Display all extensions in folder (use -r for recursive, -a for hidden, -d for custom directory)
