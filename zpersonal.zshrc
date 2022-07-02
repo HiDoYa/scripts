@@ -124,7 +124,7 @@ function installfinsync()
 	if [[ ! $IS_INSIDE ]] pushd $FINSRCPATH > /dev/null
 	dotnet build
 	rm -rf $FINPATH/bin
-	cp -r $FINSRCPATH/FinancePipeline/bin/Debug/net5.0 $FINPATH/bin
+	cp -r $FINSRCPATH/FinancePipeline/bin/Debug/net6.0 $FINPATH/bin
 	cp $FINSRCPATH/graph-script/graph.py $FINPATH/graph.py
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
