@@ -149,8 +149,14 @@ function finsync()
 		--category-path "$FINPATH/category-file.json" \
 		--mfa-secret $MFA_SECRET \
 		--transactions-path "$FINPATH/transactions.csv"
-	python3 $FINPATH/graph.py $FINPATH/transactions.csv
-	open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${SPREADSHEET}
+
+	if [[ $? -eq 0 ]]
+	then
+		python3 $FINPATH/graph.py $FINPATH/transactions.csv
+		open -a "Google Chrome" https://docs.google.com/spreadsheets/d/${SPREADSHEET}
+	else
+		echo "Finsync failed"
+	fi
 
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
