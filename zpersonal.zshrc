@@ -101,7 +101,7 @@ function newqcommit()
 	fi
 }
 
-# Create new commit with current branch name and push. Optional message append
+# Create new commit with current branch name. Optional message append
 function newcommit()
 {
 	MESSAGE=""
