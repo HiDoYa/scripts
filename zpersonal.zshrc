@@ -76,23 +76,46 @@ function quickgit()
 }
 
 # Create new commit with current branch name and push. Optional message append
-function newcommit()
+function newqcommit()
 {
 	MESSAGE=""
-	while getopts "fm:" flag; do
+	while getopts "mf:" flag; do
 		case "${flag}" in
-			f) GITFLAGS=-f ;;
 			m) MESSAGE=${OPTARG} ;;
+			f) GITFLAGS=${OPTARG} ;;
 		esac
 	done
 
 	git add --all
+	newcommit -m $MESSAGE
+	newpush -f $GITFLAGS
+}
+
+# Create new commit with current branch name and push. Optional message append
+function newcommit()
+{
+	MESSAGE=""
+	while getopts "m:" flag; do
+		case "${flag}" in
+			m) MESSAGE=${OPTARG} ;;
+		esac
+	done
 
 	if [[ $MESSAGE != "" ]]; then
 		git commit -m $(git branch --show-current)-$MESSAGE > /dev/null
 	else
 		git commit -m $(git branch --show-current) > /dev/null
 	fi
+}
+
+# Push with current branch name. Optional message append
+function newpush()
+{
+	while getopts "f:" flag; do
+		case "${flag}" in
+			f) GITFLAGS=${OPTARG} ;;
+		esac
+	done
 
 	git push ${GITFLAGS} > /dev/null || \
 		git push ${GITFLAGS} --set-upstream origin $(git branch --show-current) > /dev/null
