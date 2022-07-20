@@ -87,8 +87,18 @@ function newqcommit()
 	done
 
 	git add --all
-	newcommit -m $MESSAGE
-	newpush -f $GITFLAGS
+
+	if [[ $MESSAGE != "" ]]; then
+		newcommit -m $MESSAGE
+	else
+		newcommit
+	fi
+
+	if [[ $GITFLAGS != "" ]]; then
+		newpush -f $GITFLAGS
+	else
+		newpush
+	fi
 }
 
 # Create new commit with current branch name and push. Optional message append
