@@ -51,6 +51,7 @@ tmux
 trash
 tree
 vault
+wakeonlan
 wget
 yarn
 youtube-dl
