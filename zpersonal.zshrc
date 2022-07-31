@@ -34,9 +34,11 @@ VISUAL=/usr/bin/vim
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
 
-# PATHS
+# Go binaries
 export GOPATH=$HOME/go
-export PATH=$PATH:~/.dotnet/tools:$GOPATH/bin
+export PATH=$GOPATH/bin:$PATH
+
+# Ruby binaries
 export PATH=/usr/local/opt/ruby/bin:$PATH
 
 # Vim mode editing in zsh
