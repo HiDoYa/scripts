@@ -5,6 +5,7 @@ argocd
 automake
 awscli
 azure-cli
+consul
 coreutils
 curl
 dotnet
@@ -44,6 +45,7 @@ qrencode
 rbenv-chefdk
 ruby
 saml2aws
+sshs
 tcptraceroute
 telnet
 terraform
