@@ -19,7 +19,7 @@ Plugin 'bling/vim-airline'
 " Status line theme
 Plugin 'vim-airline/vim-airline-themes'
 " Git wrapper
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 " Filesystem explorer
 Plugin 'scrooloose/nerdtree'
 " Prettier/linter
