@@ -60,6 +60,9 @@ alias k="kubectl"
 # HIDE: Smarter mkdir
 alias mkdir="mkdir -p"
 
+# Draw.io cli
+alias drawio=/Applications/draw.io.app/Contents/MacOS/draw.io
+
 # Obsidian dir
 export OBSIDIAN_PATH=/Users/hiroya.gojo/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
 
