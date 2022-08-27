@@ -39,7 +39,7 @@ oauth2l
 openssl@3
 pandoc
 parallel
-postgresql
+postgresql@14
 pulumi
 qrencode
 rbenv-chefdk
