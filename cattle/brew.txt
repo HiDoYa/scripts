@@ -12,6 +12,7 @@ dotnet
 fdupes
 ffmpeg
 gh
+git
 gitlab-runner
 gnupg
 go
