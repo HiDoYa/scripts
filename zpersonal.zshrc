@@ -44,6 +44,9 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 # Vim mode editing in zsh
 bindkey -v
 
+# Required to use vault lookup in ansible
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
 # oh-my-zsh
 ZSH_THEME="aussiegeek"
 ZSH_DISABLE_COMPFIX=true
