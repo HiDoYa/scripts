@@ -8,6 +8,7 @@ azure-cli
 consul
 coreutils
 curl
+diff-so-fancy
 dotnet
 fdupes
 ffmpeg
@@ -42,6 +43,7 @@ pandoc
 parallel
 postgresql@14
 pulumi
+pwgen
 qrencode
 rbenv-chefdk
 ruby
