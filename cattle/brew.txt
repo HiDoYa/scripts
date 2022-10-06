@@ -24,6 +24,7 @@ htop
 hugo
 imagemagick
 iperf
+ipmitool
 jq
 lab
 libvirt
@@ -57,6 +58,7 @@ trash
 tree
 vault
 wakeonlan
+watch
 wget
 yarn
 youtube-dl
