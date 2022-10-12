@@ -39,7 +39,6 @@ node
 nuget
 nvm
 oauth2l
-openssl@3
 pandoc
 parallel
 postgresql@14
