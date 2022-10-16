@@ -1,5 +1,5 @@
 aniso8601==9.0.1
-ansible==6.4.0
+ansible==6.5.0
 ansible-core==2.13.5
 autopep8==1.7.0
 black==22.10.0
@@ -26,7 +26,7 @@ mypy-extensions==0.4.3
 nodeenv==1.7.0
 packaging==21.3
 pathspec==0.10.1
-pipenv==2022.10.11
+pipenv==2022.10.12
 platformdirs==2.5.2
 praw==7.6.0
 prawcore==2.3.0
