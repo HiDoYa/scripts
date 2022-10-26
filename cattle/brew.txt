@@ -39,6 +39,7 @@ node
 nuget
 nvm
 oauth2l
+openapi-generator
 pandoc
 parallel
 postgresql@14
