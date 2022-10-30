@@ -28,6 +28,7 @@ ipmitool
 jq
 lab
 libvirt
+maven
 minikube
 mono-libgdiplus
 mysql
@@ -50,6 +51,7 @@ rbenv-chefdk
 ruby
 saml2aws
 sshs
+swagger-codegen
 tcptraceroute
 telnet
 terraform
