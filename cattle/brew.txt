@@ -18,6 +18,7 @@ gitlab-runner
 gnupg
 go
 golang-migrate
+golangci/tap/golangci-lint
 graphviz
 helm
 htop
