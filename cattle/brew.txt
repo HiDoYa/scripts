@@ -29,6 +29,7 @@ ipmitool
 jq
 lab
 libvirt
+markdownlint-cli
 maven
 minikube
 mono-libgdiplus
@@ -37,7 +38,6 @@ ncdu
 netcat
 nghttp2
 nmap
-node
 nuget
 nvm
 oauth2l

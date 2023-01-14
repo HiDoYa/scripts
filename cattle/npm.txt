@@ -1,5 +1,6 @@
 create-react-app
 less
+markdownlint
 newman
 nodemon
 npm
