@@ -62,6 +62,28 @@ alias g="git"
 alias k="kubectl"
 # HIDE: Smarter mkdir
 alias mkdir="mkdir -p"
+# HIDE: bat is modern cat
+alias cat="bat"
+# HIDE: duf is modern df
+alias df="duf"
+# HIDE: delta is modern diff
+alias diff="delta"
+# HIDE: dog is modern dig
+alias dig="dog"
+# HIDE: ncdu is modern du
+alias du="ncdu"
+# HIDE: fd is modern find
+alias find="fd"
+# HIDE: ripgrep is modern grep
+alias grep="ripgrep"
+# HIDE: exa is modern ls
+alias ls="exa"
+# HIDE: procs is modern ps
+alias ps="procs"
+# HIDE: pgcli is modern psql
+alias psql="pgcli"
+# HIDE: htop is modern top
+alias top="htop"
 
 # Draw.io cli
 alias drawio=/Applications/draw.io.app/Contents/MacOS/draw.io
