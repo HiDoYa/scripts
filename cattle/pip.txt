@@ -1,3 +1,4 @@
+alembic==1.9.2
 aniso8601==9.0.1
 ansible==7.1.0
 ansible-core==2.14.1
@@ -27,7 +28,7 @@ defusedxml==0.7.1
 devtools==0.10.0
 dictdiffer==0.9.0
 distlib==0.3.6
-dulwich==0.21.0
+dulwich==0.21.1
 exceptiongroup==1.1.0
 executing==1.2.0
 fastapi==0.89.1
@@ -54,7 +55,8 @@ jsonschema==4.17.3
 keyring==23.13.1
 lockfile==0.12.2
 loguru==0.6.0
-MarkupSafe==2.1.1
+Mako==1.2.4
+MarkupSafe==2.1.2
 more-itertools==9.0.0
 msgpack==1.0.4
 mypy==0.991
@@ -113,8 +115,8 @@ tomlkit==0.11.6
 tqdm==4.64.1
 trove-classifiers==2023.1.12
 typer==0.7.0
-types-PyYAML==6.0.12.2
-types-requests==2.28.11.7
+types-PyYAML==6.0.12.3
+types-requests==2.28.11.8
 types-retry==0.9.9
 types-toml==0.10.8.1
 types-urllib3==1.26.25.4
