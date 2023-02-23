@@ -41,6 +41,9 @@ export PATH=$GOPATH/bin:$PATH
 # Ruby binaries
 export PATH=/usr/local/opt/ruby/bin:$PATH
 
+# Change location of zcompdump file
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+
 # Vim mode editing in zsh
 bindkey -v
 
@@ -75,7 +78,7 @@ alias du="ncdu"
 # HIDE: fd is modern find
 alias find="fd"
 # HIDE: ripgrep is modern grep
-alias grep="ripgrep"
+alias grep="rg"
 # HIDE: exa is modern ls
 alias ls="exa"
 # HIDE: procs is modern ps
