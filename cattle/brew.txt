@@ -66,6 +66,7 @@ pulumi
 pwgen
 qrencode
 rbenv-chefdk
+redis
 ripgrep
 ruby
 saml2aws
