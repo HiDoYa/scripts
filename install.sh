@@ -8,9 +8,9 @@ GITCONFIG=$HOME/.gitconfig
 
 echo "Writing to zshrc"
 cat <<EOF > $ZSHRC
-source $SCRIPT_DIR/zsecret.zshrc
-source $SCRIPT_DIR/zwork.zshrc
-source $SCRIPT_DIR/zpersonal.zshrc
+source $SCRIPT_DIR/zsecret_personal.zshrc
+source $SCRIPT_DIR/zsecret_work.zshrc
+source $SCRIPT_DIR/zgeneral.zshrc
 EOF
 cat $ZSHRC
 echo ""
