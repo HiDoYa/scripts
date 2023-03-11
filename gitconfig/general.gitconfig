@@ -1,7 +1,3 @@
-[user]
-	name = HiDoYa
-	email = hiroyagojo@gmail.com
-
 [color]
 	ui = true
 
@@ -13,9 +9,6 @@
 
 [pull]
 	rebase = false
-
-[includeIf "gitdir:~/Code/"]
-    path = ./gwork.gitconfig
 
 [core]
     pager = delta

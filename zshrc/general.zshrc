@@ -15,9 +15,6 @@ echo $CYAN"     J|/^ ^ ^ \\  | "$YELLOW"   /00  |  "$GREEN"  _//| "
 echo $CYAN"      |^ ^ ^ ^ |W|  "$YELLOW" |/^^\\ |  "$GREEN" /oo | "
 echo $CYAN"       \\m___m__|_| "$YELLOW"   \\m_m_| "$GREEN"  \\mm_| "
 
-# Set default user
-DEFAULT_USER='hiroya.gojo'
-
 # Allows hyphen-insensitive completion. (- and _ is interchangeable)
 HYPHEN_INSENSITIVE="true"
 
@@ -53,8 +50,8 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # oh-my-zsh
 ZSH_THEME="aussiegeek"
 ZSH_DISABLE_COMPFIX=true
-ZSH="/Users/hiroya.gojo/.oh-my-zsh"
-plugins=(zsh-autosuggestions vi-mode colored-man-pages)
+ZSH=/Users/$USER/.oh-my-zsh
+plugins=(zsh-autosuggestions zsh-syntax-highlighting vi-mode colored-man-pages)
 # plugins=(git web-search zsh-autosuggestions kubectl gcloud lol colored-man-pages docker aws battery vi-mode)
 source $ZSH/oh-my-zsh.sh
 
@@ -92,12 +89,12 @@ alias top="htop"
 alias drawio=/Applications/draw.io.app/Contents/MacOS/draw.io
 
 # Obsidian dir
-export OBSIDIAN_PATH=/Users/hiroya.gojo/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
+export OBSIDIAN_PATH=/Users/$USER/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
 
 # DIRECTORIES
-export PERSONAL_DIR=$HOME/PersonalCode
+export CODE_DIR=$HOME/Code
 export CREDS_DIR=$HOME/Documents/credentials
-export SCRIPTS_DIR=$PERSONAL_DIR/scripts
+export SCRIPTS_DIR=$CODE_DIR/scripts
 export LINUX_DIR=$SCRIPTS_DIR/ubuntu-sandbox
 
 # Create new commit and push with message
@@ -232,13 +229,13 @@ function brewing()
 alias rezsh='source ~/.zshrc'
 
 # Display all commands
-alias cmds='DOTFILE_DIR=$PERSONAL_DIR/dotfiles; $SCRIPTS_DIR/cmds/cmds.rb $DOTFILE_DIR/zwork.zshrc $DOTFILE_DIR/zpersonal.zshrc $DOTFILE_DIR/zsecret.zshrc'
+alias cmds='DOTFILE_DIR=$CODE_DIR/dotfiles; $SCRIPTS_DIR/cmds/cmds.rb $DOTFILE_DIR/zwork.zshrc $DOTFILE_DIR/zpersonal.zshrc $DOTFILE_DIR/zsecret.zshrc'
 
 # Install vim vundle plugins
 alias vimplugin='vim +PluginInstall +qall'
 
 # Edit zshrc files
-alias zshedit='code $PERSONAL_DIR/dotfiles -g $PERSONAL_DIR/dotfiles/zpersonal.zshrc'
+alias zshedit='code $CODE_DIR/dotfiles -g $CODE_DIR/dotfiles/zpersonal.zshrc'
 
 # HIDE: Function to check if inside a directory
 function insidedir() { [[ $(pwd) == $1 ]] }
@@ -361,7 +358,7 @@ function sbackup()
 
 	# Create zip
 	sudo tar cfvz ${FILENAME} \
-		$HOME/PersonalCode/dotfiles/*.zshrc \
+		$CODE_DIR/dotfiles/*.zshrc \
 		$HOME/Documents/credentials \
 		$HOME/.kube/homeconfig \
 		$HOME/.config/rclone \
@@ -423,7 +420,7 @@ function unzipall()
 function installfinsync()
 {
 	FINPATH=~/Documents/finance-project
-	FINSRCPATH=~/PersonalCode/finance
+	FINSRCPATH=$CODE_DIR/finance
 	IS_INSIDE=$(insidedir $FINSRCPATH)
 
 	if [[ ! $IS_INSIDE ]] pushd $FINSRCPATH > /dev/null
@@ -465,3 +462,12 @@ function finsync()
 
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
+
+# Local kubernetes cluster
+function localk8() { unset KUBECONFIG; echo workk8 activated }
+# Work kubernetes cluster
+function workk8() { export KUBECONFIG=$HOME/.kube/workconfig; echo workk8 activated }
+# Personal kubernetes cluster
+function homek8() { export KUBECONFIG=$HOME/.kube/homeconfig; echo homek8 activated }
+
+export KUBECONFIG=$HOME/.kube/config
