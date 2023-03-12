@@ -2,7 +2,7 @@
 
 Scripts, files, and other misc files for personal use. Many of these interact with shell scripts I wrote in zshrc.
 
-## Artist Extractor
+## Metadata Extractor
 This is a specialized script (that'll probably only ever be used once).
 
 I first got a list of all my songs by running '''ls -alR''' on my local music library, using directory structure to denote playlist name.
@@ -28,6 +28,6 @@ Filespace for Jupyter notebook workspace.
 ## Smart Mv
 Move many files to a destination, but if the same filename already exists, create a new filename so that it isn't overwritten.
 
-## Ubuntu-Sandbox
+## Linux Dev Sandbox
 Files related to running Ubuntu workspace with Vagrant.
 
