@@ -1,3 +1,5 @@
+export LINUX_DIR=$SCRIPTS_DIR/linux-dev
+
 # Initialize and start linux dev. Takes mount path argument
 function linuxup()
 {
@@ -5,10 +7,9 @@ function linuxup()
 	if [[ $1 ]] ABS_PATH=$(realpath $1)
 	export MOUNT_PATH=$ABS_PATH
 
-	VAGRANT_PATH=$SCRIPTS_DIR/ubuntu-sandbox
-	IS_INSIDE=$(insidedir $VAGRANT_PATH)
+	IS_INSIDE=$(insidedir $LINUX_DIR)
 
-	if [[ ! $IS_INSIDE ]] pushd $VAGRANT_PATH > /dev/null
+	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
 
 	# Mount changed
 	if [[ $ABS_PATH != $(cat mounted.txt) ]] then

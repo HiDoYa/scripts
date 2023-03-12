@@ -36,8 +36,7 @@ export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 
 # Ruby binaries
-export PATH=/usr/local/opt/ruby/bin:$PATH    # For intel (work)
-export PATH=/opt/homebrew/opt/ruby/bin:$PATH # For ARM   (home)
+export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
 
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
@@ -51,10 +50,11 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # oh-my-zsh
 ZSH_THEME="aussiegeek"
 ZSH_DISABLE_COMPFIX=true
-ZSH=/Users/$USER/.oh-my-zsh
-plugins=(zsh-autosuggestions zsh-syntax-highlighting vi-mode colored-man-pages)
-# plugins=(git gcloud lol docker aws)
+ZSH=$HOME/.oh-my-zsh
+plugins=(vi-mode colored-man-pages)
 source $ZSH/oh-my-zsh.sh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Hidden functions (doesn't need to be explicit)
 # HIDE: Shorter git
@@ -90,11 +90,10 @@ alias top="htop"
 export CODE_DIR=$HOME/Code
 export CREDS_DIR=$HOME/Documents/credentials
 export SCRIPTS_DIR=$CODE_DIR/scripts
-export LINUX_DIR=$SCRIPTS_DIR/linux-dev
-export OBSIDIAN_PATH=/Users/$USER/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
+export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
 
 # Draw.io cli
-alias drawio=/Applications/draw.io.app/Contents/MacOS/draw.io
+alias drawio='/Applications/draw.io.app/Contents/MacOS/draw.io'
 
 # Reload zshrc file
 alias rezsh='source ~/.zshrc'
