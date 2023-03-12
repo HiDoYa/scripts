@@ -105,7 +105,7 @@ alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
 alias vimplugin='vim +PluginInstall +qall'
 
 # Edit zshrc files
-alias zshedit='code $CODE_DIR/dotfiles -g $CODE_DIR/dotfiles/zshrc/general.zshrc'
+alias zshedit='code $SCRIPTS_DIR/dotfiles -g $SCRIPTS_DIR/dotfiles/zshrc/general.zshrc'
 
 # HIDE: Function to check if inside a directory
 function insidedir() { [[ $(pwd) == $1 ]] }
@@ -123,23 +123,27 @@ function brewing()
 	brew update
 	brew upgrade
 	brew cleanup
-	brew leaves > $SCRIPTS_DIR/cattle/brew.txt
 
 	# Node js
 	npm update -g
-	ls $(npm root -g) > $SCRIPTS_DIR/cattle/npm.txt
 
 	# Python
 	pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
-	pip3 freeze > $SCRIPTS_DIR/cattle/pip.txt
 
-	# Save to cattle
-	IS_INSIDE=$(insidedir $SCRIPTS_DIR)
-	if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_DIR > /dev/null
-	git add cattle/brew.txt cattle/npm.txt cattle/pip.txt && \
-		git commit -m "Add packages" && \
-		git push
-	if [[ ! $IS_INSIDE ]] popd > /dev/null
+	# TODO Push to rclone instead as backups
+	# # Save to files
+	# gem list
+	# brew leaves > $SCRIPTS_DIR/cattle/brew.txt
+	# ls $(npm root -g) > $SCRIPTS_DIR/cattle/npm.txt
+	# pip3 freeze > $SCRIPTS_DIR/cattle/pip.txt
+
+	# # Save to cattle
+	# IS_INSIDE=$(insidedir $SCRIPTS_DIR)
+	# if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_DIR > /dev/null
+	# 	git add cattle/brew.txt cattle/npm.txt cattle/pip.txt && \
+	# 	git commit -m "Add packages" && \
+	# 	git push
+	# if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
 # Open python playground in jupyter notebook
