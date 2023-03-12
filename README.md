@@ -5,7 +5,6 @@ Scripts, files, and other misc files for personal use.
 `git-setup.sh` is required to ensure the write git user will be used for this repository.
 
 - bootstrap (Initialize mac system)
-- cattle (Keeps track of software packages for easy installation)
 - cmds (Shows description for custom bash functions/aliases)
 - dotfiles (Saving dotfiles for git, tmux, vim, zsh)
 - gp-backup (Automate backing up media from my phone and compress it)
