@@ -36,7 +36,8 @@ export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 
 # Ruby binaries
-export PATH=/usr/local/opt/ruby/bin:$PATH
+export PATH=/usr/local/opt/ruby/bin:$PATH    # For intel (work)
+export PATH=/opt/homebrew/opt/ruby/bin:$PATH # For ARM   (home)
 
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
