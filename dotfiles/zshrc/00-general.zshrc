@@ -157,38 +157,3 @@ function pyplay()
 
 	open -a "Google Chrome" http://localhost:8889/notebooks/play.ipynb
 }
-
-# Backup secrets to google drive
-function sbackup()
-{
-	FILENAME=/tmp/$(date +%s).tar
-
-	# Create zip
-	sudo tar cfvz ${FILENAME} \
-		$CODE_DIR/dotfiles/*.zshrc \
-		$HOME/Documents/credentials \
-		$HOME/.kube/homeconfig \
-		$HOME/.config/rclone \
-		$HOME/.ssh \
-		$HOME/.aws
-
-	# Move into drive
-	sudo rclone copy $FILENAME MainDrive:/Backup
-	echo "Finished backing up $FILENAME"
-	sudo rm $FILENAME
-
-	# Remove old backups
-	EXISTING_FILES=$(rclone ls MainDrive:Backup | awk '{print $2}')
-	echo $EXISTING_FILES | while read -r f; do
-		PAST_DATE=$(echo $f | sed 's/\.tar//g')
-		CURRENT_DATE=$(date +%s)
-
-		DIFF=$(expr $CURRENT_DATE - $PAST_DATE)
-		DIFF_IN_DAYS=$(expr $DIFF / 60 / 60 / 24)
-
-		if [[ $DIFF_IN_DAYS > 21 ]]; then
-			echo "Deleting file $f"
-			rclone delete MainDrive:Backup/$f
-		fi
-	done
-}
