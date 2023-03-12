@@ -7,6 +7,7 @@ HOME = os.getenv("HOME")
 
 def get_contents(dirname, mode):
     files = os.listdir(dirname)
+    files.sort()
     contents = ""
 
     for file in files:
