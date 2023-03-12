@@ -2,6 +2,7 @@
 
 import os
 import argparse
+import shutil
 
 HOME = os.getenv("HOME")
 
@@ -26,6 +27,17 @@ def write_to_file(contents, dest_file):
         f.write(contents)
     print(f"Contents written to file: {dest_file}")
 
+def copy_direct(srcdir, dstdir):
+    files = os.listdir(srcdir)
+    files.sort()
+
+    for file in files:
+        src_fname = f"{srcdir}/{file}"
+        dst_fname = f"{dstdir}/{file}"
+
+        shutil.copyfile(src_fname, dst_fname)
+        print(f"Contents written to file: {dst_fname}")
+
 parser = argparse.ArgumentParser()
 parser.add_argument("mode", help="Must be work or home")
 args = parser.parse_args()
@@ -38,3 +50,5 @@ write_to_file(contents, f"{HOME}/.vimrc")
 
 contents = get_contents("gitconfig", args.mode)
 write_to_file(contents, f"{HOME}/.gitconfig")
+
+copy_direct("vscode", f"{HOME}/Library/Application Support/Code/User")

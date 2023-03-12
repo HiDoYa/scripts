@@ -1,0 +1,36 @@
+{
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "gitlens.hovers.currentLine.over": "line",
+    "editor.insertSpaces": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "terminal.integrated.scrollback": 10000,
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "gitlens.codeLens.enabled": false,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.tabSize": 2
+    },
+    "editor.insertSpaces": true,
+    "explorer.confirmDelete": false,
+    "go.lintTool": "golint",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "120"
+    ],
+    "python.formatting.provider": "black",
+    "editor.defaultFormatter": "ms-python.black-formatter",
+}
