@@ -113,9 +113,6 @@ function insidedir() { [[ $(pwd) == $1 ]] }
 # Performs brew maintenance
 function brewing()
 {
-	# Mac Apps
-	# sudo softwareupdate -i -a
-
 	# Ruby
 	gem update
 
@@ -129,21 +126,6 @@ function brewing()
 
 	# Python
 	pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
-
-	# TODO Push to rclone instead as backups
-	# # Save to files
-	# gem list
-	# brew leaves > $SCRIPTS_DIR/cattle/brew.txt
-	# ls $(npm root -g) > $SCRIPTS_DIR/cattle/npm.txt
-	# pip3 freeze > $SCRIPTS_DIR/cattle/pip.txt
-
-	# # Save to cattle
-	# IS_INSIDE=$(insidedir $SCRIPTS_DIR)
-	# if [[ ! $IS_INSIDE ]] pushd $SCRIPTS_DIR > /dev/null
-	# 	git add cattle/brew.txt cattle/npm.txt cattle/pip.txt && \
-	# 	git commit -m "Add packages" && \
-	# 	git push
-	# if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
 # Open python playground in jupyter notebook
