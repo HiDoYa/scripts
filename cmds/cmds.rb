@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!ruby
 
 class String
   def green; "\e[32m#{self}\e[0m" end

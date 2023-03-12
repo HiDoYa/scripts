@@ -1,5 +1,5 @@
-#!/usr/local/opt/ruby/bin/ruby
-#
+#!ruby
+
 require 'fileutils'
 
 def parse_args
