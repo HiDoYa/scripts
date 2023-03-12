@@ -1,6 +1,8 @@
 # Scripts
 
-Scripts, files, and other misc files for personal use. Many of these interact with shell scripts I wrote in zshrc.
+Scripts, files, and other misc files for personal use.
+
+`git-setup.sh` is required to ensure the write git user will be used for this repository.
 
 - cattle (Keeps track of software packages for easy installation)
 - cmds (Shows description for custom bash functions/aliases)
