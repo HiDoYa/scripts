@@ -37,8 +37,8 @@ brew install bat dog duf exa fd git-delta \
 
 # Install tools (recommended)
 brew install docker-compose go httpie hugo \
-    netcat nmap packer parallel pwgen ripgrep \
-    terraform tree vault wget yq
+    netcat newman nmap packer parallel pwgen \
+    ripgrep terraform tree vault wget yq
 
 # Install gui tools (recommended)
 brew install --cask 1password copyclip \
