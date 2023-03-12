@@ -48,9 +48,9 @@ brew install --cask 1password copyclip \
     vmware-fusion
 
 # Install dotfiles
+echo ""
 pushd ../dotfiles
 ./install.py home
-rezsh
 popd
 
 # Install vundle plugins
@@ -64,6 +64,8 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 # VSCode
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+echo ""
 echo "${GREEN}VScode installed"
 echo "Install CLI using: Command Palette -> shell"
 echo ""
