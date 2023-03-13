@@ -29,6 +29,7 @@ fi
 # Install app store apps
 brew install mas
 mas install 937984704 # Amphetamine
+mas install 595191960 # Copyclip
 
 # Install tools (any tools specified in zshrc files)
 brew install bat dog duf exa fd git-delta \
@@ -41,11 +42,11 @@ brew install docker-compose go httpie hugo \
     ripgrep terraform tree vault wget yq
 
 # Install gui tools (recommended)
-brew install --cask 1password copyclip \
-    discord discretescroll docker drawio \
-    gimp google-chrome iterm2 obs obsidian \
-    postman spotify vagrant visual-studio-code \
-    vmware-fusion
+brew install --cask 1password discord \
+    discretescroll docker drawio gimp \
+    google-chrome iterm2 obs obsidian \
+    postman spotify vagrant \
+    visual-studio-code vmware-fusion
 
 # Install dotfiles
 echo ""
