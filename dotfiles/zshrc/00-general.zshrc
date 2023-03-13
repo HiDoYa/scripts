@@ -105,7 +105,7 @@ alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
 alias vimplugin='vim +PluginInstall +qall'
 
 # Edit zshrc files
-alias zshedit='code $SCRIPTS_DIR/dotfiles -g $SCRIPTS_DIR/dotfiles/zshrc/general.zshrc'
+alias zshedit='code $SCRIPTS_DIR -g $SCRIPTS_DIR/dotfiles/zshrc/00-general.zshrc'
 
 # HIDE: Function to check if inside a directory
 function insidedir() { [[ $(pwd) == $1 ]] }
