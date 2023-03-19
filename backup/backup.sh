@@ -5,7 +5,6 @@
 # sudo -i -u hiroyagojo ./Code/scripts/backup.sh
 
 # Used to store pkg backups for home vs work
-PC_PURPOSE={{ pc_purpose }}
 RCLONE_CONF=$HOME/.config/rclone/rclone.conf
 
 # Ensure brew is sourced
@@ -75,7 +74,7 @@ function pkgbackup()
     echo "Backing up pkgs"
 
 	RETENTION_DAYS=365
-	RCLONE_LOCATION=MainDrive:/Backup/pkg/$PC_PURPOSE
+	RCLONE_LOCATION=MainDrive:/Backup/pkg
 	TEMP_DIRNAME=$(date +%Y-%m-%d-%H:%M)
 
 	mkdir /tmp/$TEMP_DIRNAME

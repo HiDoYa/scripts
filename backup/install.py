@@ -4,13 +4,8 @@ from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader("."))
 
-# Template backup
+# Backup script
 backup_script_fname = "backup.sh"
-pc_purpose = os.environ.get("PC_PURPOSE")
-template = env.get_template(f"{backup_script_fname}.j2")
-result = template.render(pc_purpose=pc_purpose)
-with open(backup_script_fname, 'w') as f:
-    f.write(result)
 
 # Template plist
 plist_fname = 'com.hiroyagojo.backup.plist'
