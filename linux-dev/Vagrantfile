@@ -4,7 +4,8 @@ Vagrant.configure("2") do |config|
   # Set vagrant machine name
   config.vm.define "linux-dev"
 
-  config.vm.provider :virtualbox do |vb|
+  # config.vm.provider :virtualbox do |vb|
+  config.vm.provider "vmware_desktop" do |vb|
     # Set virtualbox machine name
     vb.name = "linux-dev"
   end
