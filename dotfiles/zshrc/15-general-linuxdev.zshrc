@@ -1,4 +1,5 @@
 export LINUX_DIR=$SCRIPTS_DIR/linux-dev
+export LINUX_CONTAINER_NAME=linux-dev
 
 # Initialize and start linux dev. Takes mount path argument
 function linuxup()
@@ -31,7 +32,7 @@ function linuxls()
 	IS_INSIDE=$(insidedir $LINUX_DIR)
 
 	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
-	vagrant status linux-dev 
+	vagrant status $LINUX_CONTAINER_NAME
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
@@ -41,7 +42,7 @@ function linuxssh()
 	IS_INSIDE=$(insidedir $LINUX_DIR)
 
 	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
-	vagrant ssh linux-dev 
+	vagrant ssh $LINUX_CONTAINER_NAME
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
@@ -51,7 +52,7 @@ function linuxdown()
 	IS_INSIDE=$(insidedir $LINUX_DIR)
 
 	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
-	MOUNT_PATH=$(cat mounted.txt) vagrant destroy -f linux-dev
+	MOUNT_PATH=$(cat mounted.txt) vagrant destroy -f $LINUX_CONTAINER_NAME
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
@@ -68,7 +69,7 @@ function linuxcp()
 
 	ABS_PATH=$(realpath $1)
 	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
-	vagrant scp linux-dev:.
+	vagrant scp $LINUX_CONTAINER_NAME:.
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
 
@@ -85,7 +86,7 @@ function linuxst()
 # Open linux mount path in vscode
 function linuxcode()
 {
-	code --remote ssh-remote+linux-dev /home/vagrant/mount
+	code --remote ssh-remote+$LINUX_CONTAINER_NAME /home/vagrant/mount
 }
 
 # Quick start linux up
