@@ -6,14 +6,16 @@ function quickgit()
 	git push
 }
 
-# Create new commit with current branch name and push. Optional message append
+# Create new commit with current branch name and push. Options supported -m (message), -n (skip precommit), -f (force)
 function newqcommit()
 {
 	MESSAGE=""
-	while getopts "mf:" flag; do
+	GITFLAGS=""
+	while getopts "mnf:" flag; do
 		case "${flag}" in
 			m) MESSAGE=${OPTARG} ;;
-			f) GITFLAGS=${OPTARG} ;;
+			f) GITFLAGS="${GITFLAGS} -f" ;;
+			n) GITFLAGS="${GITFLAGS} -n" ;;
 		esac
 	done
 
@@ -25,20 +27,17 @@ function newqcommit()
 		newcommit
 	fi
 
-	if [[ $GITFLAGS != "" ]]; then
-		newpush -f $GITFLAGS
-	else
-		newpush
-	fi
+	newpush $GITFLAGS
 }
 
-# Create new commit with current branch name. Optional message append
+# Create new commit with current branch name. Options supported -m (message), -n (skip precommit)
 function newcommit()
 {
 	MESSAGE=""
-	while getopts "m:" flag; do
+	while getopts "mn:" flag; do
 		case "${flag}" in
 			m) MESSAGE=${OPTARG} ;;
+			n) GITFLAGS="${GITFLAGS} -n" ;;
 		esac
 	done
 
@@ -49,7 +48,7 @@ function newcommit()
 	fi
 }
 
-# Push with current branch name. Optional message append
+# Push with current branch name. Options supported -f (force)
 function newpush()
 {
 	while getopts "f:" flag; do
@@ -62,7 +61,7 @@ function newpush()
 		git push ${GITFLAGS} --set-upstream origin $(git branch --show-current) > /dev/null
 }
 
-# Create new branch. Usage: newbranch branch-name base-branch=master
+# Create new branch. Usage: newbranch branch-name base-branch
 function newbranch()
 {
 	if [[ $2 ]]; then
