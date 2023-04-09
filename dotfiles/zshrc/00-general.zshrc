@@ -112,6 +112,19 @@ alias parallel="parallel"
 alias pyenv="pyenv"
 # UI for SSH
 alias sshs="sshs"
+# Fuzzy file finder
+alias fzf="fzf"
+# Run arbitrary commands when files change
+alias entr="entr"
+# Benchmarking tool
+alias hyperfine="hyperfine"
+# Logfile navigator
+alias lnav="lnav"
+# Simple ingress
+alias ngrok="ngrok"
+# Local Docker UI
+alias lazydocker="lazydocker"
+
 
 # DIRECTORIES
 export CODE_DIR=$HOME/Code
