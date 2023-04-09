@@ -125,6 +125,8 @@ alias ngrok="ngrok"
 # Local Docker UI
 alias lazydocker="lazydocker"
 
+# For fzf, make sure to install fzf key bindings first
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # DIRECTORIES
 export CODE_DIR=$HOME/Code
