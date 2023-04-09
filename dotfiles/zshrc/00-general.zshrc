@@ -86,6 +86,33 @@ alias psql="pgcli"
 # HIDE: htop is modern top
 alias top="htop"
 
+# Tools to remember
+
+# Execute a program periodically
+alias watch="watch"
+# List contents of directories in a tree-like format
+alias tree="tree"
+# Generate pronounceable passwords
+alias pwgen="pwgen"
+# Port scanner
+alias nmap="nmap"
+# Reads and writes data across network connections
+alias netcat="netcat"
+# YAML processor
+alias yq="yq"
+# JSON processor
+alias jq="jq"
+# HTTP client for API
+alias httpie="httpie"
+# JSON visualizer
+alias fx="fx"
+# Execute shell in parallel
+alias parallel="parallel"
+# Python version management
+alias pyenv="pyenv"
+# UI for SSH
+alias sshs="sshs"
+
 # DIRECTORIES
 export CODE_DIR=$HOME/Code
 export CREDS_DIR=$HOME/Documents/credentials
