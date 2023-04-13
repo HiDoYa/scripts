@@ -452,7 +452,7 @@ cursor:
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    blinking: Off
+    blinking: On
 
   # Vi mode cursor style
   #
@@ -463,7 +463,7 @@ cursor:
   #vi_mode_style: None
 
   # Cursor blinking interval in milliseconds.
-  #blink_interval: 750
+  blink_interval: 550
 
   # Time after which cursor stops blinking, in seconds.
   #

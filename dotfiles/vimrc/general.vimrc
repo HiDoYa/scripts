@@ -19,7 +19,7 @@ Plugin 'bling/vim-airline'
 " Status line theme
 Plugin 'vim-airline/vim-airline-themes'
 " Git wrapper
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Filesystem explorer
 Plugin 'scrooloose/nerdtree'
 " Prettier/linter
@@ -74,8 +74,8 @@ set undodir=~/.vimbackup
 """"""""""""""""""""""""""
 " Shows cursor position
 set ruler
-" Shows line numbers
-set number
+" Shows relative line numbers
+set relativenumber
 " Shows commands at the bottom
 set showcmd
 " Highlights current line

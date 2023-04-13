@@ -56,7 +56,7 @@ contents = get_contents("gitconfig", args.mode)
 write_to_file(contents, f"{HOME}/.gitconfig")
 
 contents = get_contents("alacritty", args.mode)
-write_to_file(contents, f"{HOME}/.alacritty")
+write_to_file(contents, f"{HOME}/.alacritty.yml")
 
 contents = get_contents("tmux", args.mode)
 write_to_file(contents, f"{HOME}/.tmux.conf")

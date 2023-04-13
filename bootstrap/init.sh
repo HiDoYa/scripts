@@ -26,6 +26,10 @@ if [ ! -d "~/.vim/bundle/Vundle.vim" ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
+# Install zsh-vi-mode plugin
+git clone https://github.com/jeffreytse/zsh-vi-mode \
+  $ZSH_CUSTOM/plugins/zsh-vi-mode
+
 # Install app store apps
 brew install mas
 mas install 937984704 # Amphetamine

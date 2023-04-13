@@ -47,11 +47,18 @@ bindkey -v
 # Required to use vault lookup in ansible
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
+# Set blinking cursors (for zsh-vi-mode plugin)
+zvm_before_init() {
+	ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+	ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+	ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE
+}
+
 # oh-my-zsh
 ZSH_THEME="aussiegeek"
 ZSH_DISABLE_COMPFIX=true
 ZSH=$HOME/.oh-my-zsh
-plugins=(vi-mode colored-man-pages)
+plugins=(zsh-vi-mode colored-man-pages)
 source $ZSH/oh-my-zsh.sh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
