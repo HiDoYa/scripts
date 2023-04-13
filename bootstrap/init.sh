@@ -70,8 +70,3 @@ echo ""
 echo "${GREEN}VScode installed"
 echo "Install CLI using: Command Palette -> shell"
 echo ""
-
-# Iterm (deprecated)
-#echo "${GREEN}Iterm installed"
-#echo "Update options using: Settings -> General -> Preferences -> Load preferences from a folder"
-#echo ""
