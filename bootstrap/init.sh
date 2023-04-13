@@ -13,7 +13,7 @@ then
 fi
 
 # Install zsh tools
-brew install zsh-autosuggestions zsh-syntax-highlighting
+brew install zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode
 
 # Install oh-my-zsh
 if [ ! -d "~/.oh-my-zsh" ]; then
@@ -25,10 +25,6 @@ fi
 if [ ! -d "~/.vim/bundle/Vundle.vim" ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
-
-# Install zsh-vi-mode plugin
-git clone https://github.com/jeffreytse/zsh-vi-mode \
-  $ZSH_CUSTOM/plugins/zsh-vi-mode
 
 # Install app store apps
 brew install mas

@@ -58,10 +58,11 @@ zvm_before_init() {
 ZSH_THEME="aussiegeek"
 ZSH_DISABLE_COMPFIX=true
 ZSH=$HOME/.oh-my-zsh
-plugins=(zsh-vi-mode colored-man-pages)
+plugins=(colored-man-pages)
 source $ZSH/oh-my-zsh.sh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # Hidden functions (doesn't need to be explicit)
 # HIDE: Shorter git
