@@ -44,7 +44,7 @@ brew install docker-compose go httpie hugo \
 # Install gui tools (recommended)
 brew install --cask 1password discord \
     discretescroll docker drawio gimp \
-    google-chrome iterm2 obs obsidian \
+    google-chrome alacritty obs obsidian \
     postman spotify vagrant \
     visual-studio-code vmware-fusion
 
@@ -71,7 +71,7 @@ echo "${GREEN}VScode installed"
 echo "Install CLI using: Command Palette -> shell"
 echo ""
 
-# Iterm
-echo "${GREEN}Iterm installed"
-echo "Update options using: Settings -> General -> Preferences -> Load preferences from a folder"
-echo ""
+# Iterm (deprecated)
+#echo "${GREEN}Iterm installed"
+#echo "Update options using: Settings -> General -> Preferences -> Load preferences from a folder"
+#echo ""
