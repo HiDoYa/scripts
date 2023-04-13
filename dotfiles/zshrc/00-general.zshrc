@@ -124,6 +124,8 @@ alias lnav="lnav"
 alias ngrok="ngrok"
 # Local Docker UI
 alias lazydocker="lazydocker"
+# Pretty display columnar data
+alias column="column"
 
 # For fzf, make sure to install fzf key bindings first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
