@@ -6,26 +6,29 @@ import shutil
 
 HOME = os.getenv("HOME")
 
+
 def get_contents(dirname, mode):
     files = os.listdir(dirname)
     files.sort()
     contents = ""
 
     for file in files:
-        if 'general' not in file and mode not in file:
+        if "general" not in file and mode not in file:
             continue
 
         fname = f"{dirname}/{file}"
-        with open(fname, 'r') as f:
+        with open(fname, "r") as f:
             contents += f.read()
-            contents += '\n\n'
+            contents += "\n\n"
 
     return contents
 
+
 def write_to_file(contents, dest_file):
-    with open(dest_file, 'w') as f:
+    with open(dest_file, "w") as f:
         f.write(contents)
     print(f"Contents written to file: {dest_file}")
+
 
 def copy_direct(srcdir, dstdir):
     files = os.listdir(srcdir)
@@ -37,6 +40,7 @@ def copy_direct(srcdir, dstdir):
 
         shutil.copyfile(src_fname, dst_fname)
         print(f"Contents written to file: {dst_fname}")
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("mode", help="Must be work or home")
@@ -50,5 +54,8 @@ write_to_file(contents, f"{HOME}/.vimrc")
 
 contents = get_contents("gitconfig", args.mode)
 write_to_file(contents, f"{HOME}/.gitconfig")
+
+contents = get_contents("alacritty", args.mode)
+write_to_file(contents, f"{HOME}/.alacritty")
 
 copy_direct("vscode", f"{HOME}/Library/Application Support/Code/User")
