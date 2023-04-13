@@ -58,4 +58,7 @@ write_to_file(contents, f"{HOME}/.gitconfig")
 contents = get_contents("alacritty", args.mode)
 write_to_file(contents, f"{HOME}/.alacritty")
 
+contents = get_contents("tmux", args.mode)
+write_to_file(contents, f"{HOME}/.tmux.conf")
+
 copy_direct("vscode", f"{HOME}/Library/Application Support/Code/User")
