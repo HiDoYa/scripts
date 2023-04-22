@@ -18,20 +18,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 " Status line theme
 Plugin 'vim-airline/vim-airline-themes'
-" Git wrapper
-Plugin 'tpope/vim-fugitive'
-" Filesystem explorer
-Plugin 'scrooloose/nerdtree'
-" Prettier/linter
-Plugin 'prettier/vim-prettier'
 " Git diff visualizer
 Plugin 'airblade/vim-gitgutter'
-" Comment functions
-Plugin 'scrooloose/nerdcommenter'
-" Aligning text
-Plugin 'godlygeek/tabular'
-" Autocomplete
-Plugin 'shougo/deoplete.nvim'
+
+" Note: Plugins are mostly low tech or design focused only to ensure I only
+" use native vim bindings that's compatible with other commonly used tools
+" (vscode, sshed vim)
+" Any heavy coding should use my code editor instead of vanilla vim.
 
 " Finish vundle plugin loading
 call vundle#end()
@@ -122,18 +115,6 @@ nnoremap <leader><space> :nohlsearch<CR>
 syntax enable
 
 """"""""""""""""""""""""""
-"""" NERDTREE
-""""""""""""""""""""""""""
-" Show hidden files
-let NERDTreeShowHidden = 1
-
-" Automatically exits nerd tree upon file close
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Automatically opens nerdtree on new tab
-autocmd BufWinEnter * NERDTreeMirror
-
-""""""""""""""""""""""""""
 """" FOLDING
 """"""""""""""""""""""""""
 " Enable folding
@@ -153,8 +134,6 @@ autocmd BufWinEnter *.* silent loadview
 """"""""""""""""""""""""""
 " To not accidentally enter Ex mode
 nnoremap Q <nop>
-" Remap C-n for Nerd Tree
-map <C-n> :NERDTreeToggle<CR>
 " Timeout for key codes
 set ttimeoutlen=50
 " Allow backspace to remove indentations, newlines, etc.
