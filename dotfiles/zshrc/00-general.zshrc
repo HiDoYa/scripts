@@ -55,7 +55,7 @@ zvm_before_init() {
 }
 
 # oh-my-zsh
-ZSH_THEME="aussiegeek"
+ZSH_THEME="steeef"
 ZSH_DISABLE_COMPFIX=true
 ZSH=$HOME/.oh-my-zsh
 plugins=(colored-man-pages)
