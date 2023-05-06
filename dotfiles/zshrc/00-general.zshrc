@@ -137,7 +137,7 @@ function brewing()
 	npm update -g
 
 	# Python
-	pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
+	# pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
 }
 
 # Open python playground in jupyter notebook
