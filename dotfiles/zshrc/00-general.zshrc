@@ -37,6 +37,7 @@ export PATH=$GOPATH/bin:$PATH
 
 # Ruby binaries
 export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
+export PATH=$PATH:$(gem environment home)/bin
 
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
