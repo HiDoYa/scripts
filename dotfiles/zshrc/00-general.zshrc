@@ -59,6 +59,7 @@ zvm_before_init() {
 ZSH_THEME="steeef"
 ZSH_DISABLE_COMPFIX=true
 ZSH=$HOME/.oh-my-zsh
+ZSH_COMPDUMP=$ZSH/cache/.zcompdump-${ZSH_VERSION}
 plugins=(colored-man-pages)
 source $ZSH/oh-my-zsh.sh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
