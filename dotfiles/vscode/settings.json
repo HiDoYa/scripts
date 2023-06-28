@@ -1,25 +1,54 @@
 {
+    // Editor
     "editor.insertSpaces": true,
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
+    "search.exclude": {
+        "**/.git": true,
+        "**/.github": true,
+        "**/.nuxt": true,
+        "**/.output": true,
+        "**/.pnpm": true,
+        "**/.vscode": true,
+        "**/.yarn": true,
+        "**/bower_components": true,
+        "**/dist/**": true,
+        "**/logs": true,
+        "**/node_modules": true,
+        "**/out/**": true,
+        "**/package-lock.json": true,
+        "**/pnpm-lock.yaml": true,
+        "**/tmp": true,
+        "**/yarn.lock": true
+    },
+    "editor.lineNumbers": "relative",
+    "editor.stickyScroll.enabled": true,
+    "editor.hover.sticky": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.renderWhitespace": "boundary",
+    "extensions.autoUpdate": "onlyEnabledExtensions",
     "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.codeLens.enabled": false,
     "terminal.integrated.scrollback": 10000,
+    // Go
+    "go.toolsManagement.autoUpdate": true,
+    "go.lintTool": "golint",
+    // JS
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.tabSize": 2
+    },
+    // Python
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
-    },
-    "go.toolsManagement.autoUpdate": true,
-    "go.lintTool": "golint",
-    "[javascript]": {
-        "editor.tabSize": 2
-    },
-    "[json]": {
-        "editor.tabSize": 2
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
