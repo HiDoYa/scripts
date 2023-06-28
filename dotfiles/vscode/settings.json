@@ -1,36 +1,37 @@
 {
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "explorer.confirmDelete": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.codeLens.enabled": false,
+    "terminal.integrated.scrollback": 10000,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
-    "gitlens.hovers.currentLine.over": "line",
-    "editor.insertSpaces": true,
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "go.toolsManagement.autoUpdate": true,
-    "terminal.integrated.scrollback": 10000,
-    "python.defaultInterpreterPath": "/usr/local/bin/python3",
-    "gitlens.codeLens.enabled": false,
-    "editor.formatOnSave": true,
-    "editor.tabSize": 4,
+    "[go]": {
+        "go.toolsManagement.autoUpdate": true,
+        "go.lintTool": "golint"
+    },
     "[javascript]": {
         "editor.tabSize": 2
     },
     "[json]": {
         "editor.tabSize": 2
     },
-    "editor.insertSpaces": true,
-    "explorer.confirmDelete": false,
-    "go.lintTool": "golint",
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnType": true
-    },
-    "python.formatting.blackArgs": [
-        "--line-length",
-        "120"
-    ],
-    "python.formatting.provider": "black",
-    "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4,
+        "python.formatting.blackArgs": [
+            "--line-length",
+            "120"
+        ],
+        "python.defaultInterpreterPath": "/usr/local/bin/python3",
+        "python.formatting.provider": "black"
+    }
 }
