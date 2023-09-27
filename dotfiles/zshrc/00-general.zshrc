@@ -66,36 +66,6 @@ source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-# Hidden functions (doesn't need to be explicit)
-# HIDE: Shorter git
-alias g="git"
-# HIDE: Shorter kubectl
-alias k="kubectl"
-# HIDE: Smarter mkdir
-alias mkdir="mkdir -p"
-# HIDE: bat is modern cat
-alias cat="bat"
-# HIDE: duf is modern df
-alias df="duf"
-# HIDE: delta is modern diff
-alias diff="delta"
-# HIDE: dog is modern dig
-alias dig="dog"
-# HIDE: ncdu is modern du
-alias du="ncdu"
-# HIDE: fd is modern find
-alias find="fd"
-# HIDE: ripgrep is modern grep
-alias grep="rg"
-# HIDE: exa is modern ls
-alias ls="exa"
-# HIDE: procs is modern ps
-alias ps="procs"
-# HIDE: pgcli is modern psql
-alias psql="pgcli"
-# HIDE: htop is modern top
-alias top="htop"
-
 # For fzf, make sure to install fzf key bindings first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -105,11 +75,11 @@ export CREDS_DIR=$HOME/Documents/credentials
 export SCRIPTS_DIR=$CODE_DIR/scripts
 export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
 
-# Draw.io cli
-alias drawio='/Applications/draw.io.app/Contents/MacOS/draw.io'
-
 # Reload zshrc file
 alias rezsh='source ~/.zshrc'
+
+# Draw.io cli
+alias drawio='/Applications/draw.io.app/Contents/MacOS/draw.io'
 
 # Display all commands
 alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'

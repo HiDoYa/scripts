@@ -1,45 +1,77 @@
+# Hidden functions (doesn't need to be explicit)
+# HIDE: Shorter git
+alias g="git"
+# HIDE: Shorter kubectl
+alias k="kubectl"
+# HIDE: Smarter mkdir
+alias mkdir="mkdir -p"
+# HIDE: bat is modern cat
+alias cat="bat"
+# HIDE: duf is modern df
+alias df="duf"
+# HIDE: delta is modern diff
+alias diff="delta"
+# HIDE: dog is modern dig
+alias dig="dog"
+# HIDE: ncdu is modern du
+alias du="ncdu"
+# HIDE: fd is modern find
+alias find="fd"
+# HIDE: ripgrep is modern grep
+alias grep="rg"
+# HIDE: exa is modern ls
+alias ls="exa"
+# HIDE: procs is modern ps
+alias ps="procs"
+# HIDE: pgcli is modern psql
+alias psql="pgcli"
+# HIDE: htop is modern top
+alias top="htop"
+
 # Tools to remember
 # I have a hard time remembering some tools I download so 
 # I list some that I want to remember here until I've 
 # used them enough. This is not a complete list
 
-# Execute a program periodically
+# HIDE: Draw.io cli
+alias drawio='/Applications/draw.io.app/Contents/MacOS/draw.io'
+# HIDE: Execute a program periodically
 alias watch="watch"
-# List contents of directories in a tree-like format
+# HIDE: List contents of directories in a tree-like format
 alias tree="tree"
-# Generate pronounceable passwords
+# HIDE: Generate pronounceable passwords
 alias pwgen="pwgen"
-# Port scanner
+# HIDE: Port scanner
 alias nmap="nmap"
-# Reads and writes data across network connections
+# HIDE: Reads and writes data across network connections
 alias netcat="netcat"
-# YAML processor
+# HIDE: YAML processor
 alias yq="yq"
-# JSON processor
+# HIDE: JSON processor
 alias jq="jq"
-# HTTP client for API
+# HIDE: HTTP client for API
 alias httpie="httpie"
-# JSON visualizer
+# HIDE: JSON visualizer
 alias fx="fx"
-# Execute shell in parallel
+# HIDE: Execute shell in parallel
 alias parallel="parallel"
-# Python version management
+# HIDE: Python version management
 alias pyenv="pyenv"
-# UI for SSH
+# HIDE: UI for SSH
 alias sshs="sshs"
-# Fuzzy file finder
+# HIDE: Fuzzy file finder
 alias fzf="fzf"
-# Run arbitrary commands when files change
+# HIDE: Run arbitrary commands when files change
 alias entr="entr"
-# Benchmarking tool
+# HIDE: Benchmarking tool
 alias hyperfine="hyperfine"
-# Logfile navigator
+# HIDE: Logfile navigator
 alias lnav="lnav"
-# Simple ingress
+# HIDE: Simple ingress
 alias ngrok="ngrok"
-# Local Docker UI
+# HIDE: Local Docker UI
 alias lazydocker="lazydocker"
-# Pretty display columnar data
+# HIDE: Pretty display columnar data
 alias column="column"
-# View currently used ports
+# HIDE: View currently used ports
 alias lsof="lsof"
