@@ -78,9 +78,6 @@ export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
 # Reload zshrc file
 alias rezsh='source ~/.zshrc'
 
-# Draw.io cli
-alias drawio='/Applications/draw.io.app/Contents/MacOS/draw.io'
-
 # Display all commands
 alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
 
