@@ -8,7 +8,8 @@ HOME = os.getenv("HOME")
 
 
 def get_contents(dirname, mode):
-    files = os.listdir(dirname)
+    abs_dir = os.path.realpath(os.path.dirname(__file__)) + "/" + dirname
+    files = os.listdir(abs_dir)
     files.sort()
     contents = ""
 
@@ -16,7 +17,7 @@ def get_contents(dirname, mode):
         if "general" not in file and mode not in file:
             continue
 
-        fname = f"{dirname}/{file}"
+        fname = f"{abs_dir}/{file}"
         with open(fname, "r") as f:
             contents += f.read()
             contents += "\n\n"
@@ -31,11 +32,12 @@ def write_to_file(contents, dest_file):
 
 
 def copy_direct(srcdir, dstdir):
-    files = os.listdir(srcdir)
+    abs_srcdir = os.path.realpath(os.path.dirname(__file__)) + "/" + srcdir
+    files = os.listdir(abs_srcdir)
     files.sort()
 
     for file in files:
-        src_fname = f"{srcdir}/{file}"
+        src_fname = f"{abs_srcdir}/{file}"
         dst_fname = f"{dstdir}/{file}"
 
         shutil.copyfile(src_fname, dst_fname)

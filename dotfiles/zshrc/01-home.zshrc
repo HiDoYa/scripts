@@ -1,1 +1,0 @@
-export PC_PURPOSE=home

@@ -1,36 +1,64 @@
 {
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
-    },
-    "gitlens.hovers.currentLine.over": "line",
+    // Editor
     "editor.insertSpaces": true,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
-    "go.toolsManagement.autoUpdate": true,
-    "terminal.integrated.scrollback": 10000,
-    "python.defaultInterpreterPath": "/usr/local/bin/python3",
-    "gitlens.codeLens.enabled": false,
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
+    "search.exclude": {
+        "**/.git": true,
+        "**/.github": true,
+        "**/.nuxt": true,
+        "**/.output": true,
+        "**/.pnpm": true,
+        "**/.vscode": true,
+        "**/.yarn": true,
+        "**/bower_components": true,
+        "**/dist/**": true,
+        "**/logs": true,
+        "**/node_modules": true,
+        "**/out/**": true,
+        "**/package-lock.json": true,
+        "**/pnpm-lock.yaml": true,
+        "**/tmp": true,
+        "**/yarn.lock": true
+    },
+    "editor.lineNumbers": "relative",
+    "editor.stickyScroll.enabled": true,
+    "editor.hover.sticky": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.renderWhitespace": "boundary",
+    "extensions.autoUpdate": "onlyEnabledExtensions",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.codeLens.enabled": false,
+    "terminal.integrated.scrollback": 10000,
+    // Go
+    "go.toolsManagement.autoUpdate": true,
+    "go.lintTool": "golint",
+    // JS
     "[javascript]": {
         "editor.tabSize": 2
     },
     "[json]": {
         "editor.tabSize": 2
     },
-    "editor.insertSpaces": true,
-    "explorer.confirmDelete": false,
-    "go.lintTool": "golint",
+    // Python
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnType": true
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
     },
     "python.formatting.blackArgs": [
         "--line-length",
         "120"
     ],
-    "python.formatting.provider": "black",
-    "editor.defaultFormatter": "ms-python.black-formatter",
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "python.formatting.provider": "black"
 }
