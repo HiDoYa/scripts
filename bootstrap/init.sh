@@ -41,12 +41,35 @@ brew install docker-compose go httpie hugo \
     netcat newman nmap packer parallel pwgen \
     ripgrep terraform tree vault wget yq
 
-# Install gui tools (recommended)
-brew install --cask 1password discord \
-    discretescroll docker drawio gimp \
-    google-chrome alacritty obs obsidian \
-    postman spotify vagrant \
-    visual-studio-code vmware-fusion
+# Install gui tools
+brew install --cask 
+    1password \
+    alacritty \
+    alt-tab \
+    basictex \
+    deluge \
+    discord \
+    discretescroll \
+    docker \
+    drawio \
+    freecad \
+    gimp \
+    godot \
+    google-chrome \
+    monitorcontrol \
+    mono-sdk \
+    ngrok \
+    obs \
+    obsidian \
+    postman \
+    rectangle \
+    shottr \
+    spotify \
+    the-unarchiver \
+    vagrant \
+    visual-studio-code \
+    vlc \
+    vmware-fusion
 
 # Install dotfiles
 echo ""
