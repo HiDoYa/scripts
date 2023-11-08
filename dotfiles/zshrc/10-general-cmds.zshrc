@@ -75,3 +75,5 @@ alias lazydocker="lazydocker"
 alias column="column"
 # HIDE: View currently used ports
 alias lsof="lsof"
+# HIDE: Manage gitlab merge
+alias smerge="smerge"
