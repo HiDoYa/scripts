@@ -45,7 +45,6 @@ brew install docker-compose go httpie hugo \
 brew install --cask 
     1password \
     alacritty \
-    alt-tab \
     basictex \
     deluge \
     discord \
