@@ -69,6 +69,10 @@ source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # For fzf, make sure to install fzf key bindings first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Command history
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
+
 # DIRECTORIES
 export CODE_DIR=$HOME/Code
 export CREDS_DIR=$HOME/Documents/credentials
