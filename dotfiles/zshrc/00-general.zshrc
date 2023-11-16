@@ -70,6 +70,7 @@ source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Command history
+HISTFILE=~/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
