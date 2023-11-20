@@ -32,6 +32,7 @@ mas install 937984704 # Amphetamine
 mas install 595191960 # Copyclip
 mas install 288545208 # Instapaper
 mas install 1295203466 # RDP
+mas install 1475387142 # Tailscale client
 
 # Install tools (any tools specified in zshrc files)
 brew install bat dog duf exa fd git-delta \
