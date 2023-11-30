@@ -11,16 +11,16 @@ alias cat="bat"
 alias df="duf"
 # HIDE: delta is modern diff
 alias diff="delta"
-# HIDE: dog is modern dig
-alias dig="dog"
+# HIDE: doggo is modern dig
+alias dig="doggo"
 # HIDE: ncdu is modern du
 alias du="ncdu"
 # HIDE: fd is modern find
 alias find="fd"
 # HIDE: ripgrep is modern grep
 alias grep="rg"
-# HIDE: exa is modern ls
-alias ls="exa"
+# HIDE: eza is modern ls
+alias ls="eza"
 # HIDE: procs is modern ps
 alias ps="procs"
 # HIDE: pgcli is modern psql
