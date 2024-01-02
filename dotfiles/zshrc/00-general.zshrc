@@ -121,6 +121,12 @@ function brewing()
 	# pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
 }
 
+# Secrets backup script
+function sbackup()
+{
+	$SCRIPTS_DIR/backup/backup.sh
+}
+
 # Open python playground in jupyter notebook
 function pyplay()
 {
