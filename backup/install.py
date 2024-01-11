@@ -37,6 +37,7 @@ uid = os.environ.get("UID")
 
 print("Run the following:")
 print(f"chmod +x {backup_dest_path}")
+print(f"launchctl unload {plist_dest_path}")
 print(f"launchctl load {plist_dest_path}")
 
 print("\nDebugging commands:")

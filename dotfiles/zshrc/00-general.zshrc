@@ -38,6 +38,10 @@ export PATH=$GOPATH/bin:$PATH
 # Ruby binaries
 export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
 export PATH=$PATH:$(gem environment home)/bin
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# GHC (Haskell)
+[ -f "/Users/hiroyagojo/.ghcup/env" ] && source "/Users/hiroyagojo/.ghcup/env" # ghcup-env
 
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
@@ -86,6 +90,9 @@ alias rezsh='source ~/.zshrc'
 # Display all commands
 alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
 
+# Point calculator (-s 12/12/23 -p 10)
+alias pointcalc='$SCRIPTS_DIR/pointcalc/pointcalc.rb -f $SCRIPTS_DIR/pointcalc/holidays.yaml'
+
 # Install vim vundle plugins
 alias vimplugin='vim +PluginInstall +qall'
 
@@ -112,6 +119,12 @@ function brewing()
 
 	# Python
 	# pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
+}
+
+# Secrets backup script
+function sbackup()
+{
+	$SCRIPTS_DIR/backup/backup.sh
 }
 
 # Open python playground in jupyter notebook

@@ -1,0 +1,1 @@
+Note that the periodic backup using install.py is not currently supported and manual runs via bash aliases are preferred.
