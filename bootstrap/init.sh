@@ -64,7 +64,6 @@ brew install --cask
     obs \
     obsidian \
     postman \
-    rectangle \
     spotify \
     the-unarchiver \
     vagrant \
