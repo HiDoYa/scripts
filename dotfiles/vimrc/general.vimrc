@@ -113,6 +113,8 @@ nnoremap <leader><space> :nohlsearch<CR>
 " Used for syntax highlighting. Use 'syntax on' to override colors with with
 " default colors
 syntax enable
+" Add <> to brackets
+set matchpairs+=<:>
 
 """"""""""""""""""""""""""
 """" FOLDING
