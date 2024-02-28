@@ -138,3 +138,10 @@ function pyplay()
 
 	open -a "Google Chrome" http://localhost:8889/notebooks/play.ipynb
 }
+
+# Update version in changelog and poetry
+function pvupdate()
+{
+	changelog-inc $1
+	poetry version $1
+}

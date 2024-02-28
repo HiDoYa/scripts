@@ -31,7 +31,7 @@ background = "0x3e4452"
 text = "CellForeground"
 
 [cursor]
-blink_interval = 550
+blink_interval = 250
 
 [cursor.style]
 blinking = "On"
