@@ -78,6 +78,9 @@ HISTFILE=~/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
+# Atuin for command history
+eval "$(atuin init zsh)"
+
 # DIRECTORIES
 export CODE_DIR=$HOME/Code
 export CREDS_DIR=$HOME/Documents/credentials
