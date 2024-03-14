@@ -63,4 +63,7 @@ write_to_file(contents, f"{HOME}/.alacritty.yml")
 contents = get_contents("tmux", args.mode)
 write_to_file(contents, f"{HOME}/.tmux.conf")
 
+contents = get_contents("atuin", args.mode)
+write_to_file(contents, f"{HOME}/.config/atuin/config.toml")
+
 copy_direct("vscode", f"{HOME}/Library/Application Support/Code/User")
