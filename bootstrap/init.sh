@@ -35,8 +35,8 @@ mas install 1295203466 # RDP
 mas install 1475387142 # Tailscale client
 
 # Install tools (any tools specified in zshrc files)
-brew install atuin bat doggo duf eza fd git-delta \
-    htop jq jupyterlab kubectl ncdu node \
+brew install atuin bat doggo duf eza fd \
+    git-delta ncdu htop jq jupyterlab kubectl node \
     npm pgcli procs rclone rg ruby vagrant
 
 # Install tools (recommended)

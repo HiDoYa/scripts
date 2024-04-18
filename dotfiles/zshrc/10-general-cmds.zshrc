@@ -13,8 +13,6 @@ alias df="duf"
 alias diff="delta"
 # HIDE: doggo is modern dig
 alias dig="doggo"
-# HIDE: ncdu is modern du
-alias du="ncdu"
 # HIDE: fd is modern find
 alias find="fd"
 # HIDE: ripgrep is modern grep
