@@ -48,5 +48,4 @@ style = "Regular"
 history = 10000
 
 [shell]
-args = ["new-session", "-A", "-D", "-s", "main"]
-program = "/usr/local/bin/tmux"
+program = "/usr/local/bin/zellij"

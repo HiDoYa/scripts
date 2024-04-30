@@ -37,7 +37,7 @@ mas install 1475387142 # Tailscale client
 # Install tools (any tools specified in zshrc files)
 brew install atuin bat doggo duf eza fd \
     git-delta ncdu htop jq jupyterlab kubectl node \
-    npm pgcli procs rclone rg ruby vagrant
+    npm pgcli procs rclone rg ruby vagrant zellij
 
 # Install tools (recommended)
 brew install docker-compose go httpie hugo \
