@@ -1,6 +1,4 @@
 # Jira: sprint list (interactive)
-alias jsp="jira sprint list --current -a$(jira me)"
-# Jira: sprint list (non-interactive)
-alias jsp-p="jira sprint list --current -a$(jira me) --plain"
+alias j-sprint="jira sprint list -a$(jira me)"
 # Jira: add comment to ticket
-alias jca="jira issue comment add"
+alias j-comment="jira issue comment add"
