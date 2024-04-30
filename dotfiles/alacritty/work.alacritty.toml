@@ -47,5 +47,8 @@ style = "Regular"
 [scrolling]
 history = 10000
 
+[window]
+option_as_alt = "Both"
+
 [shell]
 program = "/usr/local/bin/zellij"
