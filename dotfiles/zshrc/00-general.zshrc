@@ -31,6 +31,12 @@ VISUAL=/usr/bin/vim
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
 
+# Brew
+eval "$(/usr/local/bin/brew shellenv)"
+
+# Pipx
+export PATH=$PATH:/Users/hiroya.gojo/.local/bin
+
 # Go binaries
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
