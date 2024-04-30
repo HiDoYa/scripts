@@ -85,7 +85,7 @@ HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
 # Atuin for command history
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # DIRECTORIES
 export CODE_DIR=$HOME/Code
