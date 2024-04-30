@@ -38,7 +38,7 @@ export PATH=$GOPATH/bin:$PATH
 # Ruby binaries
 export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
 export PATH=$PATH:$(gem environment home)/bin
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=$PATH:$HOME/.rvm/bin
 
 # GHC (Haskell)
 [ -f "/Users/hiroyagojo/.ghcup/env" ] && source "/Users/hiroyagojo/.ghcup/env" # ghcup-env
