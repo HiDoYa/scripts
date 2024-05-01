@@ -17,7 +17,7 @@ function pvupdate()
 
 # Login to awx cli
 function awxlogin() {
-  awx login -f human
+  eval "$(awx login -f human)"
 }
 
 # Work kubernetes cluster
