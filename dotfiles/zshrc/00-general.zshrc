@@ -64,8 +64,8 @@ pushd .tmux/plugins/tpm > /dev/null
 source tpm
 popd > /dev/null
 
-# For fzf, make sure to install fzf key bindings first
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Fzf key bindings
+eval "$(fzf --zsh)"
 
 # Command history
 export HISTFILE=~/.zsh_history
