@@ -13,7 +13,7 @@ then
 fi
 
 # Install zsh tools
-brew install zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode
+brew install zsh-autosuggestions zsh-syntax-highlighting
 
 # Install oh-my-zsh
 if [ ! -d "~/.oh-my-zsh" ]; then
@@ -93,3 +93,10 @@ echo ""
 echo "${GREEN}VScode installed"
 echo "Install CLI using: Command Palette -> shell"
 echo ""
+
+# Tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+./.tmux/plugins/tpm/scripts/install_plugins.sh
+
+# Alacritty font
+echo "Install DroidSansM Nerd Font"
