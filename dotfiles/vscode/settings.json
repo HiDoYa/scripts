@@ -34,7 +34,7 @@
     "terminal.integrated.scrollback": 10000,
     // Go
     "go.toolsManagement.autoUpdate": true,
-    "go.lintTool": "golint",
+    "go.lintTool": "golangci-lint",
     // JS
     "[javascript]": {
         "editor.tabSize": 2
