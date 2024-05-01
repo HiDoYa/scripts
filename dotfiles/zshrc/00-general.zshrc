@@ -27,10 +27,6 @@ COMPLETION_WAITING_DOTS="true"
 # Use vim as default editor
 VISUAL=/usr/bin/vim
 
-# Vi mode plugin options
-VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-VI_MODE_SET_CURSOR=true
-
 # Brew
 eval "$(/usr/local/bin/brew shellenv)"
 
@@ -39,31 +35,18 @@ export PATH=$PATH:/Users/hiroya.gojo/.local/bin
 
 # Go binaries
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+export PATH=$PATH:$GOPATH/bin
 
 # Ruby binaries
-export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
+export PATH=$PATH:$HOMEBREW_PREFIX/opt/ruby/bin
 export PATH=$PATH:$(gem environment home)/bin
 export PATH=$PATH:$HOME/.rvm/bin
-
-# GHC (Haskell)
-[ -f "/Users/hiroyagojo/.ghcup/env" ] && source "/Users/hiroyagojo/.ghcup/env" # ghcup-env
 
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
-# Vim mode editing in zsh
-bindkey -v
-
 # Required to use vault lookup in ansible
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-# Set blinking cursors (for zsh-vi-mode plugin)
-zvm_before_init() {
-	ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
-	ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
-	ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE
-}
 
 # oh-my-zsh
 ZSH_THEME="steeef"
@@ -74,7 +57,6 @@ plugins=(colored-man-pages)
 source $ZSH/oh-my-zsh.sh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # For fzf, make sure to install fzf key bindings first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -86,6 +68,10 @@ SAVEHIST=$HISTSIZE
 
 # Atuin for command history
 eval "$(atuin init zsh --disable-up-arrow)"
+bindkey '^r' atuin-search
+
+# Alacritty not recognzied by most devices
+alias ssh='TERM=xterm-256color ssh'
 
 # DIRECTORIES
 export CODE_DIR=$HOME/Code
