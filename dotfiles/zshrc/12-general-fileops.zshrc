@@ -1,3 +1,58 @@
+# HIDE: Function to check if inside a directory
+function insidedir() { [[ $(pwd) == $1 ]] }
+
+# Edit zshrc files
+alias zshedit='code $SCRIPTS_DIR -g $SCRIPTS_DIR/dotfiles/zshrc/00-general.zshrc'
+
+# Reload zshrc file
+alias rezsh='source ~/.zshrc'
+
+# Display all commands
+alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
+
+# Point calculator (-s 12/12/23 -p 10)
+alias pointcalc='$SCRIPTS_DIR/pointcalc/pointcalc.rb -f $SCRIPTS_DIR/pointcalc/holidays.yaml'
+
+# Install vim vundle plugins
+alias vimplugin='vim +PluginInstall +qall'
+
+# Performs brew maintenance
+function brewing()
+{
+	# Ruby
+	gem update
+
+	# Brew
+	brew update
+	brew upgrade
+	brew outdated
+	brew cleanup
+
+	# Node js
+	npm update -g
+
+	# Python
+	# pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
+}
+
+# Secrets backup script
+function sbackup()
+{
+	$SCRIPTS_DIR/backup/backup.sh
+}
+
+# Open python playground in jupyter notebook
+function pyplay()
+{
+	PORTS=$(jupyter notebook list --jsonlist | jq '.[].port')
+	if [[ $PORTS != *"8889"* ]]; then
+		nohup jupyter notebook --notebook-dir=$SCRIPTS_DIR/notebook --port 8889 --no-browser >/dev/null 2>&1 &
+		sleep 1
+	fi
+
+	open -a "Google Chrome" http://localhost:8889/notebooks/play.ipynb
+}
+
 # Convert HEIC formatted photos to jpeg in a folder
 function heic2jpg()
 {

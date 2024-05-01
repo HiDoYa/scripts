@@ -16,16 +16,16 @@ echo $CYAN"      |^ ^ ^ ^ |W|  "$YELLOW" |/^^\\ |  "$GREEN" /oo | "
 echo $CYAN"       \\m___m__|_| "$YELLOW"   \\m_m_| "$GREEN"  \\mm_| "
 
 # Allows hyphen-insensitive completion. (- and _ is interchangeable)
-HYPHEN_INSENSITIVE="true"
+export HYPHEN_INSENSITIVE="true"
 
 # Enables command auto-correction.
-ENABLE_CORRECTION="true"
+export ENABLE_CORRECTION="true"
 
 # Shows dots while waiting for completion
-COMPLETION_WAITING_DOTS="true"
+export COMPLETION_WAITING_DOTS="true"
 
 # Use vim as default editor
-VISUAL=/usr/bin/vim
+export VISUAL=/usr/bin/vim
 export EDITOR=vim
 
 # Brew
@@ -63,9 +63,9 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Command history
-HISTFILE=~/.zsh_history
-HISTSIZE=999999999
-SAVEHIST=$HISTSIZE
+export HISTFILE=~/.zsh_history
+export HISTSIZE=999999999
+export SAVEHIST=$HISTSIZE
 
 # Atuin for command history
 eval "$(atuin init zsh --disable-up-arrow)"
@@ -79,65 +79,3 @@ export CODE_DIR=$HOME/Code
 export CREDS_DIR=$HOME/Documents/credentials
 export SCRIPTS_DIR=$CODE_DIR/scripts
 export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
-
-# Reload zshrc file
-alias rezsh='source ~/.zshrc'
-
-# Display all commands
-alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
-
-# Point calculator (-s 12/12/23 -p 10)
-alias pointcalc='$SCRIPTS_DIR/pointcalc/pointcalc.rb -f $SCRIPTS_DIR/pointcalc/holidays.yaml'
-
-# Install vim vundle plugins
-alias vimplugin='vim +PluginInstall +qall'
-
-# Edit zshrc files
-alias zshedit='code $SCRIPTS_DIR -g $SCRIPTS_DIR/dotfiles/zshrc/00-general.zshrc'
-
-# HIDE: Function to check if inside a directory
-function insidedir() { [[ $(pwd) == $1 ]] }
-
-# Performs brew maintenance
-function brewing()
-{
-	# Ruby
-	gem update
-
-	# Brew
-	brew update
-	brew upgrade
-	brew outdated
-	brew cleanup
-
-	# Node js
-	npm update -g
-
-	# Python
-	# pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
-}
-
-# Secrets backup script
-function sbackup()
-{
-	$SCRIPTS_DIR/backup/backup.sh
-}
-
-# Open python playground in jupyter notebook
-function pyplay()
-{
-	PORTS=$(jupyter notebook list --jsonlist | jq '.[].port')
-	if [[ $PORTS != *"8889"* ]]; then
-		nohup jupyter notebook --notebook-dir=$SCRIPTS_DIR/notebook --port 8889 --no-browser >/dev/null 2>&1 &
-		sleep 1
-	fi
-
-	open -a "Google Chrome" http://localhost:8889/notebooks/play.ipynb
-}
-
-# Update version in changelog and poetry
-function pvupdate()
-{
-	changelog-inc $1
-	poetry version $1
-}
