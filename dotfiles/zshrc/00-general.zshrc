@@ -59,6 +59,9 @@ source $ZSH/oh-my-zsh.sh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Run tmux plugin manager, workaround since .tmux.conf run fails
+cd .tmux/plugins/tpm && source tpm
+
 # For fzf, make sure to install fzf key bindings first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

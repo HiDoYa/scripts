@@ -41,7 +41,7 @@ shape = "Block"
 size = 13.0
 
 [font.normal]
-family = "Menlo"
+family = "DroidSansM Nerd Font"
 style = "Regular"
 
 [scrolling]
