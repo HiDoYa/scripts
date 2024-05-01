@@ -50,10 +50,10 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # oh-my-zsh
-ZSH_THEME="steeef"
-ZSH_DISABLE_COMPFIX=true
-ZSH=$HOME/.oh-my-zsh
-ZSH_COMPDUMP=$ZSH/cache/.zcompdump-${ZSH_VERSION}
+export ZSH_THEME="steeef"
+export ZSH_DISABLE_COMPFIX=true
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-${ZSH_VERSION}
 plugins=(colored-man-pages)
 source $ZSH/oh-my-zsh.sh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
