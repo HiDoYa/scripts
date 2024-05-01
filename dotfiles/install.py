@@ -63,9 +63,6 @@ write_to_file(contents, f"{HOME}/.alacritty.toml")
 contents = get_contents("tmux", args.mode)
 write_to_file(contents, f"{HOME}/.tmux.conf")
 
-contents = get_contents("zellij", args.mode)
-write_to_file(contents, f"{HOME}/.config/zellij/config.kdl")
-
 contents = get_contents("atuin", args.mode)
 write_to_file(contents, f"{HOME}/.config/atuin/config.toml")
 
