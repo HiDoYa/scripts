@@ -79,3 +79,9 @@ export CODE_DIR=$HOME/Code
 export CREDS_DIR=$HOME/Documents/credentials
 export SCRIPTS_DIR=$CODE_DIR/scripts
 export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
+
+# Alt arrow/h/l to move between arrows
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+bindkey "^[l" forward-word
+bindkey "^[h" backward-word

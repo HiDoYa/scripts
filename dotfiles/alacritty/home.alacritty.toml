@@ -51,4 +51,5 @@ history = 10000
 option_as_alt = "Both"
 
 [shell]
-program = "/opt/homebrew/bin/zellij"
+args = ["new-session", "-A", "-D", "-s", "main"]
+program = "/opt/homebrew/bin/tmux"
