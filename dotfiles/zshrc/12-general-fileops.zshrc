@@ -7,6 +7,9 @@ alias zshedit='code $SCRIPTS_DIR -g $SCRIPTS_DIR/dotfiles/zshrc/00-general.zshrc
 # Reload zshrc file
 alias rezsh='source ~/.zshrc'
 
+# Tmux save buffer
+alias tmux-save='tmux capture-pane -pS -'
+
 # Display all commands
 alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
 
