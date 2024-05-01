@@ -26,6 +26,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Use vim as default editor
 VISUAL=/usr/bin/vim
+export EDITOR=vim
 
 # Brew
 eval "$(/usr/local/bin/brew shellenv)"
