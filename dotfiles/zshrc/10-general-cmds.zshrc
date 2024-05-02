@@ -34,7 +34,7 @@ alias top="htop"
 # HIDE: Draw.io cli
 alias drawio='/Applications/draw.io.app/Contents/MacOS/draw.io'
 # HIDE: Execute a program periodically
-alias watch="watch"
+alias watch="watch "
 # HIDE: List contents of directories in a tree-like format
 alias tree="tree"
 # HIDE: Generate pronounceable passwords
