@@ -2,13 +2,27 @@
 function insidedir() { [[ $(pwd) == $1 ]] }
 
 # Edit zshrc files
-alias zshedit='code $SCRIPTS_DIR -g $SCRIPTS_DIR/dotfiles/zshrc/00-general.zshrc'
+alias zshedit='code $SCRIPTS_DIR -g $SCRIPTS_DIR/dotfiles/zshrc/05-general.zshrc'
 
 # Reload zshrc file
 alias rezsh='source ~/.zshrc'
 
 # Tmux save buffer
-alias tmux-save='tmux capture-pane -pS -'
+alias tmux-save-all='tmux capture-pane -pS -'
+
+# Tmux save buffer since last prompt
+function tmux-save()
+{
+	# Number of commands to capture
+	# Lookback + 1 since we want to ignore our current command itself
+	LOOKBACK=$((1+${1:-1}))
+
+	BUFFER=$(tmux capture-pane -pS -)
+	LNOS=$(echo $BUFFER | grep -ne '^hiroya\.gojo.*' | tail -${LOOKBACK} | cut -d":" -f1)
+	FRST=$(echo $LNOS | head -n 1)
+	LAST=$(($(echo $LNOS | tail -n 1) - 1))
+	echo $BUFFER | sed -n "${FRST},${LAST}p"
+}
 
 # Display all commands
 alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
