@@ -28,9 +28,6 @@ export COMPLETION_WAITING_DOTS="true"
 export VISUAL=/usr/bin/vim
 export EDITOR=vim
 
-# Brew
-eval "$(/usr/local/bin/brew shellenv)"
-
 # Pipx
 export PATH=$PATH:/Users/hiroya.gojo/.local/bin
 
@@ -78,7 +75,7 @@ alias ssh='TERM=xterm-256color ssh'
 export CODE_DIR=$HOME/Code
 export CREDS_DIR=$HOME/Documents/credentials
 export SCRIPTS_DIR=$CODE_DIR/scripts
-export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
+export OBSIDIAN_DIR=$HOME/Documents/Obsidian
 
 # Alt arrow/h/l to move between arrows
 bindkey "^[[1;3C" forward-word
