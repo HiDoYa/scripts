@@ -44,3 +44,15 @@ function finsync()
 
 	if [[ ! $IS_INSIDE ]] popd > /dev/null
 }
+
+# HIDE: [Deprecated] Open python playground in jupyter notebook
+function pyplay()
+{
+	PORTS=$(jupyter notebook list --jsonlist | jq '.[].port')
+	if [[ $PORTS != *"8889"* ]]; then
+		nohup jupyter notebook --notebook-dir=$SCRIPTS_DIR/notebook --port 8889 --no-browser >/dev/null 2>&1 &
+		sleep 1
+	fi
+
+	open -a "Google Chrome" http://localhost:8889/notebooks/play.ipynb
+}
