@@ -15,7 +15,13 @@ function linuxup()
 	# Mount changed
 	if [[ $ABS_PATH != $(cat mounted.txt) ]] then
 		echo $ABS_PATH > mounted.txt
-		vagrant reload
+
+		vagrant status $LINUX_CONTAINER_NAME
+		if [[$? == 1]] then
+			vagrant up
+		else
+			vagrant reload
+		fi
 	else
 		# Mount did not change
 		# Just ensure it is running
