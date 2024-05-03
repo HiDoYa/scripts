@@ -17,7 +17,7 @@ function linuxup()
 		echo $ABS_PATH > mounted.txt
 
 		vagrant status $LINUX_CONTAINER_NAME
-		if [[$? == 1]] then
+		if [[ $? == 1 ]] then
 			vagrant up
 		else
 			vagrant reload
