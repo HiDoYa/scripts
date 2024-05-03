@@ -68,7 +68,7 @@ export SAVEHIST=$HISTSIZE
 eval "$(atuin init zsh --disable-up-arrow)"
 bindkey '^r' atuin-search
 
-# Alacritty not recognzied by most devices
+# HIDE: Alacritty not recognzied by most devices
 alias ssh='TERM=xterm-256color ssh'
 
 # DIRECTORIES
