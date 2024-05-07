@@ -37,7 +37,8 @@ alias vimplugin='vim +PluginInstall +qall'
 function brewing()
 {
 	# Ruby
-	gem update
+	# Commented out to figure out ruby environment first
+	# gem update
 
 	# Brew
 	brew update
@@ -49,6 +50,7 @@ function brewing()
 	npm update -g
 
 	# Python
+	# Commented out for issues with breaking python lib changes
 	# pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
 }
 
