@@ -36,10 +36,6 @@ alias vimplugin='vim +PluginInstall +qall'
 # Performs brew maintenance
 function brewing()
 {
-	# Ruby
-	# Commented out to figure out ruby environment first
-	# gem update
-
 	# Brew
 	brew update
 	brew upgrade
@@ -48,6 +44,10 @@ function brewing()
 
 	# Node js
 	npm update -g
+
+	# Ruby
+	# Commented out to figure out ruby environment first
+	# gem update
 
 	# Python
 	# Commented out for issues with breaking python lib changes
