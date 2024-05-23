@@ -1,3 +1,5 @@
+export PATH=$PATH:$HOME/.dotnet/tools
+
 # Jira: sprint list (interactive)
 alias j-sprint="jira sprint list -a$(jira me)"
 # Jira: add comment to ticket
