@@ -34,7 +34,7 @@ text = "CellForeground"
 blink_interval = 250
 
 [cursor.style]
-blinking = "On"
+blinking = "Always"
 shape = "Block"
 
 [font]
