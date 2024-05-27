@@ -42,7 +42,8 @@ brew install atuin bat doggo duf eza fd \
 # Install tools (recommended)
 brew install docker-compose go httpie hugo \
     netcat newman nmap packer parallel pwgen \
-    ripgrep terraform tree vault wget yq fclones
+    ripgrep terraform tree vault wget yq fclones \
+    jnv
 
 # Install gui tools
 brew install --cask 
