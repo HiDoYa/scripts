@@ -43,7 +43,7 @@ brew install atuin bat doggo duf eza fd \
 brew install docker-compose go httpie hugo \
     netcat newman nmap packer parallel pwgen \
     ripgrep terraform tree vault wget yq fclones \
-    jnv
+    jnv bruno
 
 # Install gui tools
 brew install --cask 
