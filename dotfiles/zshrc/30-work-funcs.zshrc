@@ -1,4 +1,4 @@
-export PATH=$PATH:$HOME/.dotnet/tools
+export PATH=$HOME/.dotnet/tools:$PATH
 
 # Jira: sprint list (interactive)
 alias j-sprint="jira sprint list -a$(jira me)"
