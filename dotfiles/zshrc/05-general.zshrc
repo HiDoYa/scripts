@@ -29,16 +29,16 @@ export VISUAL=/usr/bin/vim
 export EDITOR=vim
 
 # Pipx
-export PATH=$PATH:/Users/hiroya.gojo/.local/bin
+export PATH=/Users/hiroya.gojo/.local/bin:$PATH
 
 # Go binaries
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$GOPATH/bin:$PATH
 
 # Ruby binaries
-export PATH=$PATH:$HOMEBREW_PREFIX/opt/ruby/bin
-export PATH=$PATH:$(gem environment home)/bin
-export PATH=$PATH:$HOME/.rvm/bin
+export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
+export PATH=$(gem environment home)/bin:$PATH
+eval "$(rbenv init - zsh)"
 
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
