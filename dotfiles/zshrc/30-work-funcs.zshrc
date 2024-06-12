@@ -7,7 +7,7 @@ alias j-comment="jira issue comment add"
 
 # View one time password
 function otp() {
-  otp-cli show work_token
+  otp-cli show -c work_token
 }
 
 # Update version in changelog and poetry
