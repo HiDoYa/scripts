@@ -21,6 +21,8 @@
         "**/tmp": true,
         "**/yarn.lock": true
     },
+    // we try to make semantic highlighting look good
+    "editor.semanticHighlighting.enabled": true,
     "editor.lineNumbers": "relative",
     "editor.stickyScroll.enabled": true,
     "editor.hover.sticky": true,
@@ -31,10 +33,15 @@
     "explorer.confirmDragAndDrop": false,
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.codeLens.enabled": false,
+    // prevent VSCode from modifying the terminal colors
+    "terminal.integrated.minimumContrastRatio": 1,
     "terminal.integrated.scrollback": 10000,
     // Go
     "go.toolsManagement.autoUpdate": true,
     "go.lintTool": "golangci-lint",
+    "gopls": {
+        "ui.semanticTokens": true
+    },
     // JS
     "[javascript]": {
         "editor.tabSize": 2
@@ -60,5 +67,8 @@
         "--line-length",
         "120"
     ],
-    "python.defaultInterpreterPath": "/usr/local/bin/python3"
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "workbench.colorTheme": "Catppuccin Frappé",
+    // make the window's titlebar use the workbench colors
+    "window.titleBarStyle": "custom"
 }
