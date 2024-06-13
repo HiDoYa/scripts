@@ -21,7 +21,7 @@ function pvupdate()
 function vupdate()
 {
 	changelog-inc $1
-  echo -n "$1" >> VERSION
+  echo -n "v$1" > VERSION
 }
 
 # Login to awx cli
