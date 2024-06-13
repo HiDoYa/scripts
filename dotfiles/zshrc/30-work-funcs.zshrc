@@ -17,6 +17,13 @@ function pvupdate()
 	poetry version $1
 }
 
+# Update version in changelog and VERSION file
+function vupdate()
+{
+	changelog-inc $1
+  echo -n "$1" >> VERSION
+}
+
 # Login to awx cli
 function awxlogin() {
   eval "$(awx login -f human)"
