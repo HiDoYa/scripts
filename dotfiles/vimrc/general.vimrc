@@ -39,7 +39,7 @@ filetype plugin indent on
 """" THEME
 """"""""""""""""""""""""""
 " Sets color scheme
-colorscheme slate
+colorscheme catpuccin_frappe
 
 """"""""""""""""""""""""""
 """" AIRLINE
