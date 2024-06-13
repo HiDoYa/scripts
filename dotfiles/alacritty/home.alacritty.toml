@@ -1,3 +1,5 @@
+import = ["~/.config/alacritty/catppuccin-frappe.toml"]
+
 [colors.bright]
 black = "0x3e4452"
 blue = "0x61afef"

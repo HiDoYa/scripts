@@ -57,11 +57,11 @@ write_to_file(contents, f"{HOME}/.vimrc")
 contents = get_contents("gitconfig", args.mode)
 write_to_file(contents, f"{HOME}/.gitconfig")
 
-contents = get_contents("alacritty", args.mode)
-write_to_file(contents, f"{HOME}/.alacritty.toml")
-
 contents = get_contents("tmux", args.mode)
 write_to_file(contents, f"{HOME}/.tmux.conf")
+
+contents = get_contents("alacritty", args.mode)
+write_to_file(contents, f"{HOME}/.config/alacritty/.alacritty.toml")
 
 contents = get_contents("atuin", args.mode)
 write_to_file(contents, f"{HOME}/.config/atuin/config.toml")
