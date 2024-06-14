@@ -1,0 +1,19 @@
+# Binary space partitioning
+yabai -m config layout bsp
+
+# When dropping a window on another window, stack the two.
+yabai -m config mouse_drop_action stack
+
+# Set all padding and gaps to 20pt (default: 0)
+yabai -m config top_padding    20
+yabai -m config bottom_padding 20
+yabai -m config left_padding   20
+yabai -m config right_padding  20
+yabai -m config window_gap     20
+
+# Exclusions
+yabai -m rule --add label="System Settings" app="^System Settings$" title=".*" manage=off
+yabai -m rule --add label="Zoom" app="^Zoom$" title=".*" manage=off
+yabai -m rule --add label="Riot Client" app="^Riot Client$" title=".*" manage=off
+yabai -m rule --add label="League of Legends" app="^League of Legends$" title=".*" manage=off
+yabai -m rule --add label="Parsec" app="^Parsec$" title=".*" manage=off
