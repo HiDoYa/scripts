@@ -13,6 +13,7 @@ yabai -m config window_gap     20
 
 # Exclusions
 yabai -m rule --add label="System Settings" app="^System Settings$" title=".*" manage=off
+yabai -m rule --add label="Outlook" app="^Outlook$" title=".*" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" title=".*" manage=off
 yabai -m rule --add label="Zoom" app="^Zoom$" title=".*" manage=off
 yabai -m rule --add label="The Unarchiver" app="^The Unarchiver$" title=".*" manage=off
