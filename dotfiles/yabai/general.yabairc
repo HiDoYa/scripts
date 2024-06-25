@@ -12,11 +12,16 @@ yabai -m config right_padding  20
 yabai -m config window_gap     20
 
 # Exclusions
-yabai -m rule --add label="System Settings" app="^System Settings$" title=".*" manage=off
-yabai -m rule --add label="Microsoft Outlook" app="^Microsoft Outlook$" title=".*" manage=off
-yabai -m rule --add label="Finder" app="^Finder$" title=".*" manage=off
-yabai -m rule --add label="Zoom" app="^Zoom$" title=".*" manage=off
-yabai -m rule --add label="The Unarchiver" app="^The Unarchiver$" title=".*" manage=off
-yabai -m rule --add label="Riot Client" app="^Riot Client$" title=".*" manage=off
-yabai -m rule --add label="League of Legends" app="^League of Legends$" title=".*" manage=off
-yabai -m rule --add label="Parsec" app="^Parsec$" title=".*" manage=off
+yabai -m rule --add app="^1Password$"                  manage=off
+yabai -m rule --add app="^About This Mac$"             manage=off
+yabai -m rule --add app="^App Store$"                  manage=off
+yabai -m rule --add app="^Docker Desktop$"             manage=off
+yabai -m rule --add app="^Finder$"                     manage=off
+yabai -m rule --add app="^League of Legends$"          manage=off
+yabai -m rule --add app="^Messages$"                   manage=off
+yabai -m rule --add app="^Microsoft Outlook$"          manage=off
+yabai -m rule --add app="^Parsec$"                     manage=off
+yabai -m rule --add app="^Riot Client$"                manage=off
+yabai -m rule --add app="^System Settings$"            manage=off
+yabai -m rule --add app="^The Unarchiver$"             manage=off
+yabai -m rule --add app="^Zoom$"                       manage=off
