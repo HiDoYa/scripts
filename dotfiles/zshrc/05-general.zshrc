@@ -33,7 +33,9 @@ export EDITOR=vim
 
 # Python binaries
 export PATH=/Users/hiroya.gojo/.local/bin:$PATH
-export PATH=/Users/hiroya.gojo/.pyenv/versions/3.12.4/bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # Go binaries
 export GOPATH=$HOME/go
