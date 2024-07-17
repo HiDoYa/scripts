@@ -1,3 +1,6 @@
+# Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Define colors
 GREEN=$(tput -Txterm setaf 2)
 YELLOW=$(tput -Txterm setaf 3)
@@ -28,8 +31,9 @@ export COMPLETION_WAITING_DOTS="true"
 export VISUAL=/usr/bin/vim
 export EDITOR=vim
 
-# Pipx
+# Python binaries
 export PATH=/Users/hiroya.gojo/.local/bin:$PATH
+export PATH=/Users/hiroya.gojo/.pyenv/versions/3.12.4/bin:$PATH
 
 # Go binaries
 export GOPATH=$HOME/go

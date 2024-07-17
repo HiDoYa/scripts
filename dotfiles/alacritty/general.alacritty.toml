@@ -1,0 +1,25 @@
+import = ["~/.config/alacritty/catppuccin-frappe.toml"]
+
+[cursor]
+blink_interval = 250
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[font]
+size = 13.0
+
+[font.normal]
+family = "DroidSansM Nerd Font"
+style = "Regular"
+
+[scrolling]
+history = 10000
+
+[window]
+option_as_alt = "Both"
+
+[shell]
+args = ["new-session", "-A", "-D", "-s", "main"]
+program = "/opt/homebrew/bin/tmux"

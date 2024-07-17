@@ -24,6 +24,7 @@ fi
 # Install vundle
 if [ ! -d "~/.vim/bundle/Vundle.vim" ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    echo "Install catppuccin colors in .vim/colors"
 fi
 
 # Install app store apps
@@ -37,7 +38,10 @@ mas install 1475387142 # Tailscale client
 # Install tools (any tools specified in zshrc files)
 brew install atuin bat doggo duf eza fd \
     git-delta ncdu htop jq jupyterlab kubectl node \
-    npm pgcli procs rclone rg ruby vagrant tmux
+    npm pgcli procs rclone rg ruby vagrant tmux watch
+
+brew tap ankitpokhrel/jira-cli
+brew install jira-cli
 
 # Install tools (recommended)
 brew install docker-compose go httpie hugo \
@@ -90,10 +94,6 @@ NC='\033[0m'
 
 # VSCode
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-echo ""
-echo "${GREEN}VScode installed"
-echo "Install CLI using: Command Palette -> shell"
-echo ""
 
 # Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -101,3 +101,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Alacritty font
 echo "Install DroidSansM Nerd Font"
+
+# Tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

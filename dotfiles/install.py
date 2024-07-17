@@ -60,9 +60,6 @@ write_to_file(contents, f"{HOME}/.gitconfig")
 contents = get_contents("tmux", args.mode)
 write_to_file(contents, f"{HOME}/.tmux.conf")
 
-contents = get_contents("yabai", args.mode)
-write_to_file(contents, f"{HOME}/.config/yabai/yabairc")
-
 contents = get_contents("alacritty", args.mode)
 write_to_file(contents, f"{HOME}/.config/alacritty/alacritty.toml")
 
