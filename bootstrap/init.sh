@@ -49,6 +49,22 @@ brew install docker-compose go httpie hugo \
     ripgrep terraform tree vault wget yq fclones \
     jnv bruno
 
+# TODO
+# brew tap hashicorp/tap
+# brew install hashicorp/tap/vault
+# brew tap (jiracli, isen-ng dotnet-sdk)
+# krew plugins
+# k krew install ctx
+# k krew install ns
+# k krew install oidc-login
+# otp-cli (binary)
+# curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-frappe.toml
+# frappe (in vim, vscode, etc.)
+# vscode extensions
+# tmux tpm
+# pyenv, rbenv
+# pyenv global
+
 # Install gui tools
 brew install --cask 
     1password \
