@@ -47,9 +47,8 @@ function sbackup()
 	SECRET_LOCATIONS=(
 		$HOME/Code/scripts/dotfiles/zshrc \
 		$HOME/Documents/credentials \
-		$HOME/.config/rclone \
-		$HOME/.kube \
-		$HOME/.ssh \
+		$HOME/.config \
+		$HOME/.ssh
 		$HOME/.aws
 	)
 
