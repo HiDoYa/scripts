@@ -71,5 +71,6 @@
     "workbench.colorTheme": "Catppuccin Frappé",
     "catppuccin.accentColor": "pink",
     // make the window's titlebar use the workbench colors
-    "window.titleBarStyle": "custom"
+    "window.titleBarStyle": "custom",
+    "vim.shell": "/bin/zsh"
 }
