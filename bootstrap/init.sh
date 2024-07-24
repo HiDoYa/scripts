@@ -64,6 +64,7 @@ brew install docker-compose go httpie hugo \
 # tmux tpm
 # pyenv, rbenv
 # pyenv global
+# Install aws-cli, install aws session manager
 
 # Install gui tools
 brew install --cask 

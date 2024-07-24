@@ -25,6 +25,8 @@ alias ps="procs"
 alias psql="pgcli"
 # HIDE: htop is modern top
 alias top="htop"
+# HIDE: use builtin docker compose
+alias docker-compose="docker compose"
 
 # Tools to remember
 # I have a hard time remembering some tools I download so 
