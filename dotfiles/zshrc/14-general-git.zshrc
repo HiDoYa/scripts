@@ -38,7 +38,7 @@ function newcommit()
 	MESSAGE=""
 	COMMIT_FLAGS=""
 
-	while getopts "mn:" flag; do
+	while getopts "m:n" flag; do
 		case "${flag}" in
 			m) MESSAGE=${OPTARG} ;;
 			n) COMMIT_FLAGS="-n" ;;
@@ -57,7 +57,7 @@ function newpush()
 {
 	PUSH_FLAGS=""
 
-	while getopts "f:" flag; do
+	while getopts ":f" flag; do
 		case "${flag}" in
 			f) PUSH_FLAGS="-f" ;;
 		esac
