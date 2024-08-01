@@ -58,7 +58,7 @@ function newpush()
 	done
 
 	git push ${GITFLAGS} > /dev/null || \
-		git push ${GITFLAGS} --set-upstream origin $(git branch --show-current) > /dev/null
+	git push ${GITFLAGS} --set-upstream origin $(git branch --show-current) > /dev/null
 }
 
 # Create new branch. Usage: newbranch branch-name base-branch
