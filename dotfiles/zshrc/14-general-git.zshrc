@@ -10,68 +10,74 @@ function quickgit()
 function newqcommit()
 {
 	MESSAGE=""
-	GITFLAGS=""
-	while getopts "mnf:" flag; do
+	COMMIT_FLAGS=""
+	PUSH_FLAGS=""
+
+	while getopts "m:nf" flag; do
 		case "${flag}" in
-			m) MESSAGE=${OPTARG} ;;
-			f) GITFLAGS="${GITFLAGS} -f" ;;
-			n) GITFLAGS="${GITFLAGS} -n" ;;
+			m) MESSAGE="${OPTARG}" ;;
+			n) COMMIT_FLAGS="-n" ;;
+			f) PUSH_FLAGS="-f" ;;
 		esac
 	done
 
 	git add --all
 
-	if [[ $MESSAGE != "" ]]; then
-		newcommit -m $MESSAGE
-	else
-		newcommit
+	if [[ -n $MESSAGE ]]; then
+		$COMMIT_FLAGS="${COMMIT_FLAGS} -m ${MESSAGE}"
 	fi
 
-	newpush $GITFLAGS
+	newcommit "${COMMIT_FLAGS}"
+	newpush "${PUSH_FLAGS}"
 }
+
 
 # Create new commit with current branch name. Options supported -m (message), -n (skip precommit)
 function newcommit()
 {
 	MESSAGE=""
+	COMMIT_FLAGS=""
+
 	while getopts "mn:" flag; do
 		case "${flag}" in
 			m) MESSAGE=${OPTARG} ;;
-			n) GITFLAGS="${GITFLAGS} -n" ;;
+			n) COMMIT_FLAGS="-n" ;;
 		esac
 	done
 
 	if [[ $MESSAGE != "" ]]; then
-		git commit -m $(git branch --show-current)-$MESSAGE > /dev/null
+		git commit -m "$(git branch --show-current)-${MESSAGE}" "${COMMIT_FLAGS}" > /dev/null
 	else
-		git commit -m $(git branch --show-current) > /dev/null
+		git commit -m "$(git branch --show-current)" "${COMMIT_FLAGS}" > /dev/null
 	fi
 }
 
 # Push with current branch name. Options supported -f (force)
 function newpush()
 {
+	PUSH_FLAGS=""
+
 	while getopts "f:" flag; do
 		case "${flag}" in
-			f) GITFLAGS=${OPTARG} ;;
+			f) PUSH_FLAGS="-f" ;;
 		esac
 	done
 
-	git push ${GITFLAGS} > /dev/null || \
-	git push ${GITFLAGS} --set-upstream origin $(git branch --show-current) > /dev/null
+	git push "${PUSH_FLAGS}" > /dev/null || \
+	git push "${PUSH_FLAGS}" --set-upstream origin "$(git branch --show-current)" > /dev/null
 }
 
 # Create new branch. Usage: newbranch branch-name base-branch
 function newbranch()
 {
 	if [[ $2 ]]; then
-		git checkout $2
+		git checkout "$2"
 	else
 		git checkout master
 	fi
 
 	git pull
-	git checkout -b $1
+	git checkout -b "$1"
 }
 
 # Delete merged branches
