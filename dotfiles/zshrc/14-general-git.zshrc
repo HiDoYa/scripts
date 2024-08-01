@@ -9,13 +9,11 @@ function quickgit()
 # Create new commit with current branch name and push. Options supported -m (message), -n (skip precommit), -f (force)
 function newqcommit()
 {
-	MESSAGE=""
 	COMMIT_FLAGS=""
 	PUSH_FLAGS=""
 
-	while getopts "m:nf" flag; do
+	while getopts ":nf" flag; do
 		case "${flag}" in
-			m) MESSAGE="${OPTARG}" ;;
 			n) COMMIT_FLAGS="-n" ;;
 			f) PUSH_FLAGS="-f" ;;
 		esac
@@ -23,33 +21,23 @@ function newqcommit()
 
 	git add --all
 
-	if [[ -n $MESSAGE ]]; then
-		$COMMIT_FLAGS="${COMMIT_FLAGS} -m ${MESSAGE}"
-	fi
-
-	newcommit "${COMMIT_FLAGS}"
-	newpush "${PUSH_FLAGS}"
+	newcommit ${COMMIT_FLAGS}
+	newpush ${PUSH_FLAGS}
 }
 
 
 # Create new commit with current branch name. Options supported -m (message), -n (skip precommit)
 function newcommit()
 {
-	MESSAGE=""
 	COMMIT_FLAGS=""
 
-	while getopts "m:n" flag; do
+	while getopts ":n" flag; do
 		case "${flag}" in
-			m) MESSAGE=${OPTARG} ;;
 			n) COMMIT_FLAGS="-n" ;;
 		esac
 	done
 
-	if [[ $MESSAGE != "" ]]; then
-		git commit -m "$(git branch --show-current)-${MESSAGE}" "${COMMIT_FLAGS}" > /dev/null
-	else
-		git commit -m "$(git branch --show-current)" "${COMMIT_FLAGS}" > /dev/null
-	fi
+	git commit -m "$(git branch --show-current)" ${COMMIT_FLAGS} > /dev/null
 }
 
 # Push with current branch name. Options supported -f (force)
@@ -63,8 +51,8 @@ function newpush()
 		esac
 	done
 
-	git push "${PUSH_FLAGS}" > /dev/null || \
-	git push "${PUSH_FLAGS}" --set-upstream origin "$(git branch --show-current)" > /dev/null
+	git push ${PUSH_FLAGS} > /dev/null || \
+	git push ${PUSH_FLAGS} --set-upstream origin "$(git branch --show-current)" > /dev/null
 }
 
 # Create new branch. Usage: newbranch branch-name base-branch
