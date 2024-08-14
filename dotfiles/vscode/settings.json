@@ -72,5 +72,6 @@
     "catppuccin.accentColor": "pink",
     // make the window's titlebar use the workbench colors
     "window.titleBarStyle": "custom",
-    "vim.shell": "/bin/zsh"
+    "vim.shell": "/bin/zsh",
+    "git.detectSubmodulesLimit": 30
 }
