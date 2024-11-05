@@ -1,4 +1,3 @@
-import = ["~/.config/alacritty/catppuccin-frappe.toml"]
 
 [cursor]
 blink_interval = 250
@@ -20,6 +19,11 @@ history = 10000
 [window]
 option_as_alt = "Both"
 
-[shell]
+[general]
+import = ["~/.config/alacritty/catppuccin-frappe.toml"]
+
+[terminal]
+
+[terminal.shell]
 args = ["new-session", "-A", "-D", "-s", "main"]
 program = "/opt/homebrew/bin/tmux"
