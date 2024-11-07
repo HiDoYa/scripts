@@ -47,7 +47,7 @@ brew install jira-cli
 brew install docker-compose go httpie hugo \
     netcat newman nmap packer parallel pwgen \
     ripgrep terraform tree vault wget yq fclones \
-    jnv bruno
+    jnv bruno glab
 
 # TODO
 # brew tap hashicorp/tap
