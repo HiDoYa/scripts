@@ -35,4 +35,7 @@ function workk8() {
     export KUBE_CONFIG_PATH=${KUBECONFIG}
 }
 
+# List roles in nbcli
+alias nbcliroles='nbcli shell -c "nbprint(DeviceRole.all())"'
+
 workk8
