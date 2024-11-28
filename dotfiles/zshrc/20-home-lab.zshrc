@@ -27,12 +27,8 @@ alias node2off="ansible-playbook -i $HOMELAB_DIR/ansible/hosts.ini $HOMELAB_DIR/
 # Turn node3 off
 alias node3off="ansible-playbook -i $HOMELAB_DIR/ansible/hosts.ini $HOMELAB_DIR/ansible/playbooks/lifecycle/shutdown.yaml -e 'node=node3'"
 
-# Show node1 docker ports
-alias node1ports="ssh node1 \"docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'\""
-# Show node2 docker ports
-alias node2ports="ssh node2 \"docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'\""
-# Show node3 docker ports
-alias node3ports="ssh node3 \"docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'\""
+# Show node docker ports
+alias nodeports="nodecmds \"docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'\""
 
 # Run command in all nodes
 function nodecmds() {
