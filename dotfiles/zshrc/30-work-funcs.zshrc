@@ -1,5 +1,7 @@
 export PATH=$HOME/.dotnet/tools:$PATH
 
+# Jira: sprint list (non-interactive)
+alias j-s="jira sprint list --state active --table --columns id,name | grep \"NET\""
 # Jira: sprint list (interactive)
 alias j-sprint="jira sprint list -a$(jira me)"
 # Jira: add comment to ticket
