@@ -75,3 +75,5 @@ alias lazydocker="lazydocker"
 alias column="column"
 # HIDE: View currently used ports
 alias lsof="lsof"
+# HIDE: Better ripgrep
+alias rga="rga"
