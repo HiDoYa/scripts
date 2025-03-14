@@ -1,16 +1,14 @@
 # TITLE: Git
 
 # Create new commit and push with message
-function quickgit()
-{
+function quickgit() {
 	git add --all
 	git commit -m $1
 	git push
 }
 
 # Create new commit with current branch name and push. Options supported -m (message), -n (skip precommit), -f (force)
-function newqcommit()
-{
+function newqcommit() {
 	COMMIT_FLAGS=""
 	PUSH_FLAGS=""
 
@@ -29,8 +27,7 @@ function newqcommit()
 
 
 # Create new commit with current branch name. Options supported -m (message), -n (skip precommit)
-function newcommit()
-{
+function newcommit() {
 	COMMIT_FLAGS=""
 
 	while getopts ":n" flag; do
@@ -43,8 +40,7 @@ function newcommit()
 }
 
 # Push with current branch name. Options supported -f (force)
-function newpush()
-{
+function newpush() {
 	PUSH_FLAGS=""
 
 	while getopts ":f" flag; do
@@ -58,8 +54,7 @@ function newpush()
 }
 
 # Create new branch. Usage: newbranch branch-name base-branch
-function newbranch()
-{
+function newbranch() {
 	if [[ $2 ]]; then
 		git checkout "$2"
 	else

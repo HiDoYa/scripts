@@ -13,8 +13,7 @@ alias rezsh='source ~/.zshrc'
 alias tmux-save-all='tmux capture-pane -pS -'
 
 # Tmux save buffer since last prompt
-function tmux-save()
-{
+function tmux-save() {
 	# Number of commands to capture
 	# Lookback + 1 since we want to ignore our current command itself
 	LOOKBACK=$((1+${1:-1}))
@@ -27,17 +26,20 @@ function tmux-save()
 }
 
 # Display all commands
-alias cmds='$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc'
+function cmds() {
+	$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc
+}
 
 # Point calculator (-s 12/12/23 -p 10)
-alias pointcalc='$SCRIPTS_DIR/pointcalc/pointcalc.rb -f $SCRIPTS_DIR/pointcalc/holidays.yaml'
+function pointcalc() {
+	$SCRIPTS_DIR/pointcalc/pointcalc.rb -f $SCRIPTS_DIR/pointcalc/holidays.yaml $@
+}
 
 # Install vim vundle plugins
 alias vimplugin='vim +PluginInstall +qall'
 
 # Performs brew maintenance
-function brewing()
-{
+function brewing() {
 	# Brew
 	brew update
 	brew upgrade
@@ -57,14 +59,12 @@ function brewing()
 }
 
 # Secrets backup script
-function sbackup()
-{
+function sbackup() {
 	$SCRIPTS_DIR/backup/backup.sh
 }
 
 # Convert HEIC formatted photos to jpeg in a folder
-function heic2jpg()
-{
+function heic2jpg() {
 	WORK_DIR=$(pwd)
 	if [[ $1 ]]; then
 		WORK_DIR=$1
@@ -80,8 +80,7 @@ function heic2jpg()
 }
 
 # Unzip all .zip files in a directory in a flat structure
-function unzipall()
-{
+function unzipall() {
 	WORK_DIR=$(pwd)
 	if [[ $1 ]]; then
 		WORK_DIR=$1
