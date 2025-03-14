@@ -1,14 +1,14 @@
+# TITLE: Homelab
+
 export HOMELAB_DIR=$CODE_DIR/homelab
 
 # Startup homelab
-function homelabup()
-{
+function homelabup() {
 	ansible-playbook -i $HOMELAB_DIR/ansible/hosts.ini $HOMELAB_DIR/ansible/playbooks/lifecycle/startup.yaml --ask-become-pass
 }
 
 # Shutdown homelab
-function homelabdown()
-{
+function homelabdown() {
 	ansible-playbook -i $HOMELAB_DIR/ansible/hosts.ini $HOMELAB_DIR/ansible/playbooks/lifecycle/shutdown.yaml
 }
 
