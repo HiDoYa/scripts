@@ -27,14 +27,14 @@ lines.each do |line|
   comment = line[/#\s*(.*)/, 1]
   if comment && (comment.start_with? "TITLE: ")
     puts ""
-    puts "%s" % [comment.delete_prefix("TITLE: ").green.bold]
+    puts "%s" % [comment.delete_prefix("TITLE: ").center(55, '-').green.bold]
     next
   end
 
   if command
     comment = prev_line[/#\s*(.*)/, 1]
     if comment && !(comment.start_with? "HIDE")
-      puts "%-25s %s" % [command.light_green, comment]
+      puts "%-30s %s" % [command.light_green, comment]
     end
   end
 
