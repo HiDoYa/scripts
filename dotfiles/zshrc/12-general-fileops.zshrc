@@ -1,3 +1,5 @@
+# TITLE: Fileops
+
 # HIDE: Function to check if inside a directory
 function insidedir() { [[ $(pwd) == $1 ]] }
 

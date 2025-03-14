@@ -1,41 +1,42 @@
 #!ruby
 
 class String
-  def green; "\e[32m#{self}\e[0m" end
+  def green
+    "\e[32m#{self}\e[0m"
+  end
+  def light_green; "\e[92m#{self}\e[0m" end
+  def bold
+    "\e[1m#{self}\e[0m"
+  end
 end
 
-lines = Array.new
-for file in ARGV
-  currentfile = File.open(file)
-  lines += currentfile.readlines.map(&:chomp)
-  currentfile.close
-end
+lines = ARGV.flat_map { |file| File.readlines(file, chomp: true) }
 
-prevline = ''
-for line in lines
-  command = ''
-  comment = ''
+prev_line = ''
+lines.each do |line|
+  command = nil
+  comment = nil
   
-  if line.start_with? "alias"
-    /^alias\s*(.*?)=.*$/ =~ line
-    command = $1
-
-    /#\s*(.*)/ =~ prevline
-    comment = $1
+  case line
+  when /^alias\s*(.*?)=.*$/
+    command = Regexp.last_match(1)
+  when /^function\s*([a-zA-Z0-9_-]*)\(?\)?.*/
+    command = Regexp.last_match(1)
   end
 
-  if line.start_with? "function"
-    /^function\s*([a-zA-Z0-9_-]*)\(?\)?.*\{?.*/ =~ line
-    command = $1
-
-    /#\s*(.*)/ =~ prevline
-    comment = $1
+  comment = line[/#\s*(.*)/, 1]
+  if comment && (comment.start_with? "TITLE: ")
+    puts ""
+    puts "%s" % [comment.delete_prefix("TITLE: ").green.bold]
+    next
   end
 
-  if (command.length > 0) && !(comment.start_with? "HIDE")
-    puts "%-25s %s" % [command.green, comment]
+  if command
+    comment = prev_line[/#\s*(.*)/, 1]
+    if comment && !(comment.start_with? "HIDE")
+      puts "%-25s %s" % [command.light_green, comment]
+    end
   end
 
-  prevline = line
+  prev_line = line
 end
-

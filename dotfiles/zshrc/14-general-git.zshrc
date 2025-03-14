@@ -1,3 +1,5 @@
+# TITLE: Git
+
 # Create new commit and push with message
 function quickgit()
 {
