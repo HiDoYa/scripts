@@ -1,6 +1,5 @@
 # HIDE: [Deprecated] Install new finsync
-function installfinsync()
-{
+function installfinsync() {
 	FINPATH=~/Documents/finance-project
 	FINSRCPATH=$CODE_DIR/finance
 	IS_INSIDE=$(insidedir $FINSRCPATH)
@@ -14,8 +13,7 @@ function installfinsync()
 }
 
 # HIDE: [Deprecated] Sync mint with google sheets
-function finsync()
-{
+function finsync() {
 	FINPATH=~/Documents/finance-project
 	CREDPATH=~/Documents/credentials/finance-pipeline
 	SPREADSHEET="1pNs9XrzAQsuizWVbvq4D5yDQ4nESZpw--V7kI6tT91E"
@@ -46,8 +44,7 @@ function finsync()
 }
 
 # HIDE: [Deprecated] Open python playground in jupyter notebook
-function pyplay()
-{
+function pyplay() {
 	PORTS=$(jupyter notebook list --jsonlist | jq '.[].port')
 	if [[ $PORTS != *"8889"* ]]; then
 		nohup jupyter notebook --notebook-dir=$SCRIPTS_DIR/notebook --port 8889 --no-browser >/dev/null 2>&1 &

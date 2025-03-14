@@ -2,8 +2,7 @@ export LINUX_DIR=$SCRIPTS_DIR/linux-dev
 export LINUX_CONTAINER_NAME=linux-dev
 
 # HIDE: [Deprecated] Initialize and start linux dev. Takes mount path argument
-function linuxup()
-{
+function linuxup() {
 	ABS_PATH=$HOME/Downloads
 	if [[ $1 ]] ABS_PATH=$(realpath $1)
 	export MOUNT_PATH=$ABS_PATH
@@ -33,8 +32,7 @@ function linuxup()
 }
 
 # HIDE: [Deprecated] Show current status of linux dev
-function linuxls()
-{
+function linuxls() {
 	IS_INSIDE=$(insidedir $LINUX_DIR)
 
 	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
@@ -43,8 +41,7 @@ function linuxls()
 }
 
 # HIDE: [Deprecated] SSH into linux dev
-function linuxssh()
-{
+function linuxssh() {
 	IS_INSIDE=$(insidedir $LINUX_DIR)
 
 	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
@@ -53,8 +50,7 @@ function linuxssh()
 }
 
 # HIDE: [Deprecated] Clean up and destroy linux dev
-function linuxdown()
-{
+function linuxdown() {
 	IS_INSIDE=$(insidedir $LINUX_DIR)
 
 	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
@@ -64,8 +60,7 @@ function linuxdown()
 
 # Note requires vagrant-scp plugin (vagrant plugin install vagrant-scp)
 # HIDE: [Deprecated] Copy file onto linux dev. Takes copy file argument
-function linuxcp()
-{
+function linuxcp() {
 	if [[ ! $1 ]] then
 		echo "You must specify a directory/file"
 		exit
@@ -80,8 +75,7 @@ function linuxcp()
 }
 
 # HIDE: [Deprecated] Get status of linux dev
-function linuxst()
-{
+function linuxst() {
 	IS_INSIDE=$(insidedir $LINUX_DIR)
 
 	if [[ ! $IS_INSIDE ]] pushd $LINUX_DIR > /dev/null
@@ -90,14 +84,12 @@ function linuxst()
 }
 
 # HIDE: [Deprecated] Open linux mount path in vscode
-function linuxcode()
-{
+function linuxcode() {
 	code --remote ssh-remote+$LINUX_CONTAINER_NAME /home/vagrant/mount
 }
 
 # HIDE: [Deprecated] Quick start linux up
-function linuxqup()
-{
+function linuxqup() {
 	if [[ $1 ]]; then
 		linuxup $1 && linuxcode
 	else
