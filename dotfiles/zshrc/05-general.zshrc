@@ -35,7 +35,10 @@ export EDITOR=vim
 export PATH=/Users/hiroya.gojo/.local/bin:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# If pyenv has not yet been init
+if alias -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # Go binaries
 export GOPATH=$HOME/go
