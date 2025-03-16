@@ -105,3 +105,9 @@ function extc() {
 
 	ls -p${LS_FLAGS} $DIR_PATH | grep -v / | grep -v -e '^$' | perl -ne 'print lc' | awk -F . '{print $NF}' | sort | uniq -c | sort
 }
+
+# Create and activate new python venv
+function newpyvenv() {
+	python3 -m venv .venv
+	source .venv/bin/activate
+}

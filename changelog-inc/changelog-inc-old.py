@@ -25,10 +25,6 @@ new_version = f"""
 - N/A
 ### Changed
 - N/A
-### Deprecated
-- N/A
-### Fixed
-- N/A
 ### Removed
 - N/A
 """
