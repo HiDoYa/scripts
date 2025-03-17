@@ -77,4 +77,7 @@ function newpyvenv() {
 }
 
 # Get my public ip
-alias myip="curl ident.me"
+alias mypublicip="curl ident.me"
+
+# Get my home local ip(s)
+alias homelocalip="ifconfig | grep 172.18 | awk '{\$1=\$1};1'"
