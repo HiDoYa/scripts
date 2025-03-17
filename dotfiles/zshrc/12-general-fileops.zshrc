@@ -111,3 +111,6 @@ function newpyvenv() {
 	python3 -m venv .venv
 	source .venv/bin/activate
 }
+
+# Get my public ip
+alias myip="curl ident.me"

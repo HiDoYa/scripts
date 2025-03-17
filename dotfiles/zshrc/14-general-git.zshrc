@@ -23,6 +23,8 @@ function newqcommit() {
 
 	newcommit ${COMMIT_FLAGS}
 	newpush ${PUSH_FLAGS}
+
+	glab mr create --web --fill -t "$(git rev-parse --abbrev-ref HEAD)"
 }
 
 
@@ -66,4 +68,7 @@ function newbranch() {
 }
 
 # Delete merged branches
-alias delmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
+alias delmerged='git branch --merged | grep -v "(^\*|master|main|dev)" | xargs git branch -d'
+
+# Apply current changes to master branch
+alias gmaster='git stash save && git checkout master && git pull && git stash apply'
