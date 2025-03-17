@@ -42,7 +42,7 @@ function nodecmds() {
 	export BLUE=$(tput setaf 4 :-"" 2>/dev/null)
 	export RESET=$(tput sgr0 :-"" 2>/dev/null)
 
-    for node in node1 node2 node3 node4; do
+    for node in node1 node2 node3; do
         echo "$node"
 		echo "-----"
         ssh "$node" $@
