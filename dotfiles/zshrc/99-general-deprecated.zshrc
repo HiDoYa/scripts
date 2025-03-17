@@ -53,3 +53,18 @@ function pyplay() {
 
 	open -a "Google Chrome" http://localhost:8889/notebooks/play.ipynb
 }
+
+# HIDE: [Deprecated] Display all extensions in folder (use -r for recursive, -a for hidden, -d for custom directory)
+function extc() {
+	LS_FLAGS=''
+	DIR_PATH=$(pwd)
+	while getopts "ard:" flag; do
+		case "${flag}" in
+			r) LS_FLAGS=${LS_FLAGS}R ;;
+			a) LS_FLAGS=${LS_FLAGS}a ;;
+			d) dirpath=${OPTARG} ;;
+		esac
+	done
+
+	ls -p${LS_FLAGS} $DIR_PATH | grep -v / | grep -v -e '^$' | perl -ne 'print lc' | awk -F . '{print $NF}' | sort | uniq -c | sort
+}
