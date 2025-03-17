@@ -54,7 +54,7 @@ function brewing() {
 	# gem update
 
 	# Python
-	# Commented out for issues with breaking python lib changes
+	# Deprecated: No longer install packages globally
 	# pip3 list --outdated --format=json | jq -r '.[] | "\(.name)==\(.latest_version)"' | xargs -n1 pip3 install -U
 }
 
