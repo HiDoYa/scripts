@@ -23,8 +23,6 @@ function newqcommit() {
 
 	newcommit ${COMMIT_FLAGS}
 	newpush ${PUSH_FLAGS}
-
-	glab mr create --web --fill -t "$(git rev-parse --abbrev-ref HEAD)"
 }
 
 # Create new gitlab mr
