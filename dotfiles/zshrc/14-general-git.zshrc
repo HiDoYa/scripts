@@ -26,7 +26,9 @@ function newqcommit() {
 }
 
 # Create new gitlab mr
-alias newmr='glab mr create --web --fill -t "$(git rev-parse --abbrev-ref HEAD)"'
+function newmr() {
+	NO_PROMPT=true glab mr create --web --fill -t "$(git rev-parse --abbrev-ref HEAD)"
+}
 
 # Create new commit with current branch name. Options supported -m (message), -n (skip precommit)
 function newcommit() {
@@ -71,4 +73,9 @@ function newbranch() {
 alias delmerged='git branch --merged | grep -v "(^\*|master|main|dev)" | xargs git branch -d'
 
 # Apply current changes to master branch
-alias gmaster='git stash save && git checkout master && git pull && git stash apply'
+function gmaster() {
+	git stash save
+	git checkout $(git branch --list master main | head -n 1)
+	git pull
+	git stash apply
+}
