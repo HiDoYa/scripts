@@ -1,5 +1,6 @@
-#!ruby
+#!/usr/bin/env ruby
 
+require 'bundler/setup'
 require 'date'
 require 'slop'
 require 'business'
@@ -26,5 +27,5 @@ days = points_with_padding / 2
 days_int = days.ceil
 
 start_date = Date.parse(opts[:start])
-end_date = calendar.add_business_days(start_date, days).strftime("%A, %B %d %Y")
+end_date = calendar.add_business_days(start_date, days_int).strftime("%A, %B %d %Y")
 puts end_date

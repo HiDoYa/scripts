@@ -1,4 +1,7 @@
-#!ruby
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'slop'
 
 class String
   def green
@@ -10,7 +13,13 @@ class String
   end
 end
 
-lines = ARGV.flat_map { |file| File.readlines(file, chomp: true) }
+opts = Slop.parse do |o|
+  o.string "-f", "--filepath", "dotfile path", required: true
+  o.string "-m", "--mode", "mode: NONINFO, INFO", default: "NONINFO"
+end
+
+lines = File.readlines(opts[:filepath], chomp: true)
+info_only = opts[:mode] == "INFO"
 
 prev_line = ''
 lines.each do |line|
@@ -25,16 +34,27 @@ lines.each do |line|
   end
 
   comment = line[/#\s*(.*)/, 1]
-  if comment && (comment.start_with? "TITLE: ")
-    puts ""
-    puts "%s" % [comment.delete_prefix("TITLE: ").center(55, '-').green.bold]
-    next
+  if not info_only
+    if comment && (comment.start_with? "TITLE: ")
+      puts ""
+      puts "%s" % [comment.delete_prefix("TITLE: ").center(55, '-').green.bold]
+      next
+    end
   end
 
   if command
     comment = prev_line[/#\s*(.*)/, 1]
-    if comment && !(comment.start_with? "HIDE")
-      puts "%-30s %s" % [command.light_green, comment]
+    if comment
+      if info_only
+        if comment.start_with? "INFO"
+          comment = comment.delete_prefix("INFO: ")
+          puts "%-30s %s" % [command.light_green, comment]
+        end
+      else
+        if !(comment.start_with? "HIDE")
+          puts "%-30s %s" % [command.light_green, comment]
+        end
+      end
     end
   end
 

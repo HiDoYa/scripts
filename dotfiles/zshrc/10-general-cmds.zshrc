@@ -5,75 +5,83 @@ alias g="git"
 alias k="kubectl"
 # HIDE: Smarter mkdir
 alias mkdir="mkdir -p"
-# HIDE: bat is modern cat
-alias cat="bat"
-# HIDE: duf is modern df
-alias df="duf"
-# HIDE: delta is modern diff
-alias diff="delta"
-# HIDE: doggo is modern dig
-alias dig="doggo"
-# HIDE: fd is modern find
-alias find="fd"
-# HIDE: ripgrep is modern grep
-alias grep="rg"
-# HIDE: eza is modern ls
-alias ls="eza"
-# HIDE: procs is modern ps
-alias ps="procs"
-# HIDE: pgcli is modern psql
-alias psql="pgcli"
-# HIDE: htop is modern top
-alias top="htop"
 # HIDE: use builtin docker compose
 alias docker-compose="docker compose"
+# INFO: bat is modern cat
+alias cat="bat"
+# INFO: duf is modern df
+alias df="duf"
+# INFO: delta is modern diff
+alias diff="delta"
+# INFO: doggo is modern dig
+alias dig="doggo"
+# INFO: fd is modern find
+alias find="fd"
+# INFO: ripgrep is modern grep
+alias grep="rg"
+# INFO: eza is modern ls
+alias ls="eza"
+# INFO: procs is modern ps
+alias ps="procs"
+# INFO: pgcli is modern psql
+alias psql="pgcli"
+# INFO: htop is modern top
+alias top="htop"
 
 # Tools to remember
 # I have a hard time remembering some tools I download so 
 # I list some that I want to remember here until I've 
 # used them enough. This is not a complete list
 
-# HIDE: Draw.io cli
+# INFO: Draw.io cli
 alias drawio='/Applications/draw.io.app/Contents/MacOS/draw.io'
-# HIDE: Execute a program periodically
+# INFO: Execute a program periodically
 alias watch="watch "
-# HIDE: List contents of directories in a tree-like format
+# INFO: List contents of directories in a tree-like format
 alias tree="tree"
-# HIDE: Generate pronounceable passwords
+# INFO: Generate pronounceable passwords
 alias pwgen="pwgen"
-# HIDE: Port scanner
+# INFO: Port scanner
 alias nmap="nmap"
-# HIDE: Reads and writes data across network connections
+# INFO: Reads and writes data across network connections
 alias netcat="netcat"
-# HIDE: YAML processor
+# INFO: YAML processor
 alias yq="yq"
-# HIDE: JSON processor
+# INFO: JSON processor
 alias jq="jq"
-# HIDE: HTTP client for API
+# INFO: HTTP client for API
 alias httpie="httpie"
-# HIDE: JSON visualizer
+# INFO: JSON visualizer
 alias fx="fx"
-# HIDE: Execute shell in parallel
+# INFO: Execute shell in parallel
 alias parallel="parallel"
-# HIDE: Python version management
+# INFO: Python version management
 alias pyenv="pyenv"
-# HIDE: UI for SSH
+# INFO: UI for SSH
 alias sshs="sshs"
-# HIDE: Fuzzy file finder
+# INFO: Fuzzy file finder
 alias fzf="fzf"
-# HIDE: Run arbitrary commands when files change
+# INFO: Run arbitrary commands when files change
 alias entr="entr"
-# HIDE: Benchmarking tool
+# INFO: Benchmarking tool
 alias hyperfine="hyperfine"
-# HIDE: Logfile navigator
+# INFO: Logfile navigator
 alias lnav="lnav"
-# HIDE: Simple ingress
+# INFO: Simple ingress
 alias ngrok="ngrok"
-# HIDE: Local Docker UI
+# INFO: Local Docker UI
 alias lazydocker="lazydocker"
-# HIDE: Pretty display columnar data
+# INFO: Pretty display columnar data
 alias column="column"
-# HIDE: View currently used ports
+# INFO: View currently used ports
 alias lsof="lsof"
-# HIDE: Better ripgrep
+# INFO: Better ripgrep
 alias rga="rga"
+# INFO: Find duplicate files
+alias fclones="fclones"
+# INFO: Graphical ping
+alias gping="gping"
+# INFO: UI for jq
+alias jnv="jnv"
+# INFO: My trace route
+alias mtr="mtr"

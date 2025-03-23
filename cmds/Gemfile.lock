@@ -1,20 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    drip (0.1.1)
-      rbtree
-    rbtree (0.4.6)
+    slop (4.10.1)
 
 PLATFORMS
-  aarch64-linux
-  arm-linux
-  arm64-darwin
-  x86-linux
-  x86_64-darwin
-  x86_64-linux
+  arm64-darwin-23
+  ruby
 
 DEPENDENCIES
-  drip
+  slop (~> 4.10)
 
 BUNDLED WITH
-   2.5.11
+   2.6.6

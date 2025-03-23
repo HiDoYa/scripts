@@ -27,12 +27,23 @@ function tmux-save() {
 
 # Display all commands
 function cmds() {
-	$SCRIPTS_DIR/cmds/cmds.rb ~/.zshrc
+	pushd $SCRIPTS_DIR/cmds > /dev/null
+	bundle exec ruby $SCRIPTS_DIR/cmds/cmds.rb -f ~/.zshrc
+	popd > /dev/null
+}
+
+# Display all commands
+function cmds-info() {
+	pushd $SCRIPTS_DIR/cmds > /dev/null
+	bundle exec ruby $SCRIPTS_DIR/cmds/cmds.rb -f ~/.zshrc -m INFO
+	popd > /dev/null
 }
 
 # Point calculator (-s 12/12/23 -p 10)
 function pointcalc() {
-	$SCRIPTS_DIR/pointcalc/pointcalc.rb -f $SCRIPTS_DIR/pointcalc/holidays.yaml $@
+	pushd $SCRIPTS_DIR/pointcalc > /dev/null
+	bundle exec ruby $SCRIPTS_DIR/pointcalc/pointcalc.rb -f $SCRIPTS_DIR/pointcalc/holidays.yaml $@
+	popd> /dev/null
 }
 
 # Install vim vundle plugins
