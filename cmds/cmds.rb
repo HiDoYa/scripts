@@ -51,7 +51,7 @@ lines.each do |line|
           puts "%-30s %s" % [command.light_green, comment]
         end
       else
-        if !(comment.start_with? "HIDE")
+        if !(comment.start_with? "HIDE" or comment.start_with? "INFO")
           puts "%-30s %s" % [command.light_green, comment]
         end
       end
