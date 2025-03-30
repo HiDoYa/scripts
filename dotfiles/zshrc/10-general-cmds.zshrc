@@ -85,3 +85,5 @@ alias gping="gping"
 alias jnv="jnv"
 # INFO: My trace route
 alias mtr="mtr"
+# INFO: Nix-shell creates reproducible environments
+alias nix-shell="nix-shell"
