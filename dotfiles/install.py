@@ -4,6 +4,7 @@
 RED = '\033[31m'
 GREEN = '\033[32m'
 RESET = '\033[0m'
+BLUE = '\033[34m'
 
 import os
 import argparse
@@ -42,7 +43,7 @@ def write_to_file_with_prompt(contents, dest_file):
 
     if answer == "y":
         write_to_file(contents, dest_file)
-        print(f"{GREEN}Contents written to file: {config_file}{RESET}")
+        print(f"{GREEN}Contents written to file: {dest_file}{RESET}")
     else:
         print(f"{RED}Skipping file write...{RESET}")
     
@@ -77,8 +78,15 @@ def print_diff(existing_file, new_file):
 
             diff = list(diff)
             for line in diff:
-                print(line, end="")
-            
+                if line.startswith('+'):
+                    print(f"{GREEN}{line}{RESET}", end="")
+                elif line.startswith('-'):
+                    print(f"{RED}{line}{RESET}", end="")
+                elif line.startswith('?'):
+                    print(f"{BLUE}{line}{RESET}", end="")
+                else:
+                    print(line, end="")
+                    
             changed = len(diff) != 0
             return changed
 
