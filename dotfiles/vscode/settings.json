@@ -76,5 +76,6 @@
     "git.detectSubmodulesLimit": 30,
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "go.survey.prompt": false
 }
