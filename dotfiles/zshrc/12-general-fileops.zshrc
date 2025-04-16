@@ -46,6 +46,13 @@ function pointcalc() {
 	popd> /dev/null
 }
 
+# Brew casks/formula backup
+function bayleaf() {
+	pushd $SCRIPTS_DIR/bayleaf > /dev/null
+	bundle exec ruby $SCRIPTS_DIR/bayleaf/bayleaf.rb
+	popd> /dev/null
+}
+
 # Install vim vundle plugins
 alias vimplugin='vim +PluginInstall +qall'
 
