@@ -6,7 +6,11 @@ Diffy::Diff.default_format = :color
 
 def dwrite(fname, output)
   puts "Currently processing #{fname}"
-  existing = File.read(fname)
+  if File.exist? fname
+    existing = File.read(fname)
+  else
+    existing = ""
+  end
   diff = Diffy::Diff.new(existing, output, :context => 3)
 
   diff_found = true
@@ -49,4 +53,10 @@ puts "\n-----\n\n"
 
 fname = "casks.txt"
 output = `brew list --cask`
+dwrite(fname, output)
+
+puts "\n-----\n\n"
+
+fname = "tap.txt"
+output = `brew tap`
 dwrite(fname, output)
