@@ -77,6 +77,7 @@
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "editor.inlayHints.enabled": "offUnlessPressed",
     "go.survey.prompt": false,
     "cSpell.customDictionaries": {
         "custom-dictionary-user": {
