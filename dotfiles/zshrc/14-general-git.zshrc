@@ -27,7 +27,7 @@ function newqcommit() {
 
 # Create new gitlab mr
 function newmr() {
-	NO_PROMPT=true glab mr create --web --fill -t "$(git rev-parse --abbrev-ref HEAD)"
+	NO_PROMPT=true glab mr create --fill -t "$(git rev-parse --abbrev-ref HEAD)"
 }
 
 # Create new commit with current branch name. Options supported -m (message), -n (skip precommit)
