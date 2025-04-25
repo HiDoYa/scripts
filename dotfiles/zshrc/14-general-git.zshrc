@@ -74,8 +74,6 @@ alias delmerged='git branch --merged | grep -v "(^\*|master|main|dev)" | xargs g
 
 # Apply current changes to master branch
 function gmaster() {
-	git stash save
 	git checkout $(git branch --list master main | head -n 1)
 	git pull
-	git stash apply
 }
