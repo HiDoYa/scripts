@@ -57,23 +57,11 @@ function newpush() {
 	git push ${PUSH_FLAGS} --set-upstream origin "$(git branch --show-current)" > /dev/null
 }
 
-# Create new branch. Usage: newbranch branch-name base-branch
-function newbranch() {
-	if [[ $2 ]]; then
-		git checkout "$2"
-	else
-		git checkout master
-	fi
-
-	git pull
-	git checkout -b "$1"
-}
+## Note: Any git command that changes current branch MUST be an alias, not a function
+##       this is because my zsh otherwise will not pickup on the branch changes
 
 # Delete merged branches
 alias delmerged='git branch --merged | grep -v "(^\*|master|main|dev)" | xargs git branch -d'
 
 # Apply current changes to master branch
-function gmaster() {
-	git checkout $(git branch --list master main | head -n 1)
-	git pull
-}
+alias gmaster='git checkout $(git branch --list master main | head -n 1) && git pull'
