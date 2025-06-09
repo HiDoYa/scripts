@@ -23,7 +23,7 @@
 - Alacritty
   - Install alacritty font: `DroidSansM Nerd Font`
   - Install theme: `catppuccin-frappe`
-- Install 
+- Install `uv`
   ```
   mas install 937984704 # Amphetamine
   mas install 595191960 # Copyclip
