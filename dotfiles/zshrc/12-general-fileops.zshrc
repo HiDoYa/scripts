@@ -3,6 +3,9 @@
 # HIDE: Function to check if inside a directory
 function insidedir() { [[ $(pwd) == $1 ]] }
 
+# Rsync with sane flag defaults
+alias arsync='rsync -rPahv'
+
 # Edit zshrc files
 alias zshedit='code $SCRIPTS_DIR -g $SCRIPTS_DIR/dotfiles/zshrc/05-general.zshrc'
 
