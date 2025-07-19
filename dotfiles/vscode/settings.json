@@ -88,4 +88,5 @@
             "scope": "user"
         }
     },
+    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
 }
