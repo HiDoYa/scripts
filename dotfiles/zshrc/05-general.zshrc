@@ -50,6 +50,9 @@ export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
 export PATH=$(gem environment home)/bin:$PATH
 eval "$(rbenv init - zsh)"
 
+# For windsurf
+export PATH="/Users/hiroyagojo/.codeium/windsurf/bin:$PATH"
+
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
