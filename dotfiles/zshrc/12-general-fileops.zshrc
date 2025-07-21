@@ -105,3 +105,6 @@ alias homelocalip="ifconfig | grep 172.18 | awk '{\$1=\$1};1'"
 
 # Clean docker files
 alias dclean="docker system prune --volumes -f"
+
+# Quick venv (system python3)
+alias qvenv="python3 -m venv .venv && source .venv/bin/activate"

@@ -50,6 +50,13 @@ export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
 export PATH=$(gem environment home)/bin:$PATH
 eval "$(rbenv init - zsh)"
 
+# Asdf
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
 # For windsurf
 export PATH="/Users/hiroyagojo/.codeium/windsurf/bin:$PATH"
 
