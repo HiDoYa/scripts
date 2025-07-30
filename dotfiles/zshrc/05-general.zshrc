@@ -31,36 +31,22 @@ export COMPLETION_WAITING_DOTS="true"
 export VISUAL=/usr/bin/vim
 export EDITOR=vim
 
-# Python binaries
-export PATH=/Users/hiroya.gojo/.local/bin:$PATH
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# If pyenv has not yet been init
-if alias -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# Python settings
 export PIP_REQUIRE_VIRTUALENV=true
+# Pipx binaries
+export PATH=/Users/hiroya.gojo/.local/bin:$PATH
 
-# Go binaries
+# Go settings
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 
-# Ruby binaries
-export PATH=$HOMEBREW_PREFIX/opt/ruby/bin:$PATH
-export PATH=$(gem environment home)/bin:$PATH
-eval "$(rbenv init - zsh)"
-
 # Asdf shims
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
 # Asdf auto-complete
-# append completions to fpath
+# Append completions to fpath
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-# initialise completions with ZSH's compinit
+# Initialize completions with ZSH's compinit
 autoload -Uz compinit && compinit
-
-# Windsurf
-export PATH="/Users/hiroyagojo/.codeium/windsurf/bin:$PATH"
 
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
@@ -68,7 +54,7 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 # Required to use vault lookup in ansible
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-# oh-my-zsh
+# Oh My Zsh
 export ZSH_THEME="steeef"
 export ZSH_DISABLE_COMPFIX=true
 export ZSH=$HOME/.oh-my-zsh
@@ -93,10 +79,10 @@ export SAVEHIST=$HISTSIZE
 eval "$(atuin init zsh --disable-up-arrow)"
 bindkey '^r' atuin-search
 
-# HIDE: Alacritty not recognzied by most devices
+# HIDE: Alacritty not recognized by most devices
 alias ssh='TERM=xterm-256color ssh'
 
-# DIRECTORIES
+# Directories
 export CODE_DIR=$HOME/Code
 export SCRIPTS_DIR=$CODE_DIR/scripts
 export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Notes

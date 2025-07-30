@@ -68,10 +68,11 @@ function brewing() {
 	brew cleanup
 
 	# Node js
-	npm update -g
+	# Deprecated: No longer install packages globally
+	# npm update -g
 
 	# Ruby
-	# Commented out to figure out ruby environment first
+	# Deprecated: No longer install packages globally
 	# gem update
 
 	# Python

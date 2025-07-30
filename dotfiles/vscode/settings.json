@@ -68,7 +68,7 @@
         "--line-length",
         "120"
     ],
-    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
     "workbench.colorTheme": "Catppuccin Frappé",
     "catppuccin.accentColor": "pink",
     // make the window's titlebar use the workbench colors
@@ -89,4 +89,5 @@
         }
     },
     "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
 }
