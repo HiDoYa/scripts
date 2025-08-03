@@ -66,7 +66,7 @@ def run_command(cmd):
 
 def main():
     if len(sys.argv) != 2:
-        print("Usage: vupdate.py <version>", file=sys.stderr)
+        print("Usage: vupdate <version>", file=sys.stderr)
         sys.exit(1)
 
     version = sys.argv[1]
