@@ -33,8 +33,8 @@ if not File.file?("CHANGELOG.md")
 end
 
 version = ARGV[0]
+version.delete("v")
 changelog = File.readlines("CHANGELOG.md")
-
 
 def find_version_prefix(changelog, latest_entry)
   latest_version = /.*\[(.*)\].*/.match(latest_entry)[1]
