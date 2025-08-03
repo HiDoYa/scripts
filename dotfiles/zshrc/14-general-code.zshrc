@@ -5,3 +5,6 @@ alias vupdate="vupdate"
 
 # Update changelog with a version (changelog-inc 1.2.3)
 alias changelog-inc="changelog-inc"
+
+# Summarize work done into various formats
+alias wsum="wsum"
