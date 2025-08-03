@@ -2,6 +2,7 @@
 
 # Installation:
 #   Copy to /usr/local/bin, chmod +x, and remove the .rb suffix
+#   sudo cp changelog-inc.rb /usr/local/bin/changelog-inc
 
 require 'date'
 
