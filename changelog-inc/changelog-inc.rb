@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # Installation:
 #   Copy to /usr/local/bin, chmod +x, and remove the .rb suffix
@@ -35,12 +35,21 @@ end
 version = ARGV[0]
 changelog = File.readlines("CHANGELOG.md")
 
+
+def find_version_prefix(changelog, latest_entry)
+  latest_version = /.*\[(.*)\].*/.match(latest_entry)[1]
+  puts "Last version: #{latest_version}"
+  latest_version.include?("v") ? "v" : ""
+end
+
+
 latest_entry = changelog.find { |line| line.include? "##" }
 date = latest_entry.split("-", 2).map(&:strip)[1]
 current_date = detect_and_format_date(date)
+prefix = find_version_prefix(changelog, latest_entry)
 
 new_record = [
-  "## [#{version}] - #{current_date}\n",
+  "## [#{prefix}#{version}] - #{current_date}\n",
   "### Added\n",
   "### Changed\n",
   "### Removed\n\n",
