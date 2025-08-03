@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/ruby
 
 # Installation:
 #   Copy to /usr/local/bin, chmod +x, and remove the .rb suffix
