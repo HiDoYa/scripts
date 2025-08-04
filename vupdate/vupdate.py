@@ -1,7 +1,9 @@
 #!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.11"
-# dependencies = []
+# dependencies = [
+#     "semver",
+# ]
 # ///
 
 # Installation
@@ -10,6 +12,7 @@
 import os
 import sys
 import subprocess
+import semver
 from enum import Enum, auto
 
 
@@ -52,6 +55,16 @@ def get_version_file_prefix(version_file):
     return prefix
 
 
+def get_current_version(project_type, version_file):
+    if project_type == ProjectVersionTypes.UV:
+        return run_command("uv version --short")
+    elif project_type == ProjectVersionTypes.POETRY:
+        return run_command("poetry version -s")
+    elif project_type == ProjectVersionTypes.VERSION:
+        with open(version_file) as f:
+            return f.read().removeprefix("v").strip()
+
+
 def run_command(cmd):
     result = subprocess.run(
         cmd,
@@ -65,36 +78,38 @@ def run_command(cmd):
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: vupdate <version>", file=sys.stderr)
-        sys.exit(1)
-
-    version = sys.argv[1]
-    version.replace("v", "")
-
     project_type = find_project_type()
-    if project_type == ProjectVersionTypes.UV:
-        run_command(f"uv version {version}")
-        print(f"uv version set to {version}")
-    elif project_type == ProjectVersionTypes.POETRY:
-        run_command(f"poetry version {version}")
-        print(f"Poetry version set to {version}")
-    elif project_type == ProjectVersionTypes.VERSION:
+    if project_type == ProjectVersionTypes.VERSION:
         version_file = find_version_file()
         if not version_file:
             print("VERSION file not found.", file=sys.stderr)
             sys.exit(1)
 
-        prefix = get_version_file_prefix(version_file)
-        full_version = f"{prefix}{version}"
+    current_version = get_current_version(project_type, version_file)
+    print(f"Current version: {current_version}")
 
-        # Write version
+    if len(sys.argv) == 2:
+        new_version = sys.argv[1]
+        new_version.replace("v", "")
+    else:
+        new_version = semver.Version.parse(current_version).bump_patch()
+
+    if project_type == ProjectVersionTypes.UV:
+        run_command(f"uv version {new_version}")
+        print(f"uv version set: {new_version}")
+    elif project_type == ProjectVersionTypes.POETRY:
+        run_command(f"poetry version {new_version}")
+        print(f"Poetry version set: {new_version}")
+    elif project_type == ProjectVersionTypes.VERSION:
+        prefix = get_version_file_prefix(version_file)
+        full_version = f"{prefix}{new_version}"
+
         with open(version_file, "w") as f:
             f.write(full_version)
-        print(f"Updated {version_file} to {full_version}")
+        print(f"File version set: {full_version}")
 
     # Update changelog
-    run_command(f"changelog-inc {version}")
+    run_command(f"changelog-inc {new_version}")
     print("Changelog updated")
 
 
