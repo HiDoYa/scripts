@@ -83,7 +83,7 @@ function pipelinefailure() {
 
 		printf '%*s\n' "$HEADER_WIDTH" '' | tr ' ' '-'
 		curl --silent --header "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
-			"https://gitlab.adsrvr.org/api/v4/projects/${project_id}/jobs/${job_id}/trace"
+			"${GITLAB_BASE_URL}/api/v4/projects/${project_id}/jobs/${job_id}/trace"
 		printf '%*s\n' "$HEADER_WIDTH" '' | tr ' ' '-'
 	done
 }
