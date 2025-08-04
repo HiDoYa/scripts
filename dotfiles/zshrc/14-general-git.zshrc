@@ -55,6 +55,7 @@ function watchpipeline() {
 	done
 }
 
+# View logs for pipeline failures
 function pipelinefailure() {
 	TMP_FNAME="/tmp/glpipeline_failure.json"
 	HEADER_WIDTH=56
