@@ -26,7 +26,7 @@ function newqcommit() {
 }
 
 # Watch for pipeline finish/stall
-function watchpipeline() {
+function gl-pipeline-watch() {
 	TMP_FNAME="/tmp/glpipeline.json"
 	while true; do
 		# Control characters mess stuff up when saving into vars and Im too lazy to troubleshoot it
@@ -56,7 +56,7 @@ function watchpipeline() {
 }
 
 # View logs for pipeline failures
-function pipelinefailure() {
+function gl-pipeline-failed() {
 	TMP_FNAME="/tmp/glpipeline_failure.json"
 	HEADER_WIDTH=56
 
