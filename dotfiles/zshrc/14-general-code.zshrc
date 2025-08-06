@@ -8,3 +8,6 @@ alias changelog-inc="changelog-inc"
 
 # Summarize work done into various formats
 alias wsum="wsum"
+
+# Copilot but run via CLI
+alias localpilot="localpilot"
