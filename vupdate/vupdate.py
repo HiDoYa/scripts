@@ -55,7 +55,7 @@ def get_version_file_prefix(version_file):
     return prefix
 
 
-def get_current_version(project_type, version_file):
+def get_current_version(project_type, version_file=None):
     if project_type == ProjectVersionTypes.UV:
         return run_command("uv version --short")
     elif project_type == ProjectVersionTypes.POETRY:
@@ -79,6 +79,7 @@ def run_command(cmd):
 
 def main():
     project_type = find_project_type()
+    version_file = None
     if project_type == ProjectVersionTypes.VERSION:
         version_file = find_version_file()
         if not version_file:
