@@ -2,11 +2,19 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Define colors
-GREEN=$(tput -Txterm setaf 2)
-YELLOW=$(tput -Txterm setaf 3)
-WHITE=$(tput -Txterm setaf 7)
-CYAN=$(tput -Txterm setaf 6)
-RESET=$(tput -Txterm sgr0)
+export RESET=$(tput -Txterm sgr0)
+export BLACK=$(tput -Txterm setaf 0)
+export RED=$(tput -Txterm setaf 1)
+export GREEN=$(tput -Txterm setaf 2)
+export YELLOW=$(tput -Txterm setaf 3)
+export BLUE=$(tput -Txterm setaf 4)
+export MAGENTA=$(tput -Txterm setaf 5)
+export CYAN=$(tput -Txterm setaf 6)
+export WHITE=$(tput -Txterm setaf 7)
+export BOLD=$(tput -Txterm bold)
+export BG_RED=$(tput -Txterm setab 1)
+export BG_GREEN=$(tput -Txterm setab 2)
+export BG_YELLOW=$(tput -Txterm setab 3)
 
 # Startup message
 echo $CYAN"    _____                            "
