@@ -7,6 +7,7 @@ Scripts, files, and other misc files for personal use.
 | Name          | Description                                     |
 | ------------- | ----------------------------------------------- |
 | Backup        | Backup secrets and packages to google drive     |
+| Bayleaf       | Manage brew packages with diff tracking         |
 | Bootstrap     | Initialize local mac system                     |
 | Changelog-inc | Increment changelog automatically               |
 | Cmds          | Show custom bash functions/aliases              |
@@ -14,5 +15,6 @@ Scripts, files, and other misc files for personal use.
 | Gp-backup     | Backup media from Google Photos                 |
 | Linux-dev     | Running ubuntu workspace for local development  |
 | Metadata-ext  | Extract music metadata from files               |
-| Notebook      | Filespace for Jupyter notebook                  |
+| Notes-syncer  | Sync notes between remote and local Obsidian    |
 | Pointcalc     | Calculate end date for number of points of work |
+| Vupdate       | Version management with semver support          |
