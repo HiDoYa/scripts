@@ -111,4 +111,4 @@ alias dclean="docker system prune --volumes -f"
 alias qvenv="python3 -m venv .venv && source .venv/bin/activate"
 
 # Sync notes to home laptop
-alias notes-syncer="$SCRIPTS_DIR/notes-syncer.sh"
+alias notes-syncer="$SCRIPTS_DIR/notes-syncer/notes-syncer.sh"
