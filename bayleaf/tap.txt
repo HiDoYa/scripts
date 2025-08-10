@@ -2,3 +2,4 @@ felixkratz/formulae
 go-swagger/go-swagger
 hashicorp/tap
 koekeishiya/formulae
+teamookla/speedtest
