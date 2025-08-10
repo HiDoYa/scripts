@@ -1,0 +1,15 @@
+[project]
+name = "vupdate"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "semver>=3.0.4",
+    "toml>=0.10.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]

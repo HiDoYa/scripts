@@ -2,7 +2,8 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#     "semver",
+#     "semver>=3.0.4",
+#     "toml>=0.10.2",
 # ]
 # ///
 
@@ -13,6 +14,10 @@ import os
 import sys
 import subprocess
 import semver
+import json
+import toml
+import re
+import xml.etree.ElementTree as ET
 from enum import Enum, auto
 
 
@@ -20,6 +25,12 @@ class ProjectVersionTypes(Enum):
     UV = auto()
     POETRY = auto()
     VERSION = auto()
+    NODE_PACKAGE_JSON = auto()
+    RUST_CARGO = auto()
+    GO_MOD = auto()
+    RUBY_GEMSPEC = auto()
+    DOTNET_CSPROJ = auto()
+    DOTNET_FSPROJ = auto()
 
 
 def find_project_type():
@@ -27,6 +38,18 @@ def find_project_type():
         return ProjectVersionTypes.UV
     elif os.path.isfile("poetry.lock"):
         return ProjectVersionTypes.POETRY
+    elif os.path.isfile("package.json"):
+        return ProjectVersionTypes.NODE_PACKAGE_JSON
+    elif os.path.isfile("Cargo.toml"):
+        return ProjectVersionTypes.RUST_CARGO
+    elif os.path.isfile("go.mod"):
+        return ProjectVersionTypes.GO_MOD
+    elif any(f.endswith('.gemspec') for f in os.listdir('.') if os.path.isfile(f)):
+        return ProjectVersionTypes.RUBY_GEMSPEC
+    elif any(f.endswith('.csproj') for f in os.listdir('.') if os.path.isfile(f)):
+        return ProjectVersionTypes.DOTNET_CSPROJ
+    elif any(f.endswith('.fsproj') for f in os.listdir('.') if os.path.isfile(f)):
+        return ProjectVersionTypes.DOTNET_FSPROJ
     else:
         return ProjectVersionTypes.VERSION
 
@@ -43,6 +66,20 @@ def find_version_file():
             if os.path.isfile(version_file):
                 return version_file
 
+    return None
+
+
+def find_gemspec_file():
+    for f in os.listdir('.'):
+        if os.path.isfile(f) and f.endswith('.gemspec'):
+            return f
+    return None
+
+
+def find_project_file(extension):
+    for f in os.listdir('.'):
+        if os.path.isfile(f) and f.endswith(extension):
+            return f
     return None
 
 
@@ -63,6 +100,44 @@ def get_current_version(project_type, version_file=None):
     elif project_type == ProjectVersionTypes.VERSION:
         with open(version_file) as f:
             return f.read().removeprefix("v").strip()
+    elif project_type == ProjectVersionTypes.NODE_PACKAGE_JSON:
+        with open("package.json", "r") as f:
+            data = json.load(f)
+            return data.get("version", "0.1.0")
+    elif project_type == ProjectVersionTypes.RUST_CARGO:
+        with open("Cargo.toml", "r") as f:
+            data = toml.load(f)
+            return data["package"]["version"]
+    elif project_type == ProjectVersionTypes.GO_MOD:
+        with open("go.mod", "r") as f:
+            content = f.read()
+            # Look for version in module path (e.g., module example.com/foo/v2)
+            match = re.search(r'module\s+\S+/v(\d+)', content)
+            if match:
+                major_version = match.group(1)
+                return f"{major_version}.0.0"  # Default for Go modules
+            raise Exception("No version found")
+    elif project_type == ProjectVersionTypes.RUBY_GEMSPEC:
+        gemspec_file = find_gemspec_file()
+        if gemspec_file:
+            with open(gemspec_file, "r") as f:
+                content = f.read()
+                # Look for version assignment in gemspec
+                regex_str = r'version\s*=\s*["\']([^"\']*)["\']'
+                match = re.search(regex_str, content)
+                if match:
+                    return match.group(1)
+        raise Exception("No version found")
+    elif project_type in [ProjectVersionTypes.DOTNET_CSPROJ, ProjectVersionTypes.DOTNET_FSPROJ]:
+        extension = '.csproj' if project_type == ProjectVersionTypes.DOTNET_CSPROJ else '.fsproj'
+        project_file = find_project_file(extension)
+        if project_file:
+            tree = ET.parse(project_file)
+            root = tree.getroot()
+            version_elem = root.find('.//Version')
+            if version_elem is not None and version_elem.text:
+                return version_elem.text
+        raise Exception("No version found")
 
 
 def run_command(cmd):
