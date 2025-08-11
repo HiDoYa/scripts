@@ -1,0 +1,8 @@
+[package]
+name = "test"
+version = "0.1.1"
+edition = "2024"
+authors = []
+
+[dependencies]
+rand = "0.8.5"
