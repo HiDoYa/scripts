@@ -5,6 +5,7 @@
     "editor.tabSize": 4,
     "search.exclude": {
         "**/.git": true,
+        "**/.jj": true,
         "**/.github": true,
         "**/.nuxt": true,
         "**/.output": true,
@@ -89,5 +90,5 @@
         }
     },
     "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
-    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "workbench.secondarySideBar.defaultVisibility": "hidden"
 }
