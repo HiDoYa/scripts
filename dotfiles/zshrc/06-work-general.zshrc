@@ -1,0 +1,1 @@
+export OBSIDIAN_DIR=$HOME/Documents/Obsidian/Work

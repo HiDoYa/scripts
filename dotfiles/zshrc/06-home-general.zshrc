@@ -1,0 +1,1 @@
+export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Notes

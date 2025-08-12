@@ -97,7 +97,6 @@ alias ssh='TERM=xterm-256color ssh'
 # Directories
 export CODE_DIR=$HOME/Code
 export SCRIPTS_DIR=$CODE_DIR/scripts
-export OBSIDIAN_DIR=$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Notes
 
 # Alt arrow/h/l to move between arrows
 bindkey "^[[1;3C" forward-word
