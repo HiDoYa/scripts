@@ -5,28 +5,28 @@ alias g="git"
 alias k="kubectl"
 # HIDE: Smarter mkdir
 alias mkdir="mkdir -p"
-# HIDE: use builtin docker compose
-alias docker-compose="docker compose"
 # INFO: bat is modern cat
 alias cat="bat"
-# INFO: duf is modern df
-alias df="duf"
-# INFO: delta is modern diff
-alias diff="delta"
-# INFO: doggo is modern dig
-alias dig="doggo"
-# INFO: fd is modern find
-alias find="fd"
-# INFO: ripgrep is modern grep
-alias grep="rg"
 # INFO: eza is modern ls
 alias ls="eza"
+
+# These are intentionally not replaced due to different behavior and flags
+# causing compatibility issues and breaking scripts
+
+# INFO: duf is modern df
+alias duf="duf"
+# INFO: delta is modern diff
+alias delta="delta"
+# INFO: doggo is modern dig
+alias doggo="doggo"
+# INFO: fd is modern find
+alias fd="fd"
+# INFO: ripgrep is modern grep
+alias rg="rg"
 # INFO: procs is modern ps
-alias ps="procs"
+alias procs="procs"
 # INFO: pgcli is modern psql
-alias psql="pgcli"
-# INFO: htop is modern top
-alias top="htop"
+alias pgcli="pgcli"
 
 # Tools to remember
 # I have a hard time remembering some tools I download so 
@@ -37,6 +37,8 @@ alias top="htop"
 alias drawio='/Applications/draw.io.app/Contents/MacOS/draw.io'
 # INFO: Execute a program periodically
 alias watch="watch "
+# INFO: htop is modern top
+alias htop="htop"
 # INFO: List contents of directories in a tree-like format
 alias tree="tree"
 # INFO: Generate pronounceable passwords
