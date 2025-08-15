@@ -32,8 +32,8 @@
     "extensions.autoUpdate": "onlyEnabledExtensions",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "gitlens.hovers.currentLine.over": "line",
-    "gitlens.codeLens.enabled": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
     // prevent VSCode from modifying the terminal colors
     "terminal.integrated.minimumContrastRatio": 1,
     "terminal.integrated.scrollback": 10000,
@@ -47,6 +47,7 @@
     "[javascript]": {
         "editor.tabSize": 2
     },
+    // JSON
     "[json]": {
         "editor.tabSize": 2,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -72,7 +73,7 @@
     "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
     "workbench.colorTheme": "Catppuccin Frappé",
     "catppuccin.accentColor": "pink",
-    // make the window's titlebar use the workbench colors
+    // make the window's title bar use the workbench colors
     "window.titleBarStyle": "custom",
     "vim.shell": "/bin/zsh",
     "git.detectSubmodulesLimit": 30,
@@ -89,6 +90,8 @@
             "scope": "user"
         }
     },
-    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
-    "workbench.secondarySideBar.defaultVisibility": "hidden"
+    // hide llm stuff
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "git.enabled": false,
+    "terminal.integrated.defaultProfile.osx": "tmux"
 }
