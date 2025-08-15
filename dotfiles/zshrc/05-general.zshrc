@@ -67,7 +67,7 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Oh My Zsh
-export ZSH_THEME="steeef"
+export ZSH_THEME="steeef-jj"
 export ZSH_DISABLE_COMPFIX=true
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-${ZSH_VERSION}
