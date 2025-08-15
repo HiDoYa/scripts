@@ -93,5 +93,6 @@
     // hide llm stuff
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "git.enabled": false,
-    "terminal.integrated.defaultProfile.osx": "tmux"
+    "terminal.integrated.defaultProfile.osx": "tmux",
+    "security.workspace.trust.untrustedFiles": "open"
 }
