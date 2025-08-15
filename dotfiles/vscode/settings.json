@@ -34,6 +34,8 @@
     "explorer.confirmDragAndDrop": false,
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
+    // Only use project name in window title
+    "window.title":"${rootName}",
     // prevent VSCode from modifying the terminal colors
     "terminal.integrated.minimumContrastRatio": 1,
     "terminal.integrated.scrollback": 10000,
