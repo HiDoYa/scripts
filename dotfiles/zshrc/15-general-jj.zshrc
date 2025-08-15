@@ -12,8 +12,10 @@ function jj-init() {
 	jj bookmark track $trunk@origin
 }
 
-# JJ: Create new bookmark
+# JJ: Sync remote, creates new change and creates bookmark
 function jj-mark() {
+	jj git fetch
+	jj new master
 	jj bookmark create $1
 }
 
