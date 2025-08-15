@@ -15,5 +15,10 @@
     {
         "key": "cmd+k alt+cmd+left",
         "command": "-workbench.action.previousEditorInGroup"
+    },
+    {
+        "key": "cmd+escape",
+        "command": "-claude-code.runClaude.keyboard",
+        "when": "claude-code.hasClaudeInPath"
     }
 ]

@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 # This script is left intentionally minimal to ensure it can be ran on any new setup with no other dependencies
 
-RED = '\033[31m'
-GREEN = '\033[32m'
-RESET = '\033[0m'
-BLUE = '\033[34m'
+RED = "\033[31m"
+GREEN = "\033[32m"
+RESET = "\033[0m"
+BLUE = "\033[34m"
 
 import os
 import argparse
@@ -36,6 +36,7 @@ def write_to_file(contents, dest_file):
     with open(dest_file, "w") as f:
         f.write(contents)
 
+
 def write_to_file_with_prompt(contents, dest_file):
     answer = ""
     while answer not in ["y", "n"]:
@@ -46,7 +47,8 @@ def write_to_file_with_prompt(contents, dest_file):
         print(f"{GREEN}Contents written to file: {dest_file}{RESET}")
     else:
         print(f"{RED}Skipping file write...{RESET}")
-    
+
+
 def copy_to_file_with_prompt(src_fname, dst_fname):
     print()
     answer = ""
@@ -70,25 +72,23 @@ def print_diff(existing_file, new_file):
     with open(existing_file) as existing_fd:
         with open(new_file) as new_fd:
             diff = difflib.unified_diff(
-                existing_fd.readlines(),
-                new_fd.readlines(),
-                fromfile='existing_file',
-                tofile='new_file'
+                existing_fd.readlines(), new_fd.readlines(), fromfile="existing_file", tofile="new_file"
             )
 
             diff = list(diff)
             for line in diff:
-                if line.startswith('+'):
+                if line.startswith("+"):
                     print(f"{GREEN}{line}{RESET}", end="")
-                elif line.startswith('-'):
+                elif line.startswith("-"):
                     print(f"{RED}{line}{RESET}", end="")
-                elif line.startswith('?'):
+                elif line.startswith("?"):
                     print(f"{BLUE}{line}{RESET}", end="")
                 else:
                     print(line, end="")
-                    
+
             changed = len(diff) != 0
             return changed
+
 
 def dotfile_workflow(config_src_dir, temp_file, config_file):
     contents = get_contents(config_src_dir, args.mode)
@@ -98,6 +98,7 @@ def dotfile_workflow(config_src_dir, temp_file, config_file):
         write_to_file_with_prompt(contents, config_file)
     else:
         print(f"{RED}No changed detected for {config_src_dir}{RESET}")
+
 
 def direct_copy_workflow(config_src_dir, config_dir):
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -130,6 +131,7 @@ os.makedirs(temp_dir, exist_ok=True)
 
 dotfile_workflow("zshrc", f"{temp_dir}/.zshrc", f"{HOME}/.zshrc")
 dotfile_workflow("gitconfig", f"{temp_dir}/.gitconfig", f"{HOME}/.gitconfig")
+dotfile_workflow("jj", f"{temp_dir}/jj.config.toml", f"{HOME}/.config/jj/config.toml")
 
 direct_copy_workflow("vimrc", f"{HOME}")
 direct_copy_workflow("tmux", f"{HOME}")

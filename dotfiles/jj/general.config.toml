@@ -1,0 +1,6 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[ui]
+paginate = "never"
+diff-editor = ":builtin"
+default-command = "log"
