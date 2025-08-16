@@ -85,7 +85,7 @@ def get_new_version(current_version):
 def set_version(project_type, new_version, version_file=None):
     if project_type == ProjectVersionTypes.VERSION:
         prefix = get_version_file_prefix(version_file)
-        full_version = f"{prefix}{new_version}"
+        full_version = f"{prefix}{new_version}\n"
         with open(version_file, "w") as f:
             f.write(full_version)
         print(f"file version set")
