@@ -21,7 +21,7 @@ function jj-mark() {
 
 # JJ: Get closest bookmark to self (bookmark proximity)
 function jj-prox() {
-	jj log -r '::@ & bookmarks()' -T 'bookmarks.map(|c| c.name() ).join("\n") ++ "\n"' --no-graph | uniq | remove-empty-lines | head -n 1
+	jj log -r '::@ & bookmarks()' -T 'bookmarks.map(|c| c.name() ).join("\n") ++ "\n"' --no-graph -n 1 | uniq | remove-empty-lines | head -n 1
 }
 
 # JJ: Get trunk bookmark (master|main)

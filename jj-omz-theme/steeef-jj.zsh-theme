@@ -32,7 +32,8 @@ fi
 # jj status function
 function jj_status_info {
     if command -v jj >/dev/null 2>&1 && jj root >/dev/null 2>&1; then
-        local jbookmark=$(jj log -r '::@ & bookmarks()' -T 'bookmarks.map(|c| c.name() ).join("\n") ++ "\n"' --no-graph -n 1)
+        # Use head since sometimes there can be duplicates
+        local jbookmark=$(jj log -r '::@ & bookmarks()' -T 'bookmarks.map(|c| c.name() ).join("\n") ++ "\n"' --no-graph -n 1 | head -n 1)
         local jstatus=""
         local jconflicts=""
 
