@@ -12,13 +12,6 @@ function jj-init() {
 	jj bookmark track $trunk@origin
 }
 
-# JJ: Sync remote, creates new change and creates bookmark
-function jj-mark() {
-	jj git fetch
-	jj new master
-	jj bookmark create $1
-}
-
 # JJ: Get closest bookmark to self (bookmark proximity)
 function jj-prox() {
 	jj log -r '::@ & bookmarks()' -T 'bookmarks.map(|c| c.name() ).join("\n") ++ "\n"' --no-graph -n 1 | uniq | remove-empty-lines | head -n 1
@@ -121,4 +114,11 @@ function jj-tugpush() {
 # JJ: Used to clean hanging "changes". Only used during git inits. Use with extreme caution.
 function jj-clean() {
 	jj abandon -r 'root():: ~ ::@ ~ immutable()'
+}
+
+# HIDE: Deprecated JJ: Sync remote, creates new change and creates bookmark
+function jj-mark() {
+	jj git fetch
+	jj new master
+	jj bookmark create $1
 }
