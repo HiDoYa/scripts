@@ -44,6 +44,11 @@ def dwrite(fname, output)
   end
 end
 
+fname = "vscode-extensions.txt"
+output = `code --list-extensions`
+dwrite(fname, output)
+
+puts "\n-----\n\n"
 
 fname = "formula.txt"
 output = `brew leaves`
