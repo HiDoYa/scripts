@@ -42,7 +42,7 @@ export EDITOR=vim
 # Python settings
 export PIP_REQUIRE_VIRTUALENV=true
 # Pipx binaries
-export PATH=/Users/hiroya.gojo/.local/bin:$PATH
+export PATH=/Users/$USER/.local/bin:$PATH
 
 # Go settings
 export GOPATH=$HOME/go
