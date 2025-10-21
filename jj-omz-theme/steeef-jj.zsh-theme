@@ -30,20 +30,22 @@ else
 fi
 
 # jj status function
+# added a bunch of /dev/null because of suspected escape sequences messing my terminal up
 function jj_status_info {
     if command -v jj >/dev/null 2>&1 && jj root >/dev/null 2>&1; then
         # Use head since sometimes there can be duplicates
-        local jbookmark=$(jj log -r '::@ & bookmarks()' -T 'bookmarks.map(|c| c.name() ).join("\n") ++ "\n"' --no-graph -n 1 | head -n 1)
+        # Redirect stderr and use </dev/null to prevent any terminal interaction
+        local jbookmark=$(jj log -r '::@ & bookmarks()' -T 'bookmarks.map(|c| c.name() ).join("\n") ++ "\n"' --no-graph -n 1 2>/dev/null </dev/null | head -n 1)
         local jstatus=""
         local jconflicts=""
 
         # Check for conflicts (in current change)
-        if jj log -r 'conflicts() & @' --no-graph 2>/dev/null | grep -q .; then
+        if jj log -r 'conflicts() & @' --no-graph 2>/dev/null </dev/null | grep -q . 2>/dev/null; then
             jconflicts="%{$hotpink%}⚡"
         fi
 
         # Check for changes (in current change)
-        if jj diff --summary 2>/dev/null | grep -q .; then
+        if jj diff --summary 2>/dev/null </dev/null | grep -q . 2>/dev/null; then
             jstatus="%{$orange%}●"
         fi
 
