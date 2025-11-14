@@ -100,5 +100,8 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "chat.agent.enabled": false,
+    "chat.disableAIFeatures": true,
+    "workbench.editor.showTabs": "single"
 }
