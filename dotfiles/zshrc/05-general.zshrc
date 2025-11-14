@@ -51,11 +51,8 @@ export PATH=$GOPATH/bin:$PATH
 # Initialize completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
-# Asdf shims
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-# Asdf auto-complete
-# Append completions to fpath (search path for auto-loaded functions)
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# Mise shims
+eval "$(mise activate zsh)"
 
 # Jujutsu auto completions
 source <(jj util completion zsh)
