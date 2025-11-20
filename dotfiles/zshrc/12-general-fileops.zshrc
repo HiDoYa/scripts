@@ -112,3 +112,14 @@ alias qvenv="python3 -m venv .venv && source .venv/bin/activate"
 
 # Sync notes to home laptop
 alias notes-syncer="$SCRIPTS_DIR/notes-syncer/notes-syncer.sh"
+
+# Print current time details
+function rn() {
+	date -u | sed 's/UTC/\x1b[31m&\x1b[0m/'
+	date    | sed 's/PST/\x1b[31m&\x1b[0m/'
+	echo
+	cal -A 1
+}
+
+# Short date
+alias sdate="echo -n \"$(date '+%Y-%m-%d')\""
