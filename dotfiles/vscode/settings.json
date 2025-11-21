@@ -103,5 +103,7 @@
     },
     "chat.agent.enabled": false,
     "chat.disableAIFeatures": true,
-    "workbench.editor.showTabs": "single"
+    "workbench.editor.showTabs": "single",
+    "python.analysis.typeCheckingMode": "standard",
+    "redhat.telemetry.enabled": false
 }
