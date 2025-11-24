@@ -6,10 +6,11 @@ GREEN = "\033[32m"
 RESET = "\033[0m"
 BLUE = "\033[34m"
 
-import os
 import argparse
-import shutil
 import difflib
+import glob
+import os
+import shutil
 
 HOME = os.getenv("HOME")
 
@@ -117,6 +118,35 @@ def direct_copy_workflow(config_src_dir, config_dir):
             print(f"{RED}No changed detected for {config_src_dir} {file}{RESET}")
 
 
+def direct_copy_workflow_glob(config_src_dir, config_dir_pattern):
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    abs_config_src_dir = f"{script_dir}/{config_src_dir}"
+
+    # Expand glob pattern to find all matching directories
+    matching_dirs = glob.glob(os.path.expanduser(config_dir_pattern))
+
+    if not matching_dirs:
+        print(f"{RED}No directories found matching pattern: {config_dir_pattern}{RESET}")
+        return
+
+    print(f"{BLUE}Found {len(matching_dirs)} matching directories{RESET}")
+
+    files = os.listdir(abs_config_src_dir)
+    files.sort()
+
+    for config_dir in matching_dirs:
+        print(f"\n{BLUE}Processing directory: {config_dir}{RESET}")
+        for file in files:
+            src_fname = f"{abs_config_src_dir}/{file}"
+            dst_fname = f"{config_dir}/{file}"
+
+            changed = print_diff(dst_fname, src_fname)
+            if changed:
+                copy_to_file_with_prompt(src_fname, dst_fname)
+            else:
+                print(f"{RED}No changed detected for {config_src_dir} {file}{RESET}")
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument("mode", help="Must be work or home")
 args = parser.parse_args()
@@ -138,4 +168,4 @@ direct_copy_workflow("tmux", f"{HOME}")
 direct_copy_workflow("alacritty", f"{HOME}/.config/alacritty")
 direct_copy_workflow("atuin", f"{HOME}/.config/atuin")
 direct_copy_workflow("vscode", f"{HOME}/Library/Application Support/Code/User")
-# direct_copy_workflow("firefox", f"{HOME}/Library/Application Support/Firefox/Profiles/*/chrome")
+direct_copy_workflow_glob("firefox", f"{HOME}/Library/Application Support/Firefox/Profiles/*/chrome")
