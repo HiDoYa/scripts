@@ -2,7 +2,11 @@
 
 # Watch for pipeline finish/stall (e.g. gl-watch -b <branch_name> -R <repo_name>)
 function gl-watch() {
-	local branch_name=$(jj-prox)
+	local branch_name=""
+	if [[ -d .jj ]]; then
+		# jj-prox part is needed for jujutsu: glab ci doesn't work by itself
+		branch_name=$(jj-prox)
+	fi
 	local repo_flag=""
 
 	# Parse optional flags
@@ -13,7 +17,8 @@ function gl-watch() {
 				shift 2
 				;;
 			-R|--repo)
-				repo_flag="-R $2"
+				# Use var since it can be company repo
+				repo_flag="-R $GITLAB_BASE$2"
 				shift 2
 				;;
 			*)
@@ -24,10 +29,16 @@ function gl-watch() {
 		esac
 	done
 
+	if [[ -z "$branch_name" ]]; then
+		echo "Error: No .jj directory found and -b flag not specified"
+		echo "Usage: gl-watch [-b|--branch BRANCH_NAME] [-R|--repo REPO]"
+		return 1
+	fi
+
 	TMP_FNAME="/tmp/glpipeline.json"
 	while true; do
 		# Control characters mess stuff up when saving into vars and Im too lazy to troubleshoot it
-		# jj-prox part is needed for jujutsu specifics: glab ci doesn't work by itself
+		echo "glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}"
 		glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}
 
 		pipeline_status=$(cat ${TMP_FNAME} | jq -r '.detailed_status.text')
@@ -53,7 +64,11 @@ function gl-watch() {
 
 # View logs for pipeline failures (e.g. gl-failed -b <branch_name> -R <repo_name>)
 function gl-failed() {
-	local branch_name=$(jj-prox)
+	local branch_name=""
+	if [[ -d .jj ]]; then
+		# jj-prox part is needed for jujutsu: glab ci doesn't work by itself
+		branch_name=$(jj-prox)
+	fi
 	local repo_flag=""
 
 	# Parse optional flags
@@ -64,7 +79,8 @@ function gl-failed() {
 				shift 2
 				;;
 			-R|--repo)
-				repo_flag="-R $2"
+				# Use var since it can be company repo
+				repo_flag="-R $GITLAB_BASE$2"
 				shift 2
 				;;
 			*)
@@ -75,10 +91,16 @@ function gl-failed() {
 		esac
 	done
 
+	if [[ -z "$branch_name" ]]; then
+		echo "Error: No .jj directory found and -b flag not specified"
+		echo "Usage: gl-failed [-b|--branch BRANCH_NAME] [-R|--repo REPO]"
+		return 1
+	fi
+
 	TMP_FNAME="/tmp/glpipeline_failure.json"
 	HEADER_WIDTH=56
 
-	# jj-prox part is needed for jujutsu specifics: glab ci doesn't work by itself
+	echo "glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}"
 	glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}
 	project_id=$(cat ${TMP_FNAME} | jq -r '.project_id')
 	pipeline_failed_jobs=$(cat ${TMP_FNAME} | jq -r '[.jobs.[] | {name, status} | select(.status == "failed")] | map(.name) | join(", ")')

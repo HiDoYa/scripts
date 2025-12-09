@@ -50,6 +50,7 @@ export PATH=$GOPATH/bin:$PATH
 
 # ZSH completions
 # Initialize completions with ZSH's compinit
+autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 zmodload zsh/complist
 # Completers (prioritize history)
@@ -83,14 +84,6 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 # Mise shims
 eval "$(mise activate zsh)"
 
-# Auto completions
-source <(jj util completion zsh)
-source <(tailscale completion zsh)
-source <(docker completion zsh)
-source <(kubectl completion zsh)
-source <(helm completion zsh)
-complete -C '/opt/homebrew/bin/aws_completer' aws
-
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
@@ -107,6 +100,21 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-${ZSH_VERSION}
 plugins=(colored-man-pages)
 source $ZSH/oh-my-zsh.sh
+
+# Auto completions
+source <(jj util completion zsh)
+source <(tailscale completion zsh)
+source <(docker completion zsh)
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+complete -C '/usr/local/bin/aws_completer' aws
+
+# zsh-vi-mode: Define keybindings after vi-mode loads
+zvm_after_init() {
+  # Atuin for command history
+  eval "$(atuin init zsh --disable-up-arrow)"
+  bindkey '^r' atuin-search
+}
 source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -121,10 +129,6 @@ eval "$(fzf --zsh)"
 export HISTFILE=~/.zsh_history
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
-
-# Atuin for command history
-eval "$(atuin init zsh --disable-up-arrow)"
-bindkey '^r' atuin-search
 
 # HIDE: Alacritty not recognized by most devices
 alias ssh='TERM=xterm-256color ssh'
