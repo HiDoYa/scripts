@@ -83,8 +83,13 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 # Mise shims
 eval "$(mise activate zsh)"
 
-# Jujutsu auto completions
+# Auto completions
 source <(jj util completion zsh)
+source <(tailscale completion zsh)
+source <(docker completion zsh)
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+complete -C '/opt/homebrew/bin/aws_completer' aws
 
 # Change location of zcompdump file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
