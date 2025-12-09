@@ -1,12 +1,34 @@
 # TITLE: Gitlab
 
-# Watch for pipeline finish/stall
+# Watch for pipeline finish/stall (e.g. gl-watch -b <branch_name> -R <repo_name>)
 function gl-watch() {
+	local branch_name=$(jj-prox)
+	local repo_flag=""
+
+	# Parse optional flags
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-b|--branch)
+				branch_name="$2"
+				shift 2
+				;;
+			-R|--repo)
+				repo_flag="-R $2"
+				shift 2
+				;;
+			*)
+				echo "Unknown option: $1"
+				echo "Usage: gl-watch [-b|--branch BRANCH_NAME] [-R|--repo REPO]"
+				return 1
+				;;
+		esac
+	done
+
 	TMP_FNAME="/tmp/glpipeline.json"
 	while true; do
 		# Control characters mess stuff up when saving into vars and Im too lazy to troubleshoot it
 		# jj-prox part is needed for jujutsu specifics: glab ci doesn't work by itself
-		glab ci get -b $(jj-prox) --output json > ${TMP_FNAME}
+		glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}
 
 		pipeline_status=$(cat ${TMP_FNAME} | jq -r '.detailed_status.text')
 		if [[ "$pipeline_status" != "Running" ]]; then
@@ -29,13 +51,35 @@ function gl-watch() {
 	done
 }
 
-# View logs for pipeline failures
+# View logs for pipeline failures (e.g. gl-failed -b <branch_name> -R <repo_name>)
 function gl-failed() {
+	local branch_name=$(jj-prox)
+	local repo_flag=""
+
+	# Parse optional flags
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-b|--branch)
+				branch_name="$2"
+				shift 2
+				;;
+			-R|--repo)
+				repo_flag="-R $2"
+				shift 2
+				;;
+			*)
+				echo "Unknown option: $1"
+				echo "Usage: gl-failed [-b|--branch BRANCH_NAME] [-R|--repo REPO]"
+				return 1
+				;;
+		esac
+	done
+
 	TMP_FNAME="/tmp/glpipeline_failure.json"
 	HEADER_WIDTH=56
 
 	# jj-prox part is needed for jujutsu specifics: glab ci doesn't work by itself
-	glab ci get -b $(jj-prox) --output json > ${TMP_FNAME}
+	glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}
 	project_id=$(cat ${TMP_FNAME} | jq -r '.project_id')
 	pipeline_failed_jobs=$(cat ${TMP_FNAME} | jq -r '[.jobs.[] | {name, status} | select(.status == "failed")] | map(.name) | join(", ")')
 	if [[ -z "${pipeline_failed_jobs}" ]]; then
