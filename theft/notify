@@ -31,3 +31,7 @@ title = ARGV[0] || "Notification"
 description = ARGV[1] || DateTime.now.iso8601
 
 notify(title, description)
+
+# Don't check output and exit immediately
+# since otherwise this takes a couple seconds to exit
+spawn("afplay", "/System/Library/Sounds/Funk.aiff") # Play sound

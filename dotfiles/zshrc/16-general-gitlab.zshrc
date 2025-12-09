@@ -5,7 +5,8 @@ function gl-watch() {
 	TMP_FNAME="/tmp/glpipeline.json"
 	while true; do
 		# Control characters mess stuff up when saving into vars and Im too lazy to troubleshoot it
-		glab ci get --output json > ${TMP_FNAME}
+		# jj-prox part is needed for jujutsu specifics: glab ci doesn't work by itself
+		glab ci get -b $(jj-prox) --output json > ${TMP_FNAME}
 
 		pipeline_status=$(cat ${TMP_FNAME} | jq -r '.detailed_status.text')
 		if [[ "$pipeline_status" != "Running" ]]; then
@@ -18,9 +19,7 @@ function gl-watch() {
 			echo "Status:"
 			echo $pipeline_job_results
 
-			# Play twice because it sounds nicer
-			afplay /System/Library/Sounds/Funk.aiff
-			afplay /System/Library/Sounds/Funk.aiff
+			notify "Pipeline completed"
 			break
 		fi
 
@@ -35,7 +34,8 @@ function gl-failed() {
 	TMP_FNAME="/tmp/glpipeline_failure.json"
 	HEADER_WIDTH=56
 
-	glab ci get --output json > ${TMP_FNAME}
+	# jj-prox part is needed for jujutsu specifics: glab ci doesn't work by itself
+	glab ci get -b $(jj-prox) --output json > ${TMP_FNAME}
 	project_id=$(cat ${TMP_FNAME} | jq -r '.project_id')
 	pipeline_failed_jobs=$(cat ${TMP_FNAME} | jq -r '[.jobs.[] | {name, status} | select(.status == "failed")] | map(.name) | join(", ")')
 	if [[ -z "${pipeline_failed_jobs}" ]]; then
