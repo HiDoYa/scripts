@@ -48,8 +48,37 @@ export PATH=/Users/$USER/.local/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 
+# ZSH completions
 # Initialize completions with ZSH's compinit
 autoload -Uz compinit && compinit
+zmodload zsh/complist
+# Completers (prioritize history)
+zstyle ':completion:*' completer _extensions _complete _approximate
+# Use cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zcompcache"
+# Group matches
+zstyle ':completion:*' group-name ''
+# Group ordering
+# zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
+# Select from a menu
+zstyle ':completion:*' menu select
+# Show menu on second Tab
+setopt auto_menu
+# Complete from cursor position
+setopt complete_in_word
+# Move cursor to end after completion
+setopt always_to_end
+# Show all file metadata (DOES NOT WORK WITH list-colors)
+# zstyle ':completion:*' file-list all
+# Squeeze /path//something/ to /path/something/
+zstyle ':completion:*' squeeze-slashes true
+# Color styling
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
+zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
 # Mise shims
 eval "$(mise activate zsh)"
@@ -63,6 +92,9 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 # Required to use vault lookup in ansible
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
+# Autosuggestion config
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 # Oh My Zsh
 export ZSH_THEME="steeef-jj"
 export ZSH_DISABLE_COMPFIX=true
@@ -70,8 +102,9 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-${ZSH_VERSION}
 plugins=(colored-man-pages)
 source $ZSH/oh-my-zsh.sh
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Disable auto correct because it can be annoying
 unsetopt correct_all
@@ -95,7 +128,7 @@ alias ssh='TERM=xterm-256color ssh'
 export CODE_DIR=$HOME/Code
 export SCRIPTS_DIR=$CODE_DIR/scripts
 
-# Alt arrow/h/l to move between arrows
+# Cmd arrow/h/l to move between arrows
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey "^[l" forward-word
