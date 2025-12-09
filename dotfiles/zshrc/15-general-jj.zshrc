@@ -138,6 +138,12 @@ function jj-clean() {
 	jj abandon -r 'root():: ~ ::@ ~ immutable()'
 }
 
+# JJ: Get latest trunk and jump to it
+function jj-fetch() {
+	jj git fetch
+	jj new $(jj-trunk)
+}
+
 # HIDE: Deprecated JJ: Sync remote, creates new change and creates bookmark
 function jj-mark() {
 	jj git fetch
