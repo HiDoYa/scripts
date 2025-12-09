@@ -60,8 +60,24 @@ function jj-openmr() {
 	open "$mr_already_exists"
 }
 
-# JJ: Create new MR based on bookmark
+# JJ: Create new MR based on bookmark (optional flag: --draft)
 function jj-newmr() {
+	local draft_flag=false
+
+	# Parse arguments
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			--draft)
+				draft_flag=true
+				shift
+				;;
+			*)
+				echo "Unknown option: $1"
+				return 1
+				;;
+		esac
+	done
+
 	closest_bookmark=$(jj-prox)
 	closest_bookmark_is_trunk=$(echo $closest_bookmark | grep -E "^(master|main)$")
 	if [[ -n "${closest_bookmark_is_trunk}" ]]; then
@@ -80,12 +96,18 @@ function jj-newmr() {
 		return
 	fi
 
+	# Prepare title with optional Draft: prefix
+	local title="${closest_bookmark}"
+	if [[ "$draft_flag" == true ]]; then
+		title="Draft: ${closest_bookmark}"
+	fi
+
 	# Many glab-cli commands no longer work with jj (esp ones pertaining to MRs)
 	# but project based ones still work fine
 	created_mr=$(curl --silent -X POST \
 		-H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
 		-H "Content-Type: application/json" \
-		-d "{\"title\": \"${closest_bookmark}\", \"source_branch\": \"${closest_bookmark}\", \"target_branch\": \"$(jj-trunk)\"}" \
+		-d "{\"title\": \"${title}\", \"source_branch\": \"${closest_bookmark}\", \"target_branch\": \"$(jj-trunk)\", \"squash\": true, \"remove_source_branch\": true}" \
 		"$GITLAB_BASE_URL/api/v4/projects/${project_id}/merge_requests")
 
 	web_url=$(echo $created_mr | jq -r '.web_url')
