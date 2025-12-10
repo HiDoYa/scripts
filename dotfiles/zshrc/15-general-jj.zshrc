@@ -117,7 +117,7 @@ function jj-newmr() {
 
 # JJ: Push change to bookmark at current change
 function jj-push() {
-	jj git push --allow-new --bookmark $(jj-prox)
+	jj git push --bookmark $(jj-prox)
 }
 
 # JJ: Move bookmark and push
