@@ -1,3 +1,5 @@
+amber-lang/amber
+ankitpokhrel/jira-cli
 felixkratz/formulae
 go-swagger/go-swagger
 hashicorp/tap

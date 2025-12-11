@@ -8,6 +8,7 @@ esbenp.prettier-vscode
 foxundermoon.shell-format
 golang.go
 grafana.vscode-jsonnet
+hediet.vscode-drawio
 jallen7usa.vscode-cue-fmt
 jjk.jjk
 jnbt.vscode-rufo
@@ -22,8 +23,11 @@ ms-python.vscode-pylance
 ms-python.vscode-python-envs
 ms-vscode-remote.remote-containers
 njpwerner.autodocstring
+ph0enixkm.amber-language
+redhat.vscode-xml
 shopify.ruby-lsp
 streetsidesoftware.code-spell-checker
 tamasfe.even-better-toml
 vscodevim.vim
+vue.volar
 wholroyd.jinja
