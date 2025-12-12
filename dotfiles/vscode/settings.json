@@ -1,7 +1,7 @@
 {
     // Editor
     "editor.insertSpaces": true,
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.tabSize": 4,
     "search.exclude": {
         "**/.git": true,
@@ -35,7 +35,7 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     // Only use project name in window title
-    "window.title":"${rootName}",
+    "window.title": "${rootName}",
     // prevent VSCode from modifying the terminal colors
     "terminal.integrated.minimumContrastRatio": 1,
     "terminal.integrated.scrollback": 10000,
@@ -52,7 +52,7 @@
     // JSON
     "[json]": {
         "editor.tabSize": 2,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     // Python
     "workbench.editorAssociations": {
@@ -94,8 +94,6 @@
     },
     // hide llm stuff
     "workbench.secondarySideBar.defaultVisibility": "hidden",
-    "git.enabled": false,
-    "terminal.integrated.defaultProfile.osx": "tmux",
     "security.workspace.trust.untrustedFiles": "open",
     "typescript.updateImportsOnFileMove.enabled": "always",
     "[typescript]": {
@@ -105,5 +103,9 @@
     "chat.disableAIFeatures": true,
     "workbench.editor.showTabs": "single",
     "python.analysis.typeCheckingMode": "standard",
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "docker.extension.enableComposeLanguageServer": false,
+    "terminal.integrated.defaultProfile.osx": "tmux",
+    "git.enabled": false,
+    "rust-analyzer.cargo.features": "all"
 }
