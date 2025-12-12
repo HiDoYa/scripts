@@ -25,7 +25,7 @@ port: {{.Ports}}{{end}}" \
     gsub(/\[[0-9a-f]{12}\]/, "\033[36m&\033[0m")
     # Color Status green if Up, red otherwise
     if ($0 ~ /\[Up/) {gsub(/\[Up[^\]]*\]/, "\033[32m&\033[0m")}
-    else {gsub(/\[[^\]]+\]/, "\033[31m&\033[0m")}
+    else {gsub(/\[Exited[^\]]* [^\]]*\]/, "\033[31m&\033[0m")}
     print; next
   }
   {print}
