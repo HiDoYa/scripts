@@ -14,7 +14,7 @@ alias localpilot="localpilot"
 
 # Docker ps
 function dps() {
-    docker ps --format "---
+    docker ps -a --format "---
 name: {{.Names}} [{{.ID}}] [{{.Status}}]
 imag: {{.Image}}{{if .Ports}}
 port: {{.Ports}}{{end}}" \
