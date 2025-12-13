@@ -9,9 +9,7 @@
 
 # Installation
 # sudo cp vupdate.py /usr/local/bin/vupdate
-
 import os
-import sys
 import subprocess
 import semver
 import json
@@ -117,11 +115,20 @@ def run_command(cmd):
     result = subprocess.run(
         cmd,
         shell=True,
-        check=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
     )
+
+    if result.returncode != 0:
+        print(f"Warning: command exited with non-zero status code")
+        print(f"Command: {cmd}")
+        if result.stdout:
+            print(f"  stdout: {result.stdout}")
+        if result.stderr:
+            print(f"  stderr: {result.stderr}")
+        raise
+
     return result.stdout.strip()
 
 
@@ -132,6 +139,7 @@ def main():
     args = parser.parse_args()
 
     project_type, version_file = find_project_type()
+    print(f"{project_type} detected")
 
     current_version = get_current_version(project_type, version_file)
     print(f"Current version: {current_version}")
@@ -147,6 +155,7 @@ def main():
         changelog_cmd += f' "{args.comment}"'
     run_command(changelog_cmd)
     print("Changelog updated")
+
 
 
 if __name__ == "__main__":
