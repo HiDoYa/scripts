@@ -23,8 +23,9 @@ def detect_and_format_date(date_str)
   raise "Date format not recognized #{date_str}"
 end
 
-if ARGV.length != 1
+if ARGV.length != 1 or ARGV.length != 2
   puts "Usage: changelog-inc 1.0.3"
+  puts "Usage: changelog-inc 1.0.3 \"Some change\""
   exit
 end
 
@@ -35,6 +36,7 @@ end
 
 version = ARGV[0]
 version.delete("v")
+quick_change_comment = ARGV.length == 2 ? ARGV[1].strip : None
 changelog = File.readlines("CHANGELOG.md")
 
 def find_version_prefix(changelog, latest_entry)
@@ -49,12 +51,19 @@ date = latest_entry.split("-", 2).map(&:strip)[1]
 current_date = detect_and_format_date(date)
 prefix = find_version_prefix(changelog, latest_entry)
 
-new_record = [
-  "## [#{prefix}#{version}] - #{current_date}\n",
-  "### Added\n",
-  "### Changed\n",
-  "### Removed\n\n",
-]
+if quick_change_comment != None
+  new_record = [
+    "## [#{prefix}#{version}] - #{current_date}\n",
+    "### Changed\n",
+    "- #{quick_change_comment}"
+  ]
+else
+  new_record = [
+    "## [#{prefix}#{version}] - #{current_date}\n",
+    "### Added\n",
+    "### Changed\n",
+  ]
+end
 
 index = changelog.find_index(latest_entry)
 changelog.insert(index, new_record)

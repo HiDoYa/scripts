@@ -17,4 +17,5 @@ Scripts, files, and other misc files for personal use.
 | Metadata-ext  | Extract music metadata from files               |
 | Notes-syncer  | Sync notes between remote and local Obsidian    |
 | Pointcalc     | Calculate end date for number of points of work |
+| Theft       | Random useful scripts taken from other sources          |
 | Vupdate       | Version management with semver support          |

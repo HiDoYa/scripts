@@ -16,6 +16,7 @@ import subprocess
 import semver
 import json
 import toml
+import argparse
 from enum import Enum, auto
 
 
@@ -27,7 +28,7 @@ class ProjectVersionTypes(Enum):
     CARGO = auto()
 
 
-def find_project_type():
+def find_project_type() -> tuple[ProjectVersionTypes, str]:
     if version_file := find_version_file():
         return ProjectVersionTypes.VERSION, version_file
     if os.path.isfile("uv.lock"):
@@ -38,6 +39,7 @@ def find_project_type():
         return ProjectVersionTypes.NODE, "package.json"
     elif os.path.isfile("Cargo.toml"):
         return ProjectVersionTypes.CARGO, "Cargo.toml"
+    raise
 
 
 def find_version_file():
@@ -72,18 +74,17 @@ def get_current_version(project_type, version_file):
             return toml.load(f)["package"]["version"]
 
 
-def get_new_version(current_version):
-    if len(sys.argv) == 2:
-        new_version = sys.argv[1]
-        new_version.replace("v", "")
+def get_new_version(current_version, version_arg=None):
+    if version_arg:
+        new_version = version_arg.replace("v", "")
     else:
         new_version = str(semver.Version.parse(current_version).bump_patch())
-
     return new_version
 
 
 def set_version(project_type, new_version, version_file=None):
     if project_type == ProjectVersionTypes.VERSION:
+        assert version_file, "Version file must be set"
         prefix = get_version_file_prefix(version_file)
         full_version = f"{prefix}{new_version}\n"
         with open(version_file, "w") as f:
@@ -96,6 +97,7 @@ def set_version(project_type, new_version, version_file=None):
         run_command(f"poetry version {new_version}")
         print(f"poetry version set")
     elif project_type == ProjectVersionTypes.NODE:
+        assert version_file, "Version file must be set"
         with open(version_file, "r") as f:
             file_content = json.load(f)
             file_content["version"] = new_version
@@ -103,6 +105,7 @@ def set_version(project_type, new_version, version_file=None):
             json.dump(file_content, f, indent=4)
         print(f"node version set")
     elif project_type == ProjectVersionTypes.CARGO:
+        assert version_file, "Version file must be set"
         with open(version_file, "r") as f:
             file_content = toml.load(f)
             file_content["package"]["version"] = new_version
@@ -123,18 +126,26 @@ def run_command(cmd):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Update project version")
+    parser.add_argument("--version", "-v", help="New version number (e.g., 1.2.3)")
+    parser.add_argument("--comment", "-c", help="Comment for changelog entry")
+    args = parser.parse_args()
+
     project_type, version_file = find_project_type()
 
     current_version = get_current_version(project_type, version_file)
     print(f"Current version: {current_version}")
 
-    new_version = get_new_version(current_version)
+    new_version = get_new_version(current_version, args.version)
     print(f"New version: {new_version}")
 
     set_version(project_type, new_version, version_file)
 
     # Update changelog
-    run_command(f"changelog-inc {new_version}")
+    changelog_cmd = f"changelog-inc {new_version}"
+    if args.comment:
+        changelog_cmd += f' "{args.comment}"'
+    run_command(changelog_cmd)
     print("Changelog updated")
 
 
