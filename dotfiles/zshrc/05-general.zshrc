@@ -108,6 +108,7 @@ source <(docker completion zsh)
 source <(kubectl completion zsh)
 source <(helm completion zsh)
 eval "$(op completion zsh)"; compdef _op op # 1password
+eval "$(ngrok completion)"
 complete -C '/usr/local/bin/aws_completer' aws
 
 # zsh-vi-mode: Define keybindings after vi-mode loads
