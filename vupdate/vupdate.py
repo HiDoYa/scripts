@@ -41,7 +41,7 @@ def find_project_type() -> tuple[ProjectVersionTypes, str]:
 
 
 def find_version_file():
-    for version_path in ["VERSION", "app/VERSION", "src/VERSION"]:
+    for version_path in ["VERSION", "app/VERSION", "src/VERSION", "temporal_app/VERSION"]:
         if os.path.isfile(version_path):
             return version_path
     return None
@@ -155,7 +155,6 @@ def main():
         changelog_cmd += f' "{args.comment}"'
     run_command(changelog_cmd)
     print("Changelog updated")
-
 
 
 if __name__ == "__main__":
