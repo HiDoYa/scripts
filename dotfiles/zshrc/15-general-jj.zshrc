@@ -117,7 +117,17 @@ function jj-newmr() {
 
 # JJ: Push change to bookmark at current change
 function jj-push() {
-	jj git push --bookmark $(jj-prox)
+	local bm desc
+	bm="$(jj-prox)"
+	desc="$(jj log -r @ --no-graph -T description)"
+
+	# If description is empty or just whitespace
+	if [[ -z "${desc//[[:space:]]/}" ]]; then
+		echo "Setting description to bookmark: $bm"
+		jj desc -m "$bm" || return 1
+	fi
+
+	jj git push --bookmark "$bm"
 }
 
 # JJ: Move bookmark and push
