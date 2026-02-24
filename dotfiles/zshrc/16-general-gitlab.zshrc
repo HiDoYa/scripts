@@ -42,7 +42,7 @@ function gl-watch() {
 		glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}
 
 		pipeline_status=$(cat ${TMP_FNAME} | jq -r '.detailed_status.text')
-		if [[ "$pipeline_status" != "Running" ]]; then
+		if [[ "$pipeline_status" != "Running" && "$pipeline_status" != "Pending" ]]; then
 			pipeline_status_label=$(cat ${TMP_FNAME} | jq -r '.detailed_status.label')
 			echo "Pipeline status: ${pipeline_status} - ${pipeline_status_label}"
 
