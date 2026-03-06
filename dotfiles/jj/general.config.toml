@@ -3,4 +3,5 @@
 [ui]
 paginate = "never"
 diff-editor = ":builtin"
+conflict-marker-style = "snapshot"
 default-command = ["log", "--limit", "5"]
