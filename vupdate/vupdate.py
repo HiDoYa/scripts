@@ -150,11 +150,15 @@ def main():
     set_version(project_type, new_version, version_file)
 
     # Update changelog
-    changelog_cmd = f"changelog-inc {new_version}"
-    if args.comment:
-        changelog_cmd += f' "{args.comment}"'
-    run_command(changelog_cmd)
-    print("Changelog updated")
+    changelog_file_exists = os.path.isfile("CHANGELOG.md")
+    if changelog_file_exists:
+        changelog_cmd = f"changelog-inc {new_version}"
+        if args.comment:
+            changelog_cmd += f' "{args.comment}"'
+        run_command(changelog_cmd)
+        print("Changelog updated")
+    else:
+        print("Changelog file does not exist, skipping changelog-inc")
 
 
 if __name__ == "__main__":
