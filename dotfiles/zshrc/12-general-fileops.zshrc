@@ -123,3 +123,6 @@ function rn() {
 
 # Short date
 alias sdate="echo -n \"$(date '+%Y-%m-%d')\""
+
+# Strip table formatting: remove |###| border lines, leading/trailing | and whitespace
+alias detable="sed -E '/^ *[|][#]+[|]$/d; s/^ *[|] ?//; s/ *[|]$//'"
