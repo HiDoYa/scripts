@@ -107,5 +107,11 @@
     "docker.extension.enableComposeLanguageServer": false,
     "terminal.integrated.defaultProfile.osx": "tmux",
     "git.enabled": false,
-    "rust-analyzer.cargo.features": "all"
+    "rust-analyzer.cargo.features": "all",
+    "update.showReleaseNotes": false,
+    "hediet.vscode-drawio.resizeImages": null,
+    "claudeCode.preferredLocation": "panel",
+    "accessibility.underlineLinks": true,
+    "workbench.browser.openLocalhostLinks": false,
+    "jjk.ignoreWorkingCopy": true
 }
