@@ -107,22 +107,22 @@ source <(tailscale completion zsh)
 source <(docker completion zsh)
 source <(kubectl completion zsh)
 source <(helm completion zsh)
-eval "$(op completion zsh)"; compdef _op op # 1password
-eval "$(ngrok completion)"
+# eval "$(op completion zsh)"; compdef _op op # 1password
+# eval "$(ngrok completion)"
 complete -C '/usr/local/bin/aws_completer' aws
 
-# zsh-vi-mode: Define keybindings after vi-mode loads
-zvm_after_init() {
-  # Atuin for command history
-  eval "$(atuin init zsh --disable-up-arrow)"
-  bindkey '^r' atuin-search
-  precmd_functions+=(_restore_cursor)
-}
+# # zsh-vi-mode: Define keybindings after vi-mode loads
+# zvm_after_init() {
+#   # Atuin for command history
+#   eval "$(atuin init zsh --disable-up-arrow)"
+#   bindkey '^r' atuin-search
+#   precmd_functions+=(_restore_cursor)
+# }
 
-# Restore cursor visibility after TUI apps (e.g. atuin) leave it hidden
-_restore_cursor() { printf '\e[?25h\e[5 q'; }
+# # Restore cursor visibility after TUI apps (e.g. atuin) leave it hidden
+# _restore_cursor() { printf '\e[?25h\e[5 q'; }
 
-source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.zsh
+# source $HOMEBREW_PREFIX/share/zsh-vi-mode/zsh-vi-mode.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
