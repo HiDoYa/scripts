@@ -101,6 +101,17 @@ function newpyvenv() {
 # Get my public ip
 alias mypublicip="curl ident.me"
 
+# Keep the Mac awake indefinitely
+function keep-on() {
+	caffeinate -ud &
+}
+
+# Stop the caffeinate process started by keep-on
+function dont-keep-on() {
+	local pid=$(ps aux | grep '[c]affeinate' | awk '{print $2}')
+	[[ -n $pid ]] && kill $pid
+}
+
 # Get my home local ip(s)
 alias homelocalip="ifconfig | grep 172.18 | awk '{\$1=\$1};1'"
 
