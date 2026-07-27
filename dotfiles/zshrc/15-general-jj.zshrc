@@ -154,6 +154,22 @@ function jj-fetch() {
 	jj new $(jj-trunk)
 }
 
+# JJ: Create a new workspace in a sibling dir (name-wtN) and cd into it
+function jj-wt() {
+	local root base parent n dest
+	root=$(jj root) || return 1
+	base=$(basename "$root")
+	parent=$(dirname "$root")
+
+	n=1
+	while [[ -e "${parent}/${base}-wt${n}" ]]; do
+		((n++))
+	done
+	dest="${parent}/${base}-wt${n}"
+
+	jj workspace add "$dest" && cd "$dest"
+}
+
 # HIDE: Deprecated JJ: Sync remote, creates new change and creates bookmark
 function jj-mark() {
 	jj git fetch

@@ -48,8 +48,8 @@ function g-quick() {
 
 	git add --all
 
-	newcommit ${COMMIT_FLAGS}
-	newpush ${PUSH_FLAGS}
+	g-commit ${COMMIT_FLAGS}
+	g-push ${PUSH_FLAGS}
 }
 
 ## Note: Any git command that changes current branch MUST be an alias, not a function
