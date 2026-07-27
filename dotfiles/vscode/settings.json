@@ -1,117 +1,124 @@
 {
-    // Editor
-    "editor.insertSpaces": true,
+  // Editor
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "search.exclude": {
+    "**/.git": true,
+    "**/.jj": true,
+    "**/.github": true,
+    "**/.nuxt": true,
+    "**/.output": true,
+    "**/.pnpm": true,
+    "**/.vscode": true,
+    "**/.yarn": true,
+    "**/bower_components": true,
+    "**/dist/**": true,
+    "**/logs": true,
+    "**/node_modules": true,
+    "**/out/**": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true,
+    "**/tmp": true,
+    "**/yarn.lock": true
+  },
+  // we try to make semantic highlighting look good
+  "editor.semanticHighlighting.enabled": true,
+  "editor.lineNumbers": "relative",
+  "editor.stickyScroll.enabled": true,
+  "editor.hover.sticky": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.renderWhitespace": "boundary",
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  // Only use project name in window title
+  "window.title": "${rootName}",
+  // prevent VSCode from modifying the terminal colors
+  "terminal.integrated.minimumContrastRatio": 1,
+  "terminal.integrated.scrollback": 10000,
+  // Go
+  "go.toolsManagement.autoUpdate": true,
+  "go.lintTool": "golangci-lint",
+  "gopls": {
+    "ui.semanticTokens": true
+  },
+  // JS
+  "[javascript]": {
+    "editor.tabSize": 2
+  },
+  // JSON
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // Python
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
-    "editor.tabSize": 4,
-    "search.exclude": {
-        "**/.git": true,
-        "**/.jj": true,
-        "**/.github": true,
-        "**/.nuxt": true,
-        "**/.output": true,
-        "**/.pnpm": true,
-        "**/.vscode": true,
-        "**/.yarn": true,
-        "**/bower_components": true,
-        "**/dist/**": true,
-        "**/logs": true,
-        "**/node_modules": true,
-        "**/out/**": true,
-        "**/package-lock.json": true,
-        "**/pnpm-lock.yaml": true,
-        "**/tmp": true,
-        "**/yarn.lock": true
-    },
-    // we try to make semantic highlighting look good
-    "editor.semanticHighlighting.enabled": true,
-    "editor.lineNumbers": "relative",
-    "editor.stickyScroll.enabled": true,
-    "editor.hover.sticky": true,
-    "editor.inlineSuggest.enabled": true,
-    "editor.renderWhitespace": "boundary",
-    "extensions.autoUpdate": "onlyEnabledExtensions",
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false,
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-    // Only use project name in window title
-    "window.title": "${rootName}",
-    // prevent VSCode from modifying the terminal colors
-    "terminal.integrated.minimumContrastRatio": 1,
-    "terminal.integrated.scrollback": 10000,
-    // Go
-    "go.toolsManagement.autoUpdate": true,
-    "go.lintTool": "golangci-lint",
-    "gopls": {
-        "ui.semanticTokens": true
-    },
-    // JS
-    "[javascript]": {
-        "editor.tabSize": 2
-    },
-    // JSON
-    "[json]": {
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    // Python
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
-    },
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnSave": true,
-        "editor.tabSize": 4
-    },
-    "python.REPL.enableREPLSmartSend": false,
-    "black-formatter.args": [
-        "--line-length",
-        "120"
-    ],
-    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
-    "workbench.colorTheme": "Catppuccin Frappé",
-    "catppuccin.accentColor": "pink",
-    // make the window's title bar use the workbench colors
-    "window.titleBarStyle": "custom",
-    "vim.shell": "/bin/zsh",
-    "git.detectSubmodulesLimit": 30,
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.inlayHints.enabled": "offUnlessPressed",
-    "go.survey.prompt": false,
-    "cSpell.customDictionaries": {
-        "custom-dictionary-user": {
-            "name": "custom-dictionary-user",
-            "path": "~/.cspell/custom-dictionary-user.txt",
-            "addWords": true,
-            "scope": "user"
-        }
-    },
-    // hide llm stuff
-    "workbench.secondarySideBar.defaultVisibility": "hidden",
-    "security.workspace.trust.untrustedFiles": "open",
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "chat.agent.enabled": false,
-    "chat.disableAIFeatures": true,
-    "workbench.editor.showTabs": "single",
-    "python.analysis.typeCheckingMode": "standard",
-    "redhat.telemetry.enabled": false,
-    "docker.extension.enableComposeLanguageServer": false,
-    "terminal.integrated.defaultProfile.osx": "tmux",
-    "git.enabled": false,
-    "rust-analyzer.cargo.features": "all",
-    "update.showReleaseNotes": false,
-    "hediet.vscode-drawio.resizeImages": null,
-    "claudeCode.preferredLocation": "panel",
-    "accessibility.underlineLinks": true,
-    "workbench.browser.openLocalhostLinks": false,
-    "jjk.ignoreWorkingCopy": true
+    "editor.tabSize": 4
+  },
+  "python.REPL.enableREPLSmartSend": false,
+  "black-formatter.args": [
+    "--line-length",
+    "120"
+  ],
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "workbench.colorTheme": "Catppuccin Frappé",
+  "catppuccin.accentColor": "pink",
+  // make the window's title bar use the workbench colors
+  "window.titleBarStyle": "custom",
+  "vim.shell": "/bin/zsh",
+  "git.detectSubmodulesLimit": 30,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "go.survey.prompt": false,
+  "cSpell.customDictionaries": {
+    "custom-dictionary-user": {
+      "name": "custom-dictionary-user",
+      "path": "~/.cspell/custom-dictionary-user.txt",
+      "addWords": true,
+      "scope": "user"
+    }
+  },
+  // hide llm stuff
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "security.workspace.trust.untrustedFiles": "open",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "chat.agent.enabled": false,
+  "chat.disableAIFeatures": true,
+  "workbench.editor.showTabs": "single",
+  "python.analysis.typeCheckingMode": "standard",
+  "redhat.telemetry.enabled": false,
+  "docker.extension.enableComposeLanguageServer": false,
+  "terminal.integrated.defaultProfile.osx": "tmux",
+  "git.enabled": false,
+  "rust-analyzer.cargo.features": "all",
+  "update.showReleaseNotes": false,
+  "hediet.vscode-drawio.resizeImages": null,
+  "claudeCode.preferredLocation": "panel",
+  "accessibility.underlineLinks": true,
+  "workbench.browser.openLocalhostLinks": false,
+  "jjk.ignoreWorkingCopy": true,
+  "workbench.startupEditor": "none",
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": false
+  },
+  "extensions.ignoreRecommendations": true
 }
