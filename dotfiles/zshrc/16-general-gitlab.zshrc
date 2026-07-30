@@ -1,12 +1,42 @@
 # TITLE: Gitlab
 
+# HIDE: Default branch to current jj change if in a jj repo (glab ci needs jj-prox, not jj itself)
+function _gl_default_branch() {
+	[[ -d .jj ]] && jj-prox
+}
+
+# HIDE: Fetch pipeline JSON for branch/repo into tmp_fname, echoing the command for visibility
+function _gl_fetch_pipeline() {
+	local branch="$1" repo="$2" tmp_fname="$3"
+	echo "glab ci get -b ${branch} ${repo} --output json > ${tmp_fname}"
+	glab ci get -b ${branch} ${repo} --output json > ${tmp_fname}
+}
+
+# HIDE: Report pipeline status; returns 0 once done (and notifies), 1 while Running/Pending
+function _gl_pipeline_report_if_done() {
+	local tmp_fname="$1"
+	local pipeline_status=$(jq -r '.detailed_status.text' ${tmp_fname})
+	if [[ "$pipeline_status" == "Running" || "$pipeline_status" == "Pending" ]]; then
+		local pipeline_job_running=$(jq -r '[.jobs.[] | {name, status} | select(.status == "running")] | map(.name) | join(", ")' ${tmp_fname})
+		echo "Currently running: ${pipeline_job_running}"
+		return 1
+	fi
+
+	local pipeline_status_label=$(jq -r '.detailed_status.label' ${tmp_fname})
+	echo "Pipeline status: ${pipeline_status} - ${pipeline_status_label}"
+
+	local pipeline_job_results=$(jq -r '.jobs.[] | {status, name} | join(": ")' ${tmp_fname})
+	echo ""
+	echo "Status:"
+	echo $pipeline_job_results
+
+	notify "Pipeline completed"
+	return 0
+}
+
 # Watch for pipeline finish/stall (e.g. gl-watch -b <branch_name> -R <repo_name>)
 function gl-watch() {
-	local branch_name=""
-	if [[ -d .jj ]]; then
-		# jj-prox part is needed for jujutsu: glab ci doesn't work by itself
-		branch_name=$(jj-prox)
-	fi
+	local branch_name=$(_gl_default_branch)
 	local repo_flag=""
 
 	# Parse optional flags
@@ -37,37 +67,18 @@ function gl-watch() {
 
 	TMP_FNAME="/tmp/glpipeline.json"
 	while true; do
-		echo "glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}"
-		glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}
+		_gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME}
 
-		pipeline_status=$(jq -r '.detailed_status.text' ${TMP_FNAME})
-		if [[ "$pipeline_status" != "Running" && "$pipeline_status" != "Pending" ]]; then
-			pipeline_status_label=$(jq -r '.detailed_status.label' ${TMP_FNAME})
-			echo "Pipeline status: ${pipeline_status} - ${pipeline_status_label}"
-
-			pipeline_job_results=$(jq -r '.jobs.[] | {status, name} | join(": ")' ${TMP_FNAME})
-
-			echo ""
-			echo "Status:"
-			echo $pipeline_job_results
-
-			notify "Pipeline completed"
+		if _gl_pipeline_report_if_done ${TMP_FNAME}; then
 			break
 		fi
-
-		pipeline_job_running=$(jq -r '[.jobs.[] | {name, status} | select(.status == "running")] | map(.name) | join(", ")' ${TMP_FNAME})
-		echo "Currently running: ${pipeline_job_running}"
 		sleep 10
 	done
 }
 
 # Watch a pipeline and auto-trigger specified manual jobs as they become available (e.g. gl-watch-auto -b <branch_name> -R <repo_name> -j <job_name> -j <job_name2>)
 function gl-watch-auto() {
-	local branch_name=""
-	if [[ -d .jj ]]; then
-		# jj-prox part is needed for jujutsu: glab ci doesn't work by itself
-		branch_name=$(jj-prox)
-	fi
+	local branch_name=$(_gl_default_branch)
 	local repo_flag=""
 	local run_jobs=()
 
@@ -110,8 +121,7 @@ function gl-watch-auto() {
 	TMP_FNAME="/tmp/glpipeline_auto.json"
 	local triggered_ids=()
 	while true; do
-		echo "glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}"
-		glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}
+		_gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME}
 
 		# Trigger any requested manual jobs that are now available and haven't been triggered yet.
 		triggered_any=false
@@ -135,34 +145,16 @@ function gl-watch-auto() {
 			continue
 		fi
 
-		pipeline_status=$(jq -r '.detailed_status.text' ${TMP_FNAME})
-		if [[ "$pipeline_status" != "Running" && "$pipeline_status" != "Pending" ]]; then
-			pipeline_status_label=$(jq -r '.detailed_status.label' ${TMP_FNAME})
-			echo "Pipeline status: ${pipeline_status} - ${pipeline_status_label}"
-
-			pipeline_job_results=$(jq -r '.jobs.[] | {status, name} | join(": ")' ${TMP_FNAME})
-
-			echo ""
-			echo "Status:"
-			echo $pipeline_job_results
-
-			notify "Pipeline completed"
+		if _gl_pipeline_report_if_done ${TMP_FNAME}; then
 			break
 		fi
-
-		pipeline_job_running=$(jq -r '[.jobs.[] | {name, status} | select(.status == "running")] | map(.name) | join(", ")' ${TMP_FNAME})
-		echo "Currently running: ${pipeline_job_running}"
 		sleep 10
 	done
 }
 
 # View logs for pipeline failures (e.g. gl-failed -b <branch_name> -R <repo_name>)
 function gl-failed() {
-	local branch_name=""
-	if [[ -d .jj ]]; then
-		# jj-prox part is needed for jujutsu: glab ci doesn't work by itself
-		branch_name=$(jj-prox)
-	fi
+	local branch_name=$(_gl_default_branch)
 	local repo_flag=""
 
 	# Parse optional flags
@@ -194,8 +186,7 @@ function gl-failed() {
 	TMP_FNAME="/tmp/glpipeline_failure.json"
 	HEADER_WIDTH=56
 
-	echo "glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}"
-	glab ci get -b ${branch_name} ${repo_flag} --output json > ${TMP_FNAME}
+	_gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME}
 	project_id=$(jq -r '.project_id' ${TMP_FNAME})
 	pipeline_failed_jobs=$(jq -r '[.jobs.[] | {name, status} | select(.status == "failed")] | map(.name) | join(", ")' ${TMP_FNAME})
 	if [[ -z "${pipeline_failed_jobs}" ]]; then
