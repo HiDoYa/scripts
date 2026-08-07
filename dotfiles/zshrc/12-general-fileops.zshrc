@@ -63,8 +63,7 @@ alias vimplugin='vim +PluginInstall +qall'
 function brewing() {
 	# Brew
 	brew update
-	brew upgrade
-	brew outdated
+	brew upgrade -y
 	brew cleanup
 
 	# Node js
