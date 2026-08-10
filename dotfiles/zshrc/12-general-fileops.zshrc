@@ -103,12 +103,13 @@ alias mypublicip="curl ident.me"
 # Keep the Mac awake indefinitely
 function keep-on() {
 	caffeinate -ud &
+	disown
 }
 
 # Stop the caffeinate process started by keep-on
 function dont-keep-on() {
-	local pid=$(ps aux | grep '[c]affeinate' | awk '{print $2}')
-	[[ -n $pid ]] && kill $pid
+	local pids=($(ps aux | grep '[c]affeinate' | awk '{print $2}'))
+	(( $#pids )) && kill $pids
 }
 
 # Get my home local ip(s)
