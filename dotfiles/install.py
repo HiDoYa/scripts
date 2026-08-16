@@ -165,6 +165,7 @@ dotfile_workflow("jj", f"{temp_dir}/jj.config.toml", f"{HOME}/.config/jj/config.
 
 direct_copy_workflow("vimrc", f"{HOME}")
 direct_copy_workflow("tmux", f"{HOME}")
+direct_copy_workflow("tmux/scripts", f"{HOME}/.tmux/scripts")
 direct_copy_workflow("alacritty", f"{HOME}/.config/alacritty")
 direct_copy_workflow("atuin", f"{HOME}/.config/atuin")
 direct_copy_workflow("vscode", f"{HOME}/Library/Application Support/Code/User")
