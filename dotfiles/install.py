@@ -104,7 +104,7 @@ def dotfile_workflow(config_src_dir, temp_file, config_file):
 def direct_copy_workflow(config_src_dir, config_dir):
     script_dir = os.path.dirname(os.path.abspath(__file__))
     abs_config_src_dir = f"{script_dir}/{config_src_dir}"
-    files = os.listdir(abs_config_src_dir)
+    files = [f for f in os.listdir(abs_config_src_dir) if os.path.isfile(f"{abs_config_src_dir}/{f}")]
     files.sort()
 
     for file in files:
