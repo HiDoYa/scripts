@@ -113,7 +113,6 @@
   "claudeCode.preferredLocation": "panel",
   "accessibility.underlineLinks": true,
   "workbench.browser.openLocalhostLinks": false,
-  "jjk.ignoreWorkingCopy": true,
   "workbench.startupEditor": "none",
   "[markdown]": {
     "editor.formatOnSave": false,
