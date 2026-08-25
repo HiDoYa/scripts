@@ -29,8 +29,8 @@ alias procs="procs"
 alias pgcli="pgcli"
 
 # Tools to remember
-# I have a hard time remembering some tools I download so 
-# I list some that I want to remember here until I've 
+# I have a hard time remembering some tools I download so
+# I list some that I want to remember here until I've
 # used them enough. This is not a complete list
 
 # INFO: Draw.io cli
@@ -89,3 +89,5 @@ alias jnv="jnv"
 alias mtr="mtr"
 # INFO: Nix-shell creates reproducible environments
 alias nix-shell="nix-shell"
+# INFO: Unarchive but with unicode smarts
+alias unar="unar"
