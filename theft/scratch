@@ -4,6 +4,7 @@ set -u
 set -o pipefail
 
 file="$(mktemp)"
-echo "Editing $file (copied to clipboard)"
-echo "$file" | pbcopy
-exec "$EDITOR" "$file"
+echo "Editing $file"
+"$EDITOR" "$file"
+printf '%s' "$file" | pbcopy
+echo "Copied $file to clipboard"
