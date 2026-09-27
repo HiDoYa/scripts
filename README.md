@@ -6,7 +6,7 @@ Scripts, files, and other misc files for personal use.
 
 | Name          | Description                                     |
 | ------------- | ----------------------------------------------- |
-| Backup        | Backup secrets and packages to google drive     |
+| Backup        | Backup secrets and packages to NAS via restic   |
 | Bayleaf       | Manage brew packages with diff tracking         |
 | Bootstrap     | Initialize local mac system                     |
 | Changelog-inc | Increment changelog automatically               |

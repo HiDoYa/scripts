@@ -1,0 +1,38 @@
+version: "1"
+
+global:
+  priority: low
+
+default:
+  repository: "sftp:store:/Backups/restic"
+  password-command: "security find-generic-password -a restic -s restic-backup -w"
+
+secrets:
+  inherit: default
+  backup:
+    run-before: "{{ .ConfigDir }}/pre-backup.sh"
+    run-after-fail: "osascript -e 'display notification \"see ~/Library/Logs/resticprofile.log\" with title \"Backup failed\"'"
+    source:
+      - "{{ .Env.HOME }}/Code/scripts/dotfiles/zshrc"
+      - "{{ .Env.HOME }}/Documents/credentials"
+      - "{{ .Env.HOME }}/.config"
+      - "{{ .Env.HOME }}/.ssh"
+      - "{{ .Env.HOME }}/.aws"
+      - "{{ .Env.HOME }}/.local/share/atuin/key"
+      - "{{ .Env.HOME }}/.local/share/pkg-backup"
+    exclude:
+      - "{{ .Env.HOME }}/.config/packer"
+      - "{{ .Env.HOME }}/.ssh/agent"
+      - "**/cache"
+      - "**/Cache"
+      - "**/ipc"
+      - "*.sock"
+      - ".DS_Store"
+    schedule: "Sat 15:00"
+    schedule-permission: user_logged_on
+    schedule-log: "{{ .Env.HOME }}/Library/Logs/resticprofile.log"
+  retention:
+    after-backup: true
+    keep-weekly: 52
+    keep-monthly: 24
+    prune: true
