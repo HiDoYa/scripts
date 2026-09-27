@@ -24,21 +24,18 @@ result = template.render(
 with open(plist_fname, 'w') as f:
     f.write(result)
 
-# Move backup
 home = os.environ.get("HOME")
-backup_dest_path = f"{home}/Library/LaunchAgents/{backup_script_fname}"
-shutil.copyfile(backup_script_fname, backup_dest_path)
 
 # Move plist
 plist_dest_path = f"{home}/Library/LaunchAgents/{plist_fname}"
 shutil.copyfile(plist_fname, plist_dest_path)
 
-uid = os.environ.get("UID")
+uid = os.getuid()
 
 print("Run the following:")
-print(f"chmod +x {backup_dest_path}")
-print(f"launchctl unload {plist_dest_path}")
-print(f"launchctl load {plist_dest_path}")
+print(f"launchctl bootout gui/{uid}/{unique_label}")
+print(f"launchctl bootstrap gui/{uid} {plist_dest_path}")
+print("Grant /bin/bash Full Disk Access (System Settings > Privacy) so launchd can read ~/Documents")
 
 print("\nDebugging commands:")
 print(f"launchctl print gui/{uid}/{unique_label}")

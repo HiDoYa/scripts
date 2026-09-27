@@ -1,100 +1,79 @@
 #!/bin/bash
+# Backs up secrets + pkg lists to Google Drive as timestamped tarballs.
+# Usage: backup.sh [secrets|pkg]  (default: both)
+set -uo pipefail
 
-# Usage:
-# sudo su root
-# sudo -i -u hiroyagojo ./Code/scripts/backup.sh
-
-# Used to store pkg backups for home vs work
 RCLONE_CONF=$HOME/.config/rclone/rclone.conf
+REMOTE=MainDrive:/Backup
+RETENTION=365d
+STAMP=$(date +%Y-%m-%d-%H%M)
+RCLONE=(rclone --config "$RCLONE_CONF" --retries 5 --low-level-retries 20)
 
-# Ensure brew is sourced
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Remove rclone files past some number of retention days
-function remove_old_backups()
-{
-	RCLONE_LOCATION=$1
-	RETENTION_DAYS=$2
+WORK=$(mktemp -d)
+trap 'rm -rf "$WORK"' EXIT
 
-	# Remove old backups
-	rclone lsd $RCLONE_LOCATION --config $RCLONE_CONF | while read -r line; do
-		FILE_DATE=$(echo $line | awk '{print $2}')
-		FILE_NAME=$(echo $line | awk '{print $5}')
+log() { echo "$(date '+%F %T') $*"; }
 
-		FILE_DATE_UNIX=$(date -j -f "%F" $FILE_DATE +%s) 
-		CURRENT_DATE_UNIX=$(date +%s)
+fail() {
+	log "ERROR: $*" >&2
+	osascript -e "display notification \"$*\" with title \"Backup failed\"" 2>/dev/null
+	exit 1
+}
 
-		DIFF=$(expr $CURRENT_DATE_UNIX - $FILE_DATE_UNIX)
-		DIFF_IN_DAYS=$(expr $DIFF / 60 / 60 / 24)
-
-		if [[ $DIFF_IN_DAYS -gt $RETENTION_DAYS ]]; then
-			echo "Deleting file $FILE_NAME"
-			rclone delete $RCLONE_LOCATION/$FILE_NAME --config $RCLONE_CONF
-		fi
+# launchd may fire right after wake, before network is up
+wait_for_network() {
+	for _ in {1..30}; do
+		host -W 2 www.googleapis.com >/dev/null 2>&1 && return
+		sleep 10
 	done
+	fail "no network"
 }
 
-# Backup secrets to google drive
-function sbackup()
-{
-    echo "Backing up secrets"
-	RETENTION_DAYS=365
-	RCLONE_LOCATION=MainDrive:/Backup/secrets
-	TEMP_DIRNAME=$(date +%Y-%m-%d-%H:%M)
-
-	mkdir /tmp/$TEMP_DIRNAME
-
-	SECRET_LOCATIONS=(
-		$HOME/Code/scripts/dotfiles/zshrc \
-		$HOME/Documents/credentials \
-		$HOME/.config \
-		$HOME/.ssh
-		$HOME/.aws
-	)
-
-	for loc in ${SECRET_LOCATIONS[@]}; do
-		cp -r $loc /tmp/$TEMP_DIRNAME
-	done
-
-	# Move into drive
-	rclone copy /tmp/$TEMP_DIRNAME $RCLONE_LOCATION/$TEMP_DIRNAME --config $RCLONE_CONF
-	echo "Finished backing up $TEMP_DIRNAME"
-	rm -rf /tmp/$TEMP_DIRNAME
-
-	# Remove old backups
-	remove_old_backups $RCLONE_LOCATION $RETENTION_DAYS
-
-    echo "Finished backing up secrets"
+# Fail fast on expired token instead of partway through
+check_auth() {
+	"${RCLONE[@]}" lsd "$REMOTE" >/dev/null 2>&1 \
+		|| fail "rclone auth failed; run: rclone config reconnect ${REMOTE%%:*}:"
 }
 
-# Backup pkg to google drive
-function pkgbackup()
-{
-    echo "Backing up pkgs"
-
-	RETENTION_DAYS=365
-	RCLONE_LOCATION=MainDrive:/Backup/pkg
-	TEMP_DIRNAME=$(date +%Y-%m-%d-%H:%M)
-
-	mkdir /tmp/$TEMP_DIRNAME
-
-	# Save to files
-	gem list > /tmp/$TEMP_DIRNAME/gem.txt
-	brew leaves > /tmp/$TEMP_DIRNAME/brew.txt
-	brew list --cask > /tmp/$TEMP_DIRNAME/brew-cask.txt
-	ls $(npm root -g) > /tmp/$TEMP_DIRNAME/npm.txt
-	pip3 freeze > /tmp/$TEMP_DIRNAME/pip.txt
-
-	# Move into drive
-	rclone copy --config $RCLONE_CONF /tmp/$TEMP_DIRNAME $RCLONE_LOCATION/$TEMP_DIRNAME
-	echo "Finished backing up $TEMP_DIRNAME"
-	rm -rf /tmp/$TEMP_DIRNAME
-
-	# Remove old backups
-	remove_old_backups $RCLONE_LOCATION $RETENTION_DAYS
-    echo "Finished backing up pkgs"
+upload() {
+	local file=$1 dest=$REMOTE/$2
+	"${RCLONE[@]}" copyto "$file" "$dest/$(basename "$file")" || fail "upload to $dest failed"
+	"${RCLONE[@]}" delete "$dest" --min-age "$RETENTION" || log "WARN: prune $dest failed"
+	"${RCLONE[@]}" rmdirs "$dest" --leave-root 2>/dev/null
+	log "Uploaded $(basename "$file") -> $dest"
 }
 
-# Call both backups
-sbackup
-pkgbackup
+backup_secrets() {
+	log "Backing up secrets"
+	local out=$WORK/secrets-$STAMP.tar.gz
+	# -C $HOME keeps paths relative; missing paths are warnings, not fatal
+	tar --no-xattrs -czf "$out" -C "$HOME" \
+		--exclude '.config/packer' --exclude '*/cache' --exclude '*/Cache' --exclude '*.sock' --exclude '.ssh/agent' --exclude '*/ipc' \
+		Code/scripts/dotfiles/zshrc Documents/credentials .config .ssh .aws .local/share/atuin/key \
+		|| log "WARN: tar reported errors (Full Disk Access for launchd?)"
+	upload "$out" secrets
+}
+
+backup_pkg() {
+	log "Backing up pkgs"
+	local dir=$WORK/pkg-$STAMP
+	mkdir "$dir"
+	brew bundle dump --file="$dir/Brewfile" --force || log "WARN: brew bundle failed"
+	command -v gem >/dev/null && gem list > "$dir/gem.txt"
+	command -v npm >/dev/null && npm ls -g --depth=0 > "$dir/npm.txt" 2>/dev/null
+	command -v pip3 >/dev/null && pip3 freeze > "$dir/pip.txt" 2>/dev/null
+	tar -czf "$dir.tar.gz" -C "$WORK" "$(basename "$dir")"
+	upload "$dir.tar.gz" pkg
+}
+
+wait_for_network
+check_auth
+case "${1:-all}" in
+	secrets) backup_secrets ;;
+	pkg) backup_pkg ;;
+	all) backup_secrets; backup_pkg ;;
+	*) fail "unknown target: $1" ;;
+esac
+log "Done"
