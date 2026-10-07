@@ -41,7 +41,7 @@ def write_to_file(contents, dest_file):
 def write_to_file_with_prompt(contents, dest_file):
     answer = ""
     while answer not in ["y", "n"]:
-        answer = input(f"{GREEN}Confirm the changes?{RESET} (y/n): ").strip().lower()
+        answer = input(f"{GREEN}Confirm changes to {dest_file}?{RESET} (y/n): ").strip().lower()
 
     if answer == "y":
         write_to_file(contents, dest_file)
@@ -54,7 +54,7 @@ def copy_to_file_with_prompt(src_fname, dst_fname):
     print()
     answer = ""
     while answer not in ["y", "n"]:
-        answer = input(f"{GREEN}Confirm the changes?{RESET} (y/n): ").strip().lower()
+        answer = input(f"{GREEN}Confirm changes to {dst_fname}?{RESET} (y/n): ").strip().lower()
 
     if answer == "y":
         os.makedirs(os.path.dirname(dst_fname), exist_ok=True)
@@ -165,7 +165,6 @@ dotfile_workflow("jj", f"{temp_dir}/jj.config.toml", f"{HOME}/.config/jj/config.
 
 direct_copy_workflow("vimrc", f"{HOME}")
 direct_copy_workflow("tmux", f"{HOME}")
-direct_copy_workflow("tmux/scripts", f"{HOME}/.tmux/scripts")
 direct_copy_workflow("alacritty", f"{HOME}/.config/alacritty")
 direct_copy_workflow("atuin", f"{HOME}/.config/atuin")
 direct_copy_workflow("vscode", f"{HOME}/Library/Application Support/Code/User")
