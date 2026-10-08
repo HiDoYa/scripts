@@ -43,6 +43,8 @@ export EDITOR=vim
 export PIP_REQUIRE_VIRTUALENV=true
 # Pipx binaries
 export PATH=/Users/$USER/.local/bin:$PATH
+# Cargo binaries
+export PATH=/Users/$USER/.cargo/bin:$PATH
 
 # Go settings
 export GOPATH=$HOME/go
