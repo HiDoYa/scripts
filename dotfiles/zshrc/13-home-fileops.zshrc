@@ -1,7 +1,6 @@
-# Secrets backup script
-function sbackup() {
-	$SCRIPTS_DIR/backup/backup.sh
-}
+# Secrets backup (restic to NAS)
+alias rp='resticprofile -c $SCRIPTS_DIR/backup/profiles.yaml -n secrets'
+alias sbackup='rp backup'
 
 # Convert HEIC formatted photos to jpeg in a folder
 function heic2jpg() {
