@@ -76,11 +76,13 @@ function gl-watch() {
 	done
 }
 
-# Watch a pipeline and auto-trigger specified manual jobs as they become available (e.g. gl-watch-auto -b <branch_name> -R <repo_name> -j <job_name> -j <job_name2>)
+# Watch and trigger manual jobs (e.g. gl-watch-auto --smart, or gl-watch-auto -j deploy)
 function gl-watch-auto() {
 	local branch_name=$(_gl_default_branch)
 	local repo_flag=""
 	local run_jobs=()
+	local smart=false
+	local usage="Usage: gl-watch-auto [-b|--branch BRANCH_NAME] [-R|--repo REPO] [--smart] [-j|--job JOB_NAME]..."
 
 	# Parse optional flags
 	while [[ $# -gt 0 ]]; do
@@ -98,9 +100,13 @@ function gl-watch-auto() {
 				run_jobs+=("$2")
 				shift 2
 				;;
+			--smart)
+				smart=true
+				shift
+				;;
 			*)
 				echo "Unknown option: $1"
-				echo "Usage: gl-watch-auto [-b|--branch BRANCH_NAME] [-R|--repo REPO] [-j|--job JOB_NAME]..."
+				echo "$usage"
 				return 1
 				;;
 		esac
@@ -108,38 +114,66 @@ function gl-watch-auto() {
 
 	if [[ -z "$branch_name" ]]; then
 		echo "Error: No .jj directory found and -b flag not specified"
-		echo "Usage: gl-watch-auto [-b|--branch BRANCH_NAME] [-R|--repo REPO] [-j|--job JOB_NAME]..."
+		echo "$usage"
 		return 1
 	fi
 
-	if [[ ${#run_jobs[@]} -eq 0 ]]; then
-		echo "Error: No -j/--job specified, nothing to auto-run. Use gl-watch instead"
-		echo "Usage: gl-watch-auto [-b|--branch BRANCH_NAME] [-R|--repo REPO] [-j|--job JOB_NAME]..."
+	if [[ ${#run_jobs[@]} -eq 0 && "$smart" == false ]]; then
+		echo "Error: Specify --smart or -j/--job. Use gl-watch to only watch"
+		echo "$usage"
 		return 1
 	fi
 
 	TMP_FNAME="/tmp/glpipeline_auto.json"
 	local triggered_ids=()
+	# Give GitLab 10 seconds to catch up after a push.
+	local startup_deadline=$((SECONDS + 10))
+	local pipeline_status
+	local job_ids job_id job_name triggered_any
 	while true; do
-		_gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME}
-
-		# Trigger any requested manual jobs that are now available and haven't been triggered yet.
-		triggered_any=false
-		for job_name in "${run_jobs[@]}"; do
-			job_id=$(jq -r --arg name "$job_name" '[.jobs.[] | select(.status == "manual" and .name == $name) | .id] | first // empty' ${TMP_FNAME})
-			if [[ -z "$job_id" ]]; then
-				continue
+		# Retry missing pipelines during the startup window.
+		if ! _gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME}; then
+			if (( SECONDS >= startup_deadline )); then
+				return 1
 			fi
+			echo "Waiting for pipeline to become available..."
+			sleep 5
+			continue
+		fi
+
+		# An old completed pipeline may still be visible until the new one starts.
+		pipeline_status=$(jq -r '.detailed_status.text' ${TMP_FNAME})
+		if [[ "$pipeline_status" == "Running" || "$pipeline_status" == "Pending" ]]; then
+			# Once activity is seen, completion no longer needs a startup delay.
+			startup_deadline=0
+		elif (( SECONDS < startup_deadline )); then
+			echo "Waiting for a new pipeline to start..."
+			sleep 5
+			continue
+		fi
+
+		# Match explicit -j names or, with --smart, names containing deploy or push.
+		job_ids=$(jq -r --argjson smart "$smart" --args '
+			.jobs[] | select(.status == "manual")
+			| select((.name as $name | $ARGS.positional | index($name)) or
+				($smart and (.name | test("deploy|push"; "i")))) | .id
+		' "${run_jobs[@]}" < "$TMP_FNAME") || return 1
+
+		triggered_any=false
+		for job_id in ${(f)job_ids}; do
+			# GitLab may keep a triggered job marked manual until its status updates.
 			if [[ " ${triggered_ids[*]} " == *" ${job_id} "* ]]; then
 				continue
 			fi
 
+			job_name=$(jq -r --argjson id "$job_id" '.jobs[] | select(.id == $id) | .name' "$TMP_FNAME")
 			echo "Triggering manual job: ${job_name} (id: ${job_id})"
-			glab ci trigger "${job_id}" -b ${branch_name} ${repo_flag}
+			glab ci trigger "${job_id}" -b ${branch_name} ${repo_flag} || return 1
 			triggered_ids+=("${job_id}")
 			triggered_any=true
 		done
 
+		# Refresh after triggering jobs before checking whether the pipeline is done.
 		if [[ "$triggered_any" == true ]]; then
 			sleep 5
 			continue
