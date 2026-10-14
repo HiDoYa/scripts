@@ -9,7 +9,11 @@ function _gl_default_branch() {
 function _gl_fetch_pipeline() {
 	local branch="$1" repo="$2" tmp_fname="$3"
 	echo "glab ci get -b ${branch} ${repo} --output json > ${tmp_fname}"
-	glab ci get -b ${branch} ${repo} --output json > ${tmp_fname}
+	glab ci get -b "${branch}" ${=repo} --output json > "${tmp_fname}" || return 1
+	if ! jq -e -s 'length == 1 and (.[0] | (.detailed_status.text | type == "string") and (.jobs | type == "array"))' "${tmp_fname}" > /dev/null 2>&1; then
+		echo "Error: glab returned invalid pipeline JSON (${tmp_fname})" >&2
+		return 1
+	fi
 }
 
 # HIDE: Report pipeline status; returns 0 once done (and notifies), 1 while Running/Pending
@@ -67,7 +71,7 @@ function gl-watch() {
 
 	TMP_FNAME="/tmp/glpipeline.json"
 	while true; do
-		_gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME}
+		_gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME} || return 1
 
 		if _gl_pipeline_report_if_done ${TMP_FNAME}; then
 			break
@@ -220,7 +224,7 @@ function gl-failed() {
 	TMP_FNAME="/tmp/glpipeline_failure.json"
 	HEADER_WIDTH=56
 
-	_gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME}
+	_gl_fetch_pipeline "${branch_name}" "${repo_flag}" ${TMP_FNAME} || return 1
 	project_id=$(jq -r '.project_id' ${TMP_FNAME})
 	pipeline_failed_jobs=$(jq -r '[.jobs.[] | {name, status} | select(.status == "failed")] | map(.name) | join(", ")' ${TMP_FNAME})
 	if [[ -z "${pipeline_failed_jobs}" ]]; then
